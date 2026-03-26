@@ -1,0 +1,15 @@
+# Evaluate checkpoints in outputs/checkpoints_nr3d_geom_first on geometry-backed val manifest.
+dataset_config: configs/dataset/referit3d.yaml
+checkpoint_dir: outputs/checkpoints_nr3d_geom_first
+device: cuda
+batch_size: 24
+split: val
+margin_thresh: 0.15
+models:
+  - attribute_only
+  - raw_text_relation
+  - relation_aware
+checkpoint_run_names:
+  attribute_only: baseline
+  raw_text_relation: raw_relation
+  relation_aware: relation_aware

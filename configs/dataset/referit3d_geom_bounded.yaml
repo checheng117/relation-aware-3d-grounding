@@ -1,0 +1,27 @@
+# Same as referit3d.yaml but caps CSV / NR3D-geom build size for a bounded geometry-backed pass.
+name: referit3d_geom_bounded
+raw_root: data/raw/referit3d
+processed_dir: data/processed
+scans_subdir: scans
+annotations_subdir: annotations
+train_csv: train.csv
+val_csv: val.csv
+test_csv: test.csv
+combined_csv: null
+import_jsonl: null
+variant: nr3d
+nr3d_hf:
+  repo_id: chouss/nr3d
+  annotation_json: nr3d_annotations.json
+  auto_download_if_missing: true
+max_objects_per_scene: 64
+point_sample_size: 1024
+debug:
+  max_build_samples: 2000
+  max_build_scenes: 48
+  mock:
+    n_samples: 256
+    n_scenes: 16
+    feat_dim: 256
+    objects_per_scene: 6
+    seed: 42

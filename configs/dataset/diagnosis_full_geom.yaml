@@ -1,0 +1,28 @@
+# Geometry-backed NR3D with full-scene candidates from aggregation (diagnosis A2).
+name: diagnosis_full_geom
+raw_root: data/raw/referit3d
+processed_dir: data/processed/diagnosis_full_geom
+scans_subdir: scans
+annotations_subdir: annotations
+train_csv: train.csv
+val_csv: val.csv
+test_csv: test.csv
+combined_csv: null
+import_jsonl: null
+variant: nr3d
+nr3d_hf:
+  repo_id: chouss/nr3d
+  annotation_json: nr3d_annotations.json
+  auto_download_if_missing: false
+  candidate_set: full_scene
+max_objects_per_scene: 64
+point_sample_size: 1024
+debug:
+  max_build_samples: null
+  max_build_scenes: null
+  mock:
+    n_samples: 256
+    n_scenes: 16
+    feat_dim: 256
+    objects_per_scene: 6
+    seed: 42

@@ -1,0 +1,26 @@
+# Conda environment for relation-aware-3d-grounding (canonical developer workflow).
+#
+# Create/update:
+#   bash scripts/setup_env.sh
+#
+# Python 3.10: stable PyTorch + scientific stack; matches pyproject requires-python.
+# PyTorch is installed via pip here for a single cross-platform spec; for GPU builds,
+# replace the pip torch line with conda packages from https://pytorch.org/ if needed.
+name: rag3d
+channels:
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - numpy>=1.24
+  - pyyaml>=6
+  - matplotlib>=3.8
+  - pytest>=7.4
+  - pip:
+      - torch>=2.0
+      - pydantic>=2.5
+      - python-dotenv>=1.0
+      - tqdm>=4.66
+      - ruff>=0.1
+      - huggingface_hub>=0.20
+      - huggingface_hub>=0.20

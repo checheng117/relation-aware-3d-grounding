@@ -1,0 +1,7 @@
+extends: default
+use_debug_subdir: true
+split: val
+checkpoint_run_names:
+  attribute_only: baseline_debug
+  raw_text_relation: raw_relation_debug
+  relation_aware: relation_aware_debug

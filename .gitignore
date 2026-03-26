@@ -1,0 +1,42 @@
+# Secrets — never commit
+.env
+.env.local
+.env.*.local
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+*.egg-info/
+.eggs/
+dist/
+build/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+venv/
+.venv/
+
+# Data & artifacts (large / local)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+data/parser_cache/*
+!data/parser_cache/.gitkeep
+data/hard_cases/*
+!data/hard_cases/.gitkeep
+
+# Generated runs (keep only placeholder files if needed)
+outputs/
+!outputs/**/.gitkeep
+
+# OS / editor
+.DS_Store
+*.swp
+*.swo
+.idea/
+.vscode/

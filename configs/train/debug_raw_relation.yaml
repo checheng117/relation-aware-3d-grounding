@@ -1,0 +1,6 @@
+extends: raw_relation
+mode: debug
+epochs: 2
+debug_max_batches: 16
+run_name: raw_relation_debug
+metrics_file: outputs/metrics/train_raw_relation_debug_metrics.jsonl

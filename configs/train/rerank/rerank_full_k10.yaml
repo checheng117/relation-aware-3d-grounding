@@ -1,0 +1,21 @@
+# Two-stage: frozen diag_full_baseline coarse + train relation-aware rerank (top-K=10).
+model: relation_aware
+dataset_config: configs/dataset/diagnosis_full_geom.yaml
+coarse_checkpoint: outputs/checkpoints_diagnosis/diag_full_baseline_last.pt
+rerank_k: 10
+parser_mode: structured
+parser_cache_dir: data/parser_cache/diagnosis
+epochs: 8
+batch_size: 16
+lr: 0.0001
+weight_decay: 0.01
+seed: 42
+num_workers: 2
+checkpoint_dir: outputs/checkpoints_rerank
+metrics_file: outputs/metrics/rerank_full_k10.jsonl
+run_name: rerank_full_k10
+device: cuda
+debug_max_batches: null
+loss:
+  hard_negative:
+    enabled: false

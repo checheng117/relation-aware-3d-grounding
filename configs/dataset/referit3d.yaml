@@ -1,0 +1,32 @@
+# Bring-your-own-data: place ScanNet scans + CSV annotations under raw_root (see docs/DATASET_SETUP.md).
+name: referit3d
+raw_root: data/raw/referit3d
+processed_dir: data/processed
+scans_subdir: scans
+annotations_subdir: annotations
+train_csv: train.csv
+val_csv: val.csv
+test_csv: test.csv
+# If set (filename under annotations_subdir), use single CSV with `split` column instead of three files.
+combined_csv: null
+# If set, import this JSON/JSONL then random split (skips CSV build).
+import_jsonl: null
+variant: nr3d
+# Hugging Face NR3D JSON (chouss/nr3d): real language + object ids; geometry is placeholder until ScanNet scans are added.
+# For real OBBs: place ``*_vh_clean_aggregation.json`` under scans/ (see scripts/fetch_scannet_aggregations.py), then:
+#   python scripts/prepare_data.py --mode build-nr3d-geom
+nr3d_hf:
+  repo_id: chouss/nr3d
+  annotation_json: nr3d_annotations.json
+  auto_download_if_missing: true
+max_objects_per_scene: 64
+point_sample_size: 1024
+debug:
+  max_build_samples: null
+  max_build_scenes: null
+  mock:
+    n_samples: 256
+    n_scenes: 16
+    feat_dim: 256
+    objects_per_scene: 6
+    seed: 42

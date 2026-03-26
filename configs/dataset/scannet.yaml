@@ -1,0 +1,5 @@
+# ScanNet object-level structure (instances, boxes) for scene builders.
+name: scannet_objects
+raw_root: data/raw/scannet
+processed_manifest: data/processed/scannet_objects_manifest.json
+split: train

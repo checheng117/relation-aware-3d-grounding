@@ -1,0 +1,46 @@
+# Eval matrix for stage-1 recall pass (checkpoints created by configs/train/coarse/*.yaml).
+dataset_config: configs/dataset/diagnosis_full_geom.yaml
+model_config: configs/model/relation_aware.yaml
+split: val
+batch_size: 16
+device: cpu
+margin_thresh: 0.15
+parser_mode: structured
+parser_cache_dir: data/parser_cache/diagnosis
+default_coarse_model: attribute_only
+metrics_dir: outputs/metrics
+figures_dir: outputs/figures
+report_ready_dir: outputs/figures/report_ready_blueprint_stage1
+experiment_notes_dir: outputs/experiment_notes
+coarse_evals:
+  - name: coarse_attr_quick
+    coarse_model: attribute_only
+    checkpoint: outputs/checkpoints_stage1/coarse_attr_quick_last.pt
+  - name: coarse_geom_quick
+    coarse_model: coarse_geom
+    checkpoint: outputs/checkpoints_stage1/coarse_geom_quick_last.pt
+  - name: coarse_attr_baseline
+    coarse_model: attribute_only
+    checkpoint: outputs/checkpoints_stage1/coarse_attr_baseline_last.pt
+  - name: coarse_geom_ce
+    coarse_model: coarse_geom
+    checkpoint: outputs/checkpoints_stage1/coarse_geom_ce_last.pt
+  - name: coarse_geom_recall
+    coarse_model: coarse_geom
+    checkpoint: outputs/checkpoints_stage1/coarse_geom_recall_last.pt
+two_stage_evals:
+  - name: two_stage_k10_old_coarse_placeholder
+    coarse_model: attribute_only
+    coarse_checkpoint: outputs/checkpoints_stage1/coarse_attr_baseline_last.pt
+    fine_checkpoint: outputs/checkpoints_stage1_rerank/rerank_k10_stage1_last.pt
+    rerank_k: 10
+  - name: two_stage_k10_new_coarse
+    coarse_model: coarse_geom
+    coarse_checkpoint: outputs/checkpoints_stage1/coarse_geom_recall_last.pt
+    fine_checkpoint: outputs/checkpoints_stage1_rerank/rerank_k10_stage1_last.pt
+    rerank_k: 10
+  - name: two_stage_k20_matched
+    coarse_model: coarse_geom
+    coarse_checkpoint: outputs/checkpoints_stage1/coarse_geom_recall_last.pt
+    fine_checkpoint: outputs/checkpoints_stage1_rerank/rerank_k20_stage1_last.pt
+    rerank_k: 20

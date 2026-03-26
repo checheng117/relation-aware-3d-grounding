@@ -1,0 +1,14 @@
+dataset_config: configs/dataset/referit3d.yaml
+manifest: null
+split: val
+use_debug_subdir: false
+debug_processed_subdir: debug
+batch_size: 16
+device: cpu
+margin_thresh: 0.15
+models:
+  - attribute_only
+  - raw_text_relation
+  - relation_aware
+checkpoint_dir: outputs/checkpoints
+run_name: null

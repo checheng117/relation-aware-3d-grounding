@@ -1,0 +1,29 @@
+# Conservative mix: small margin + mild same-class + load; no spatial (often noisy with weak features).
+model: relation_aware
+dataset_config: configs/dataset/diagnosis_full_geom.yaml
+coarse_model: coarse_geom
+train_manifest: data/processed/diagnosis_full_geom/train_manifest.jsonl
+val_manifest: data/processed/diagnosis_full_geom/val_manifest.jsonl
+checkpoint_dir: outputs/checkpoints_stage1_opt
+metrics_file: outputs/metrics/coarse_opt_geom_combined_light.jsonl
+run_name: coarse_geom_combined_light
+epochs: 5
+batch_size: 16
+lr: 0.0001
+weight_decay: 0.01
+seed: 42
+num_workers: 2
+device: cuda
+mode: real
+debug_max_batches: null
+loss:
+  candidate_load_weight:
+    enabled: true
+  ranking_margin:
+    enabled: true
+    margin: 0.15
+    lambda: 0.08
+  hard_negative:
+    enabled: true
+    margin: 0.25
+    lambda_hinge: 0.2

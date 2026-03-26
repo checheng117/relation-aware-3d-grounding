@@ -1,0 +1,21 @@
+# Strong attribute baseline: longer training, CE only (reference for recall@K sweep).
+model: relation_aware
+dataset_config: configs/dataset/diagnosis_full_geom.yaml
+coarse_model: attribute_only
+train_manifest: data/processed/diagnosis_full_geom/train_manifest.jsonl
+val_manifest: data/processed/diagnosis_full_geom/val_manifest.jsonl
+checkpoint_dir: outputs/checkpoints_stage1_opt
+metrics_file: outputs/metrics/coarse_opt_attr_baseline_fullref.jsonl
+run_name: coarse_attr_baseline_fullref
+epochs: 10
+batch_size: 16
+lr: 0.0001
+weight_decay: 0.01
+seed: 42
+num_workers: 2
+device: cuda
+mode: real
+debug_max_batches: null
+loss:
+  hard_negative:
+    enabled: false

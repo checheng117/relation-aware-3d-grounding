@@ -1,0 +1,14 @@
+dataset_config: configs/dataset/diagnosis_entity_geom.yaml
+checkpoint_dir: outputs/checkpoints_diagnosis
+main_results_path: outputs/metrics/diagnosis/main_entity_rel_structured.json
+stratified_results_path: outputs/metrics/diagnosis/strat_entity_rel_structured.json
+parser_mode: structured
+parser_cache_dir: data/parser_cache/diagnosis
+device: cuda
+batch_size: 24
+split: val
+margin_thresh: 0.15
+models:
+  - relation_aware
+checkpoint_run_names:
+  relation_aware: diag_entity_rel_structured

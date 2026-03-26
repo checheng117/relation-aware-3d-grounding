@@ -1,0 +1,22 @@
+# K-aligned rerank training (K=5) with stage-1 geometry coarse checkpoint (train after coarse_geom_*).
+model: relation_aware
+coarse_model: coarse_geom
+dataset_config: configs/dataset/diagnosis_full_geom.yaml
+coarse_checkpoint: outputs/checkpoints_stage1/coarse_geom_recall_last.pt
+rerank_k: 5
+parser_mode: structured
+parser_cache_dir: data/parser_cache/diagnosis
+epochs: 6
+batch_size: 16
+lr: 0.0001
+weight_decay: 0.01
+seed: 42
+num_workers: 2
+checkpoint_dir: outputs/checkpoints_stage1_rerank
+metrics_file: outputs/metrics/rerank_k5_stage1.jsonl
+run_name: rerank_k5_stage1
+device: cuda
+debug_max_batches: null
+loss:
+  hard_negative:
+    enabled: false

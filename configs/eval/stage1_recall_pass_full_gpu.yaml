@@ -1,0 +1,37 @@
+# Full-GPU coarse checkpoints only (no quick/*.pt). Eval on GPU for speed.
+dataset_config: configs/dataset/diagnosis_full_geom.yaml
+model_config: configs/model/relation_aware.yaml
+split: val
+batch_size: 16
+device: cuda
+margin_thresh: 0.15
+parser_mode: structured
+parser_cache_dir: data/parser_cache/diagnosis
+default_coarse_model: attribute_only
+metrics_dir: outputs/metrics
+figures_dir: outputs/figures
+report_ready_dir: outputs/figures/report_ready_blueprint_stage1
+experiment_notes_dir: outputs/experiment_notes
+coarse_evals:
+  - name: coarse_attr_baseline_full
+    coarse_model: attribute_only
+    checkpoint: outputs/checkpoints_stage1/coarse_attr_baseline_last.pt
+  - name: coarse_geom_recall_full
+    coarse_model: coarse_geom
+    checkpoint: outputs/checkpoints_stage1/coarse_geom_recall_last.pt
+two_stage_evals:
+  - name: gpu_two_stage_k5
+    coarse_model: coarse_geom
+    coarse_checkpoint: outputs/checkpoints_stage1/coarse_geom_recall_last.pt
+    fine_checkpoint: outputs/checkpoints_stage1_rerank/rerank_k5_stage1_last.pt
+    rerank_k: 5
+  - name: gpu_two_stage_k10
+    coarse_model: coarse_geom
+    coarse_checkpoint: outputs/checkpoints_stage1/coarse_geom_recall_last.pt
+    fine_checkpoint: outputs/checkpoints_stage1_rerank/rerank_k10_stage1_last.pt
+    rerank_k: 10
+  - name: gpu_two_stage_k20
+    coarse_model: coarse_geom
+    coarse_checkpoint: outputs/checkpoints_stage1/coarse_geom_recall_last.pt
+    fine_checkpoint: outputs/checkpoints_stage1_rerank/rerank_k20_stage1_last.pt
+    rerank_k: 20
