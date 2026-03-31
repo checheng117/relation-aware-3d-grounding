@@ -1,145 +1,102 @@
-# Relation-Aware 3D Grounding for Embodied Perception
+# Relation-Aware 3D Grounding (Summary README)
 
-Structured 3D perception bridge: given a **set of objects** in a scene (with optional geometric cues) and a **natural-language utterance**, the system predicts a **target object**, a **soft anchor distribution**, relation-oriented signals, confidence, and **diagnostic tags**. The design targets **embodied perception stacks** that need an explicit, inspectable grounding module—not GUI grounding, post-training of code LLMs, or long-horizon planning.
-
----
-
-## Core idea
-
-End-to-end flow:
-
-1. **Object Set Builder** — manifests from ScanNet-style aggregations + utterance tables (BYO data).
-2. **Object Encoder** — compact MLP features (+ optional geometry / quality context).
-3. **Structured Language Parser** — heuristic pipeline with optional hooks; exposes structured cues instead of pooling the whole utterance.
-4. **Soft Anchor Selector** — distribution over candidate objects for relational language.
-5. **Relation-Robust Target Scorer** — compares **attribute-only**, **raw-text relation**, and **relation-aware** hypotheses.
-6. **Diagnostics & Visualization** — margins, entropy, failure taxonomies, case exports, report-oriented tables.
-
-Three **model lines** are implemented for controlled comparison: attribute-only, raw-text relation pooling, and relation-aware structured grounding.
+This repository is a research codebase for structured 3D grounding on ReferIt3D-style data.  
+Current focus is the two-stage `shortlist -> rerank` stack and its end-to-end robustness under corrected evaluation.
 
 ---
 
-## Why this matters
+## Project Snapshot
 
-Standard 3D grounding metrics alone do not answer what an embodied system needs: **which object is the anchor**, **which relation fired**, and **why** the model failed. This repository treats grounding as a **diagnosable bridge** with a stable JSON-oriented output contract (`BridgeModuleOutput` in `src/rag3d/datasets/schemas.py`, `src/rag3d/diagnostics/bridge_output.py`). A central empirical theme is **candidate-space scaling**: when every scene object is a candidate, weak geometry and label noise dominate; relation-aware structure helps most clearly in **controlled** candidate regimes and in analysis slices—not as a magic fix for unconstrained full-scene collapse.
-
----
-
-## Features
-
-- Unified **object / parser / bridge-output** schemas and manifest-driven data loading.
-- **Relation-aware** scoring with soft anchors vs. attribute-only and raw-text baselines.
-- Optional **hard-negative** (same-class) hinge in training (`loss.hard_negative` in train YAML; see `configs/train/blueprint_loss_example.yaml`).
-- **Paraphrase consistency** evaluation: `python scripts/eval_paraphrase_consistency.py --help`.
-- **Stratified metrics** — relation-type slices, clutter / occlusion / anchor-confusion heuristics, parser-failure and **low logit-margin** subsets (`stratified_results.json`).
-- **Two-stage shortlist → rerank** pipeline — coarse top-K plus relation head on the shortlist; stage-1 recall and shortlist quality are first-class evaluation targets (`scripts/train_coarse_stage1.py`, `scripts/train_two_stage_rerank.py`, `scripts/eval_stage1_recall_pass.py`, `src/rag3d/evaluation/shortlist_promote.py`).
-- **Report-ready outputs** — `make figures`, `python scripts/collect_results.py`, optional `python scripts/build_report_bundle_blueprint.py` (copies key metrics CSV/JSON under `outputs/report_bundle_blueprint/` and `outputs/figures/report_ready_blueprint/`).
+- **Task**: predict target object from scene objects + language.
+- **Model lines**: attribute baseline, raw-text relation, relation-aware structured scorer.
+- **Main engineering track**: shortlist quality + reranker alignment under full-scene evaluation.
+- **Output style**: checkpointed runs with report-ready CSV/JSON/MD/PNG artifacts under `outputs/<timestamp>_*`.
 
 ---
 
-## Repository layout
+## Quick Start
 
-| Path | Role |
-|------|------|
-| `src/rag3d/` | Models, data loaders, losses, evaluation, diagnostics |
-| `configs/` | Dataset, train, and eval YAML |
-| `scripts/` | Data prep, training, eval, figures, aggregation utilities |
-| `tests/` | PyTest suite |
-| `data/raw/` | Your ReferIt3D / ScanNet-style trees (not shipped) |
-| `data/processed/` | Generated manifests (`prepare_data.py`) |
-| `outputs/` | Checkpoints, metrics JSON, figures (typically gitignored) |
-| `docs/DATASET_SETUP.md` | Data layout and `prepare_data.py` commands |
-| `docs/CSC6133_Upgraded_3D_Spatial_Reasoning_Blueprint_CheCheng.docx` | Optional archived specification (see `scripts/extract_blueprint_docx.py`) |
-
----
-
-## Installation (Conda, recommended)
-
-**Python 3.10**, environment name **`rag3d`** (see `environment.yml`).
+### Environment
 
 ```bash
 git clone <your-repo-url> && cd relation-aware-3d-grounding
-make env          # runs scripts/setup_env.sh: conda env + pip install -e ".[dev,viz]"
+make env
 conda activate rag3d
 make test && make smoke
 ```
 
-Optional: `python scripts/check_env.py`. If `import torch` fails on broken CUDA drivers, the Makefile already sets `CUDA_VISIBLE_DEVICES=` for `test` / `smoke` / `figures`; you can run `CUDA_VISIBLE_DEVICES= python scripts/check_env.py` similarly.
-
-**Secrets:** copy `.env.example` to `.env` and set `HF_TOKEN` only if you pull gated Hugging Face assets. Never commit `.env`.
-
-For **GPU-specific PyTorch** builds, install the official CUDA wheel into the activated `rag3d` environment and re-run `check_env.py`. `requirements.txt` is a pip-only reference; Conda remains the supported path.
-
----
-
-## Data setup
-
-This project does **not** redistribute ReferIt3D or ScanNet. Place data under `data/raw/referit3d/` (or point `configs/dataset/referit3d.yaml` at your root). See **[docs/DATASET_SETUP.md](docs/DATASET_SETUP.md)** for directory layout, CSV columns, and commands.
+### Data
 
 ```bash
 python scripts/prepare_data.py --mode validate --config configs/dataset/referit3d.yaml
 python scripts/prepare_data.py --mode build --config configs/dataset/referit3d.yaml
 ```
 
-**Without real scans**, use mock manifests for development:
+For development without real scans:
 
 ```bash
 python scripts/prepare_data.py --mode mock-debug
 ```
 
----
+### Core Training/Eval Entrypoints
 
-## Training and evaluation (quickstart)
-
-**Debug / mock path:**
-
-```bash
-python scripts/prepare_data.py --mode mock-debug
-python scripts/train_baseline.py --config configs/train/debug_baseline.yaml
-python scripts/train_baseline.py --config configs/train/debug_raw_relation.yaml
-python scripts/train_main.py --config configs/train/debug_main.yaml
-python scripts/eval_all.py --config configs/eval/debug.yaml
-python scripts/analyze_hard_cases.py --use-debug-subdir
-make figures
-python scripts/collect_results.py
-```
-
-**Real data:** after manifests exist, train with `configs/train/baseline.yaml`, `raw_relation.yaml`, and `main.yaml` (`mode: real` as appropriate), then `python scripts/eval_all.py --config configs/eval/default.yaml`, `make figures`, and `collect_results.py`.
-
-**Useful artifacts:** checkpoints under `outputs/checkpoints/`, metrics under `outputs/metrics/` (`main_results.json`, `stratified_results.json`), curated tables under `outputs/figures/report_ready/`, hard-case JSON under `outputs/case_studies/hard_case_summary.json` (includes `BridgeModuleOutput` when using `analyze_hard_cases.py`).
+- Single-line training: `scripts/train_baseline.py`, `scripts/train_main.py`
+- Two-stage training: `scripts/train_coarse_stage1.py`, `scripts/train_two_stage_rerank.py`
+- Main eval: `scripts/eval_all.py`
+- Two-stage metric helpers: `src/rag3d/evaluation/two_stage_eval.py`, `src/rag3d/evaluation/two_stage_rerank_metrics.py`
 
 ---
 
-## Main findings (honest summary)
+## Validated Results Timeline (Current Reference)
 
-Empirical work in this codebase supports the following **qualitative** conclusions (exact numbers depend on your data split and configs):
+| Phase | Key validated outcome |
+|---|---|
+| Fix combined eval + natural-shortlist loss | corrected reranker row improves end-to-end (`0.0256 -> 0.0385`) |
+| Official shortlist strengthening | Recall@20 `0.5513 -> 0.7821`; corrected two-stage Acc@1 improves with improved shortlist |
+| Reranker rebalance on improved shortlist | `improved_shortlist_plus_reference_rerank = 0.1090`; retrained reranker matches but does not exceed |
+| Minimal co-adaptation | intermediate row reaches `0.1154`; naive strict second pass falls back to `0.1090` |
+| Conservative second-pass | `low_lr_secondpass = 0.1154` (retains gain), other conservative variants return around `0.1090` |
+| Gain-retention validation | extra seed for low-LR drops to `0.1026`; local LR sweep around `5e-6` stays at `0.1154` for validated seed |
 
-- **Relation-aware modeling** can outperform raw-text relation and attribute-only baselines when the **candidate set is controlled** (e.g., entity-aligned lists); the effect is much harder to see under **full-scene** candidate explosion.
-- **Full-scene** accuracy is often dominated by **weak or incomplete geometry** (synthetic features when OBBs are missing) and **many-way classification**, not by a single missing training trick.
-- **Two-stage** coarse shortlist + rerank is only as strong as **stage-1 recall and shortlist alignment**; promoting coarse checkpoints by a single long-tail recall metric can **mismatch** K-aligned rerank utility—see `shortlist_aligned_score` in `src/rag3d/evaluation/shortlist_promote.py`.
+Authoritative recent bundles:
 
-Illustrative **full-scene** numbers from one bundled CSV (`outputs/figures/main_results_table.csv`, n=156) are on the order of a few percent Acc@1 across lines—use them as a sanity reference, not as a benchmark claim.
-
----
-
-## Limitations
-
-- Encoders are **lightweight** (MLP + hashed text); this is a **methodology and diagnostics** codebase, not a state-of-the-art ReferIt3D listener leaderboard entry.
-- **Geometry** is incomplete for many objects (missing OBBs); features fall back to **placeholders**, which limits metric shape under full-scene evaluation.
-- **Full-scene grounding** remains **hard** in this stack; reported gains are **slice- and regime-dependent**.
-- **Shortlist / stage-1 quality** is the main bottleneck for two-stage pipelines; rerank cannot recover targets absent from the coarse top-K.
+- `outputs/20260331_183805_conservative_secondpass/`
+- `outputs/20260331_185900_gain_retention_validation/`
 
 ---
 
-## Future work
+## Current Conclusion
 
-- Richer **object geometry** (complete OBB coverage or point-cloud encoders) with the same diagnostic harness.
-- **Calibration** and abstention on bridge outputs for planner-facing APIs.
-- Stronger **language parsing** (e.g., optional VLM) while keeping the structured bridge contract.
-- Tighter **integration tests** with downstream modules that consume `BridgeModuleOutput` without re-implementing grounding.
+- **Established**: shortlist strengthening, reranker rebalance, co-adaptation signal, and seed-42 low-LR retention are all real.
+- **Not established**: broad seed-robust retained gain (extra seed in narrow validation dropped to `0.1026`).
+- **Best retained reference row** (validated seed): `0.1154`.
+- **Practical baseline reference**: `improved_shortlist_plus_reference_rerank = 0.1090`.
+
+In short: there is a credible retained-gain regime, but seed robustness remains limited.
+
+---
+
+## Recommended Next Action
+
+Given current evidence and scope control:
+
+- **Stop broad experimentation and move to writing/reporting**.
+- Frame retained gain as **locally stable (around low LR on validated seed)** but **not yet fully seed-stable**.
+
+---
+
+## Repository Layout
+
+| Path | Role |
+|---|---|
+| `src/rag3d/` | models, losses, evaluation, diagnostics |
+| `scripts/` | training/eval orchestration and phase runners |
+| `configs/` | dataset/train/eval YAMLs |
+| `reports/` | phase plans, protocol notes, summaries |
+| `outputs/` | timestamped experiment artifacts |
 
 ---
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT — see `LICENSE`.
