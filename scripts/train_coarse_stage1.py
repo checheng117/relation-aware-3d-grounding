@@ -14,6 +14,7 @@ import torch
 from rag3d.datasets.collate import collate_grounding_samples
 from rag3d.datasets.synthetic import make_synthetic_batch
 from rag3d.relation_reasoner.model import AttributeOnlyModel, CoarseGeomAttributeModel
+from rag3d.training.checkpoint_selection import coarse_selection_config_from_yaml
 from rag3d.training.runner import TrainingConfig, build_loaders, run_training_loop
 from rag3d.utils.config import load_yaml_config
 from rag3d.utils.logging import setup_logging
@@ -56,6 +57,12 @@ def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--config", type=Path, default=ROOT / "configs/train/coarse/coarse_geom_ce.yaml")
     ap.add_argument("--synthetic", action="store_true")
+    ap.add_argument(
+        "--init-checkpoint",
+        type=Path,
+        default=None,
+        help="Optional: load coarse weights before training (fine-tune / shortlist upgrade).",
+    )
     args = ap.parse_args()
     tcfg = load_yaml_config(args.config, base_dir=ROOT)
     dcfg = load_yaml_config(ROOT / tcfg["dataset_config"], base_dir=ROOT)
@@ -82,6 +89,27 @@ def main() -> None:
             dropout=float(mcfg.get("dropout", 0.1)),
         )
 
+    init_ckpt = _resolve(args.init_checkpoint, ROOT) if args.init_checkpoint else None
+    if init_ckpt is not None and init_ckpt.is_file():
+        try:
+            payload = torch.load(init_ckpt, map_location="cpu", weights_only=False)
+        except TypeError:
+            payload = torch.load(init_ckpt, map_location="cpu")
+        sd = payload["model"] if isinstance(payload, dict) and "model" in payload else payload
+        model.load_state_dict(sd, strict=True)
+        log.info("Loaded init coarse weights from %s", init_ckpt)
+
+    vr = tcfg.get("val_coarse_recall_ks")
+    recall_ks: tuple[int, ...] | None = None
+    if isinstance(vr, list) and vr:
+        recall_ks = tuple(int(x) for x in vr)
+
+    sel_cfg = coarse_selection_config_from_yaml(
+        tcfg.get("val_two_stage_selection"),
+        ROOT,
+        coarse_kind,
+    )
+
     tconf = TrainingConfig(
         epochs=int(tcfg.get("epochs", 5)),
         batch_size=int(tcfg.get("batch_size", 8)),
@@ -95,6 +123,9 @@ def main() -> None:
         device=device_s if device.type == "cuda" else "cpu",
         debug_max_batches=tcfg.get("debug_max_batches"),
         loss=dict(tcfg.get("loss") or {}),
+        val_coarse_recall_ks=recall_ks,
+        repo_root=ROOT,
+        coarse_pipeline_selection=sel_cfg,
     )
     tconf.checkpoint_dir.mkdir(parents=True, exist_ok=True)
     tconf.metrics_path.parent.mkdir(parents=True, exist_ok=True)

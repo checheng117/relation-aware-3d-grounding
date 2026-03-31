@@ -1,0 +1,41 @@
+# Focused shortlist hard negatives only: same-class hinge, spatial neighbors, ranking (hardest non-gold).
+# Coarse checkpoint selection: val_two_stage_selection (natural full-scene Acc@1 with frozen reference reranker).
+model: relation_aware
+dataset_config: configs/dataset/referit3d.yaml
+coarse_model: coarse_geom
+checkpoint_dir: outputs/checkpoints_stage1_longtrain_focused
+metrics_file: outputs/metrics/coarse_focused_hardneg_longtrain.jsonl
+run_name: coarse_focused_hardneg_longtrain
+epochs: 8
+batch_size: 16
+lr: 0.00005
+weight_decay: 0.01
+seed: 42
+num_workers: 0
+device: cuda
+mode: real
+debug_max_batches: null
+loss:
+  ranking_margin:
+    enabled: true
+    margin: 0.2
+    lambda: 0.2
+  spatial_nearby_hinge:
+    enabled: true
+    margin: 0.2
+    lambda: 0.15
+    max_neighbors: 4
+  hard_negative:
+    enabled: true
+    margin: 0.3
+    lambda_hinge: 0.75
+val_coarse_recall_ks: [5, 10, 20, 40]
+# Primary selection metric: natural two-stage val Acc@1 (reference reranker frozen).
+val_two_stage_selection:
+  enabled: true
+  reference_rerank_checkpoint: outputs/checkpoints_stage1_rerank/rerank_k10_stage1_last.pt
+  model_config: configs/model/relation_aware.yaml
+  parser_mode: structured
+  parser_cache_dir: data/parser_cache/longtrain_selection
+  rerank_k: 10
+  margin_thresh: 0.15

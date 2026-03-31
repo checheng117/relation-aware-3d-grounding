@@ -42,6 +42,7 @@ def hardest_negative_margin_loss(
     target_index: torch.Tensor,
     mask: torch.Tensor,
     margin: float,
+    valid_rows: torch.Tensor | None = None,
 ) -> torch.Tensor:
     """Hinge: max(0, margin + max_{j!=t} z_j - z_t) averaged over valid batch rows."""
     b, n = logits.shape
@@ -49,6 +50,8 @@ def hardest_negative_margin_loss(
     total = torch.zeros((), device=device)
     count = 0
     for bi in range(b):
+        if valid_rows is not None and not bool(valid_rows[bi].item()):
+            continue
         t = int(target_index[bi].item())
         if t < 0 or t >= n or not mask[bi, t]:
             continue
@@ -73,6 +76,7 @@ def spatial_nearby_hinge_loss(
     samples: list[Any],
     margin: float,
     max_neighbors: int = 4,
+    valid_rows: torch.Tensor | None = None,
 ) -> torch.Tensor:
     """Push gold above the highest-logit spatial neighbor (by 3D center distance)."""
     b, n = logits.shape
@@ -81,6 +85,8 @@ def spatial_nearby_hinge_loss(
     count = 0
     k_nn = max(1, int(max_neighbors))
     for bi in range(b):
+        if valid_rows is not None and not bool(valid_rows[bi].item()):
+            continue
         t = int(target_index[bi].item())
         if bi >= len(samples) or t < 0 or t >= n or not mask[bi, t]:
             continue
@@ -115,6 +121,7 @@ def same_class_hinge_loss(
     mask: torch.Tensor,
     samples: list[Any],
     margin: float,
+    valid_rows: torch.Tensor | None = None,
 ) -> torch.Tensor:
     """Push target logit above same-class negatives by ``margin`` (mean over batch).
 
@@ -125,6 +132,8 @@ def same_class_hinge_loss(
     total = torch.zeros((), device=device)
     count = 0
     for bi in range(b):
+        if valid_rows is not None and not bool(valid_rows[bi].item()):
+            continue
         t = int(target_index[bi].item())
         if t < 0 or t >= n or not mask[bi, t]:
             continue
@@ -157,16 +166,28 @@ def compute_batch_training_loss(
     loss_cfg: dict[str, Any] | None,
     samples: list[Any] | None,
     meta: list[Any] | None = None,
+    valid_rows: torch.Tensor | None = None,
 ) -> torch.Tensor:
     """CE (optional load weighting) + optional ranking / spatial / same-class hinges."""
     loss_cfg = loss_cfg or {}
 
-    if (loss_cfg.get("candidate_load_weight") or {}).get("enabled"):
-        ce_vec = grounding_cross_entropy(logits, target_index, mask, reduction="none")
+    ce_vec = grounding_cross_entropy(logits, target_index, mask, reduction="none")
+    if valid_rows is not None:
+        valid_rows = valid_rows.to(device=logits.device, dtype=torch.bool)
+        ce_valid = ce_vec[valid_rows]
+    else:
+        ce_valid = ce_vec
+
+    if ce_valid.numel() == 0:
+        loss = torch.nan_to_num(logits, nan=0.0, posinf=0.0, neginf=0.0).sum() * 0.0
+    elif (loss_cfg.get("candidate_load_weight") or {}).get("enabled"):
         w = candidate_load_weights(mask, meta)
+        if valid_rows is not None:
+            w = w[valid_rows]
+            ce_vec = ce_vec[valid_rows]
         loss = (ce_vec * w).mean()
     else:
-        loss = grounding_cross_entropy(logits, target_index, mask, reduction="mean")
+        loss = ce_valid.mean()
 
     rm = loss_cfg.get("ranking_margin") or {}
     if rm.get("enabled"):
@@ -175,6 +196,7 @@ def compute_batch_training_loss(
             target_index,
             mask,
             float(rm.get("margin", 0.2)),
+            valid_rows=valid_rows,
         )
 
     sh = loss_cfg.get("spatial_nearby_hinge") or {}
@@ -186,12 +208,13 @@ def compute_batch_training_loss(
             samples,
             float(sh.get("margin", 0.2)),
             int(sh.get("max_neighbors", 4)),
+            valid_rows=valid_rows,
         )
 
     hn = loss_cfg.get("hard_negative") or {}
     if hn.get("enabled") and samples:
         margin = float(hn.get("margin", 0.25))
         lam = float(hn.get("lambda_hinge", 0.5))
-        loss = loss + lam * same_class_hinge_loss(logits, target_index, mask, samples, margin)
+        loss = loss + lam * same_class_hinge_loss(logits, target_index, mask, samples, margin, valid_rows=valid_rows)
 
     return loss

@@ -84,6 +84,8 @@ def load_two_stage_model(
     rerank_k: int,
     device: torch.device,
     coarse_kind: str = "attribute_only",
+    *,
+    fine_only_from_checkpoint: bool = False,
 ) -> TwoStageCoarseRerankModel:
     coarse = load_coarse_model(mcfg, coarse_ckpt, device, coarse_kind)
     for p in coarse.parameters():
@@ -103,7 +105,13 @@ def load_two_stage_model(
         except TypeError:
             data = torch.load(fine_ckpt, map_location=device)
         sd = data["model"] if isinstance(data, dict) and "model" in data else data
-        model.load_state_dict(sd, strict=True)
+        if fine_only_from_checkpoint:
+            fine_sd = {k[len("fine.") :]: v for k, v in sd.items() if k.startswith("fine.")}
+            if not fine_sd:
+                raise ValueError(f"No fine.* keys in checkpoint {fine_ckpt}")
+            model.fine.load_state_dict(fine_sd, strict=True)
+        else:
+            model.load_state_dict(sd, strict=True)
     model.eval()
     return model
 

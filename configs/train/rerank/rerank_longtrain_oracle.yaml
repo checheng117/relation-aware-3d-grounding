@@ -1,0 +1,27 @@
+# Protocol O: train with gold in shortlist (oracle-conditioned); val logs natural + oracle.
+model: relation_aware
+dataset_config: configs/dataset/referit3d.yaml
+coarse_model: coarse_geom
+coarse_checkpoint: outputs/checkpoints_stage1/coarse_geom_recall_last.pt
+fine_init_checkpoint: outputs/checkpoints_stage1_rerank/rerank_k10_stage1_last.pt
+rerank_k: 10
+parser_mode: structured
+parser_cache_dir: data/parser_cache/longtrain_rerank
+epochs: 12
+batch_size: 16
+lr: 0.0001
+weight_decay: 0.01
+seed: 42
+num_workers: 0
+checkpoint_dir: outputs/checkpoints_rerank_longtrain
+metrics_file: outputs/metrics/rerank_longtrain_oracle.jsonl
+run_name: rerank_longtrain_oracle
+device: cuda
+debug_max_batches: null
+shortlist_train_inject_gold: true
+selection_margin_thresh: 0.15
+loss:
+  hard_negative:
+    enabled: true
+    margin: 0.25
+    lambda_hinge: 0.4

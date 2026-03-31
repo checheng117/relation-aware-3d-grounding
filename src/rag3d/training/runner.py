@@ -8,6 +8,11 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Callable
 
+from rag3d.training.checkpoint_selection import (
+    CoarsePipelineSelectionConfig,
+    evaluate_coarse_with_fixed_rerank,
+)
+
 import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
@@ -35,6 +40,17 @@ class TrainingConfig:
     device: str = "cuda"
     debug_max_batches: int | None = None
     loss: dict[str, Any] = field(default_factory=dict)
+    # If set, each epoch logs coarse val recall@K + acc (stage-1 shortlist utility).
+    val_coarse_recall_ks: tuple[int, ...] | None = None
+    # Repo root for resolving selection paths.
+    repo_root: Path | None = None
+    # If set, logs natural two-stage val Acc@1 (frozen reference reranker) for checkpoint selection.
+    coarse_pipeline_selection: CoarsePipelineSelectionConfig | None = None
+
+
+def _snapshot_state_dict(model: nn.Module) -> dict[str, torch.Tensor]:
+    """Stable checkpoint snapshot detached from live GPU parameter storage."""
+    return {k: v.detach().cpu().clone() for k, v in model.state_dict().items()}
 
 
 def _to_device(batch: dict[str, Any], device: torch.device) -> dict[str, Any]:
@@ -67,6 +83,9 @@ def run_training_loop(
 
     evaluator = Evaluator(device=dev)
     history: list[dict[str, Any]] = []
+    base = cfg.repo_root or Path(".")
+    best_pipe = -1.0
+    best_pipe_epoch = -1
 
     for epoch in range(cfg.epochs):
         model.train()
@@ -118,15 +137,51 @@ def run_training_loop(
                     )
                     vaccs.append(m.get("acc@1", 0.0))
             row["val_acc@1_masked"] = sum(vaccs) / max(len(vaccs), 1)
+            if cfg.val_coarse_recall_ks:
+                from rag3d.evaluation.coarse_recall import eval_coarse_stage1_metrics
+
+                cr = eval_coarse_stage1_metrics(
+                    model,
+                    val_loader,
+                    dev,
+                    margin_thresh=0.15,
+                    ks=cfg.val_coarse_recall_ks,
+                )
+                for key in ("acc@1", "acc@5"):
+                    if key in cr:
+                        row[f"val_coarse_{key}"] = cr[key]
+                for k in cfg.val_coarse_recall_ks:
+                    rk = f"recall@{k}"
+                    if rk in cr:
+                        row[f"val_coarse_{rk}"] = cr[rk]
+                if cr.get("stratified_recall_slices"):
+                    for sk, sv in cr["stratified_recall_slices"].items():
+                        if "same_class_clutter" in sk or "candidate_load::high" in sk:
+                            row[f"val_coarse_{sk}"] = sv
+        if (
+            val_loader is not None
+            and cfg.coarse_pipeline_selection is not None
+            and cfg.coarse_pipeline_selection.enabled
+        ):
+            model.eval()
+            pipe = evaluate_coarse_with_fixed_rerank(model, val_loader, dev, base, cfg.coarse_pipeline_selection)
+            row.update(pipe)
+            acc = float(pipe.get("val_pipeline_natural_acc@1", -1.0))
+            if acc > best_pipe:
+                best_pipe = acc
+                best_pipe_epoch = epoch
+                best_path = cfg.checkpoint_dir / f"{model_name}_best_pipeline_natural.pt"
+                torch.save({"model": _snapshot_state_dict(model), "epoch": epoch, "metrics": row}, best_path)
+                log.info("New best pipeline natural acc@1=%.6f -> %s", acc, best_path)
         log.info("epoch %s metrics %s", epoch, row)
         history.append(row)
         with cfg.metrics_path.open("a", encoding="utf-8") as f:
             f.write(json.dumps(row) + "\n")
 
         ckpt_path = cfg.checkpoint_dir / f"{model_name}_epoch{epoch}.pt"
-        torch.save({"model": model.state_dict(), "epoch": epoch, "metrics": row}, ckpt_path)
+        torch.save({"model": _snapshot_state_dict(model), "epoch": epoch, "metrics": row}, ckpt_path)
 
-    torch.save({"model": model.state_dict(), "history": history}, cfg.checkpoint_dir / f"{model_name}_last.pt")
+    torch.save({"model": _snapshot_state_dict(model), "history": history}, cfg.checkpoint_dir / f"{model_name}_last.pt")
 
 
 def build_loaders(

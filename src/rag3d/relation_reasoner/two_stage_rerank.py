@@ -108,21 +108,29 @@ class TwoStageCoarseRerankModel(nn.Module):
         coarse: nn.Module,
         fine: RelationAwareGeomModel,
         rerank_k: int = 10,
+        *,
+        freeze_coarse: bool = True,
     ) -> None:
         super().__init__()
         self.coarse = coarse
         self.fine = fine
         self.rerank_k = int(rerank_k)
-        for p in self.coarse.parameters():
-            p.requires_grad = False
+        if freeze_coarse:
+            for p in self.coarse.parameters():
+                p.requires_grad = False
 
     def forward(
         self,
         batch: dict[str, Any],
         parsed_list: list[ParsedUtterance] | None = None,
         target_index: torch.Tensor | None = None,
+        inject_gold_in_shortlist: bool | None = None,
     ) -> tuple[torch.Tensor, torch.Tensor | None, dict[str, Any]]:
-        """Full-scene logits [B,N]; anchor on full scene (non-candidates zero). ``aux`` is for bridge / eval."""
+        """Full-scene logits [B,N]; anchor on full scene (non-candidates zero). ``aux`` is for bridge / eval.
+
+        If ``inject_gold_in_shortlist`` is None, gold is injected into the top-K shortlist iff ``self.training``
+        (legacy behavior). If True/False, overrides training mode for shortlist construction only.
+        """
         obj = batch["object_features"]
         mask = batch["object_mask"]
         samples = batch.get("samples_ref")
@@ -138,14 +146,18 @@ class TwoStageCoarseRerankModel(nn.Module):
         with torch.no_grad():
             coarse_logits = self.coarse(sub)
 
-        training = self.training
+        ti = target_index if target_index is not None else batch.get("target_index")
+        if inject_gold_in_shortlist is None:
+            inject = self.training
+        else:
+            inject = inject_gold_in_shortlist
         k_eff = _effective_topk(mask, self.rerank_k)
         idx = _topk_union_target(
             coarse_logits,
             mask,
-            target_index if training else None,
+            ti if inject else None,
             k_eff,
-            training=training,
+            training=inject,
         )
 
         exp = idx.unsqueeze(-1).expand(-1, -1, d)
@@ -178,13 +190,21 @@ def forward_two_stage_rerank(
     model: TwoStageCoarseRerankModel,
     batch: dict[str, Any],
     parser: Any,
-) -> torch.Tensor:
+    *,
+    return_aux: bool = False,
+) -> torch.Tensor | tuple[torch.Tensor, dict[str, Any]]:
     """Training / val forward: returns [B,N] logits for CE + hinge."""
     samples = batch["samples_ref"]
     parsed_list = [parser.parse(s.utterance) for s in samples]
-    logits, _, _ = model(
+    inject: bool | None = None
+    if model.training and not getattr(model, "shortlist_train_inject_gold", True):
+        inject = False
+    logits, _, aux = model(
         {k: batch[k] for k in ("object_features", "object_mask", "raw_texts", "samples_ref")},
         parsed_list=parsed_list,
         target_index=batch["target_index"],
+        inject_gold_in_shortlist=inject,
     )
+    if return_aux:
+        return logits, aux
     return logits
