@@ -1,5 +1,5 @@
 # Relation-Aware 3D Grounding (Summary README)
-
+#CSC6133 DLCV
 This repository is a research codebase for structured 3D grounding on ReferIt3D-style data.  
 Current focus is the two-stage `shortlist -> rerank` stack and its end-to-end robustness under corrected evaluation.
 
@@ -65,23 +65,29 @@ Authoritative recent bundles:
 
 ---
 
-## Current Conclusion
+## Validated Baseline (Frozen as of 2026-04-02)
+
+### Previously Established Findings
 
 - **Established**: shortlist strengthening, reranker rebalance, co-adaptation signal, and seed-42 low-LR retention are all real.
 - **Not established**: broad seed-robust retained gain (extra seed in narrow validation dropped to `0.1026`).
 - **Best retained reference row** (validated seed): `0.1154`.
 - **Practical baseline reference**: `improved_shortlist_plus_reference_rerank = 0.1090`.
 
+**Status**: These findings are now treated as validated baselines for subsequent development. All future improvements will be measured against these reference points.
+
 In short: there is a credible retained-gain regime, but seed robustness remains limited.
 
 ---
 
-## Recommended Next Action
+## Current Development Focus
 
-Given current evidence and scope control:
+Based on the validated baseline, the project is now moving toward systematic development as outlined in the [Development Roadmap](docs/development-roadmap.md):
 
-- **Stop broad experimentation and move to writing/reporting**.
-- Frame retained gain as **locally stable (around low LR on validated seed)** but **not yet fully seed-stable**.
+- **Phase 1**: Establishing robust evaluation infrastructure and standardized metrics
+- **Phase 2**: Implementing and validating baseline models consistently
+- **Phase 3**: Developing and testing proposed improvements
+- **Phase 4**: Producing polished deliverables (visualizations, reports, analyses)
 
 ---
 

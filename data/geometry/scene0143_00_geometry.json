@@ -1,0 +1,26 @@
+{
+  "scene_id": "scene0143_00",
+  "geometry_qualities": [
+    "point_bbox",
+    "point_bbox",
+    "point_bbox",
+    "point_bbox",
+    "point_bbox",
+    "point_bbox",
+    "point_bbox",
+    "point_bbox",
+    "point_bbox",
+    "point_bbox",
+    "point_bbox",
+    "point_bbox",
+    "point_bbox",
+    "point_bbox",
+    "point_bbox",
+    "point_bbox",
+    "point_bbox",
+    "point_bbox",
+    "point_bbox"
+  ],
+  "total_points": 52204,
+  "num_objects": 19
+}

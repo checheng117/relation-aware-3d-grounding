@@ -1,0 +1,27 @@
+model: structured_relation
+dataset_config: configs/dataset/referit3d.yaml
+
+# Model parameters
+object_dim: 256
+language_dim: 256
+hidden_dim: 256
+relation_dim: 128
+anchor_temperature: 1.0
+use_hierarchical_anchor: false
+
+# Training parameters
+epochs: 5
+batch_size: 8
+lr: 0.0001
+weight_decay: 0.01
+seed: 42
+device: cpu
+dropout: 0.1
+
+# Paths
+checkpoint_dir: outputs/checkpoints/structured_relation_model
+metrics_file: outputs/metrics/structured_relation_model_metrics.jsonl
+eval_split: val
+
+# Debug/testing
+debug_max_batches: 10  # For testing purposes

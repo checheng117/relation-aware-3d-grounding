@@ -1,0 +1,17 @@
+{
+  "total_files": 269,
+  "valid_files": 269,
+  "invalid_files": 0,
+  "total_objects": 9457,
+  "total_points": 35589249,
+  "default_center_objects": 0,
+  "default_size_objects": 2,
+  "fallback_geometry_objects": 0,
+  "issues_histogram": {
+    "default_sizes": 2
+  },
+  "nr3d_coverage": 269,
+  "nr3d_total": 269,
+  "missing_scenes": [],
+  "real_geometry_pct": 100.0
+}

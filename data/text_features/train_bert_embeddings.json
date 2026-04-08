@@ -1,0 +1,7 @@
+{
+  "manifest": "/home/cc/Project/CC/relation-aware-3d-grounding/data/processed/train_manifest.jsonl",
+  "model": "distilbert-base-uncased",
+  "num_samples": 1235,
+  "embedding_dim": 768,
+  "max_length": 128
+}

@@ -1,10 +1,311 @@
+"""Enhanced stratified evaluation functions for 3D grounding."""
 from __future__ import annotations
-
-from typing import Any
-
+from typing import Any, Dict, List, Optional
 import torch
-
 from rag3d.evaluation.metrics import accuracy_at_k
+from rag3d.datasets.schema import GroundingSample
+from rag3d.datasets.adapters import adapt_referit3d_sample_to_schema
+from pathlib import Path
+import json
+import numpy as np
+from collections import defaultdict
+
+
+def tag_samples_heuristically(samples: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    """
+    Apply heuristic tagging to samples for stratified evaluation.
+
+    Args:
+        samples: List of samples to tag
+
+    Returns:
+        List of tag dictionaries for each sample
+    """
+    tags_list = []
+
+    for sample in samples:
+        # Initialize tag dictionary
+        tags = {
+            'relation_tags': [],
+            'difficulty_tags': [],
+            'same_class_clutter_count': 0,
+            'relation_heavy': False,
+            'attribute_dominant': False,
+            'occlusion_heavy': False
+        }
+
+        # Extract utterance for analysis
+        utterance = sample.get('utterance', sample.get('sentence', '')).lower()
+
+        # Tag based on relation keywords
+        relation_keywords = [
+            'left', 'right', 'behind', 'front', 'in front of', 'next to',
+            'beside', 'between', 'among', 'near', 'close to', 'far from',
+            'above', 'below', 'on top of', 'under', 'beneath', 'adjacent to',
+            'closest', 'furthest', 'biggest', 'smallest', 'largest'
+        ]
+
+        found_relations = []
+        for keyword in relation_keywords:
+            if keyword in utterance:
+                found_relations.append(keyword)
+
+        tags['relation_tags'] = found_relations
+        tags['relation_heavy'] = len(found_relations) > 0
+
+        # Tag based on attribute keywords (color, size, shape)
+        attribute_keywords = [
+            'red', 'blue', 'green', 'yellow', 'black', 'white', 'brown', 'gray', 'grey',
+            'small', 'large', 'big', 'tall', 'short', 'wide', 'narrow', 'thin', 'thick',
+            'round', 'square', 'rectangular', 'circular', 'triangular'
+        ]
+
+        found_attributes = []
+        for keyword in attribute_keywords:
+            if keyword in utterance:
+                found_attributes.append(keyword)
+
+        tags['attribute_dominant'] = len(found_attributes) > len(found_relations)
+
+        # Tag same-class clutter
+        # This requires checking candidate objects against target object class
+        target_id = sample.get('target_id', '')
+        candidate_ids = sample.get('candidate_object_ids', [])
+
+        # Placeholder - this would be computed based on actual object classes
+        tags['same_class_clutter_count'] = 0
+
+        tags_list.append(tags)
+
+    return tags_list
+
+
+def compute_and_export_stratified_evaluation(
+    predictions: List[Dict[str, Any]],
+    targets: List[Dict[str, Any]],
+    output_dir: Path,
+    export_formats: List[str] = ['json', 'csv', 'markdown']
+) -> Dict[str, Any]:
+    """
+    Compute stratified evaluation and export results.
+
+    Args:
+        predictions: List of prediction dictionaries
+        targets: List of ground truth dictionaries
+        output_dir: Directory to save results
+        export_formats: List of formats to export ('json', 'csv', 'markdown')
+
+    Returns:
+        Complete evaluation results
+    """
+    from .metrics import compute_stratified_metrics, export_results_to_json, export_results_to_csv, export_results_to_markdown
+
+    # Generate heuristic tags for stratification
+    tags = tag_samples_heuristically(targets)
+
+    # Compute stratified metrics
+    stratified_results = compute_stratified_metrics(predictions, targets, tags)
+
+    # Prepare complete results dictionary
+    results = {
+        'stratified': stratified_results,
+        'tags_used': [tag for tag in tags]  # Include tags for reference
+    }
+
+    # Export results in specified formats
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    for fmt in export_formats:
+        if fmt == 'json':
+            export_results_to_json(results, output_dir / 'stratified_results.json')
+        elif fmt == 'csv':
+            export_results_to_csv(results, output_dir / 'stratified_results.csv')
+        elif fmt == 'markdown':
+            export_results_to_markdown(results, output_dir / 'stratified_results.md')
+
+    return results
+
+
+def evaluate_by_difficulty_levels(
+    predictions: List[Dict[str, Any]],
+    targets: List[Dict[str, Any]]
+) -> Dict[str, Dict[str, float]]:
+    """
+    Evaluate separately on easy, medium, and hard samples based on heuristics.
+
+    Args:
+        predictions: List of prediction dictionaries
+        targets: List of ground truth dictionaries
+
+    Returns:
+        Dictionary of metrics by difficulty level
+    """
+    # Tag samples by difficulty heuristics
+    tags = tag_samples_heuristically(targets)
+
+    # Categorize samples by difficulty
+    easy_samples = []
+    medium_samples = []
+    hard_samples = []
+
+    for i, (pred, target, tag) in enumerate(zip(predictions, targets, tags)):
+        # Determine difficulty based on heuristics
+        relation_complexity = len(tag['relation_tags'])
+        attribute_complexity = len(tag['attribute_dominant'])
+        same_class_clutter = tag['same_class_clutter_count']
+
+        # Very basic heuristic for categorization
+        if same_class_clutter == 0 and relation_complexity <= 1:
+            easy_samples.append((pred, target))
+        elif same_class_clutter <= 2 and relation_complexity <= 2:
+            medium_samples.append((pred, target))
+        else:
+            hard_samples.append((pred, target))
+
+    # Split predictions and targets by difficulty
+    easy_preds, easy_targets = zip(*easy_samples) if easy_samples else ([], [])
+    medium_preds, medium_targets = zip(*medium_samples) if medium_samples else ([], [])
+    hard_preds, hard_targets = zip(*hard_samples) if hard_samples else ([], [])
+
+    # Calculate metrics for each difficulty level
+    results = {}
+
+    if easy_preds:
+        easy_metrics = compute_overall_metrics_new(list(easy_preds), list(easy_targets))
+        results['easy'] = easy_metrics
+    else:
+        results['easy'] = {'acc_at_1': 0.0, 'acc_at_5': 0.0, 'total_samples': 0}
+
+    if medium_preds:
+        medium_metrics = compute_overall_metrics_new(list(medium_preds), list(medium_targets))
+        results['medium'] = medium_metrics
+    else:
+        results['medium'] = {'acc_at_1': 0.0, 'acc_at_5': 0.0, 'total_samples': 0}
+
+    if hard_preds:
+        hard_metrics = compute_overall_metrics_new(list(hard_preds), list(hard_targets))
+        results['hard'] = hard_metrics
+    else:
+        results['hard'] = {'acc_at_1': 0.0, 'acc_at_5': 0.0, 'total_samples': 0}
+
+    return results
+
+
+def compute_overall_metrics_new(
+    predictions: List[Dict[str, Any]],
+    targets: List[Dict[str, Any]]
+) -> Dict[str, float]:
+    """
+    Compute overall metrics compatible with existing system.
+
+    Args:
+        predictions: List of prediction dictionaries with 'pred_top1', 'pred_top5', etc.
+        targets: List of ground truth dictionaries with 'target_id', etc.
+
+    Returns:
+        Dictionary of overall metrics
+    """
+    # Calculate accuracy metrics
+    acc_at_1 = 0
+    acc_at_5 = 0
+    total_samples = len(predictions)
+
+    for pred, target in zip(predictions, targets):
+        target_id = target.get('target_id', target.get('target_obj_id', ''))
+
+        # Acc@1
+        if 'pred_top1' in pred and pred['pred_top1'] == target_id:
+            acc_at_1 += 1
+
+        # Acc@5
+        if 'pred_top5' in pred and target_id in pred['pred_top5']:
+            acc_at_5 += 1
+
+    results = {
+        'acc_at_1': acc_at_1 / total_samples if total_samples > 0 else 0.0,
+        'acc_at_5': acc_at_5 / total_samples if total_samples > 0 else 0.0,
+        'total_samples': total_samples,
+        'candidate_count_avg': np.mean([
+            len(pred.get('candidate_object_ids', []))
+            for pred in predictions
+        ]) if predictions else 0.0
+    }
+
+    return results
+
+
+def compute_stratified_metrics(
+    predictions: List[Dict[str, Any]],
+    targets: List[Dict[str, Any]],
+    tags: List[Dict[str, Any]]
+) -> Dict[str, Dict[str, float]]:
+    """
+    Compute stratified metrics based on difficulty and relation tags.
+
+    Args:
+        predictions: List of prediction dictionaries
+        targets: List of ground truth dictionaries
+        tags: List of tag dictionaries with relation/difficulty tags
+
+    Returns:
+        Nested dictionary of stratified metrics
+    """
+    # Group samples by different criteria
+    groups = {
+        'by_relation_type': defaultdict(list),
+        'by_same_class_clutter': defaultdict(list),
+        'by_occlusion_heaviness': defaultdict(list),
+        'by_attribute_dominance': defaultdict(list),
+        'by_relation_heaviness': defaultdict(list)
+    }
+
+    # Assign each sample to groups
+    for i, (pred, target, tag) in enumerate(zip(predictions, targets, tags)):
+        target_id = target.get('target_id', target.get('target_obj_id', ''))
+
+        # Group by relation type if available
+        relation_tags = tag.get('relation_tags', [])
+        if relation_tags:
+            for rel_tag in relation_tags:
+                groups['by_relation_type'][rel_tag].append((pred, target))
+        else:
+            groups['by_relation_type']['unknown'].append((pred, target))
+
+        # Group by same-class clutter
+        same_class_count = tag.get('same_class_clutter_count', 0)
+        clutter_level = 'none' if same_class_count == 0 else (
+            'low' if same_class_count < 3 else 'high'
+        )
+        groups['by_same_class_clutter'][clutter_level].append((pred, target))
+
+        # Group by other heuristics
+        is_relation_heavy = tag.get('relation_heavy', False)
+        groups['by_relation_heaviness']['relation_heavy' if is_relation_heavy else 'relation_light'].append((pred, target))
+
+        is_attr_dominant = tag.get('attribute_dominant', False)
+        groups['by_attribute_dominance']['attr_dominant' if is_attr_dominant else 'attr_light'].append((pred, target))
+
+        # For occlusion heaviness, use heuristic if available
+        occl_heavy = tag.get('occlusion_heavy', False)
+        groups['by_occlusion_heaviness']['occl_heavy' if occl_heavy else 'occl_light'].append((pred, target))
+
+    # Compute metrics for each group
+    stratified_results = {}
+    for group_type, group_dict in groups.items():
+        stratified_results[group_type] = {}
+        for subgroup_name, subgroup_data in group_dict.items():
+            subgroup_preds = [item[0] for item in subgroup_data]
+            subgroup_targets = [item[1] for item in subgroup_data]
+
+            if subgroup_preds:
+                # Use the compute_overall_metrics from the metrics module
+                from .metrics import compute_overall_metrics
+                subgroup_metrics = compute_overall_metrics(subgroup_preds, subgroup_targets)
+                stratified_results[group_type][subgroup_name] = subgroup_metrics
+            else:
+                stratified_results[group_type][subgroup_name] = {'acc_at_1': 0.0, 'acc_at_5': 0.0, 'total_samples': 0}
+
+    return stratified_results
 
 
 def stratified_accuracy(

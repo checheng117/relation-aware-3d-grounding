@@ -1,0 +1,12 @@
+# Evaluate on scene-disjoint test set for trustworthy results.
+dataset_config: configs/dataset/referit3d_scene_disjoint.yaml
+checkpoint_dir: outputs/checkpoints_scene_disjoint_baseline
+device: cuda
+batch_size: 24
+split: test
+margin_thresh: 0.15
+models:
+  - attribute_only
+checkpoint_run_names:
+  attribute_only: scene_disjoint_baseline
+note: "Evaluation on scene-disjoint test set - zero overlap with val."

@@ -1,0 +1,14 @@
+# Foundation evaluation configuration
+dataset_config: configs/dataset/referit3d.yaml
+eval_split: val
+max_samples: 100
+
+# Output settings
+export_formats: ["json", "csv", "markdown"]
+
+# Evaluation parameters
+compute_overall_metrics: true
+compute_stratified_metrics: true
+compute_diagnostic_metrics: true
+generate_hard_case_tags: true
+generate_failure_taxonomy: true

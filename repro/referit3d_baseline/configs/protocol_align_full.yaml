@@ -1,0 +1,87 @@
+# Protocol Alignment - Full Configuration
+# All protocol changes combined for complete alignment
+
+# Dataset
+dataset:
+  manifest_dir: data/processed
+  train_manifest: train_manifest.jsonl
+  val_manifest: val_manifest.jsonl
+  test_manifest: test_manifest.jsonl
+  raw_root: data/raw/referit3d
+
+# Model
+model:
+  name: referit3dnet
+  encoder_type: simple_point
+  point_input_dim: 256
+  point_hidden_dim: 128
+  point_output_dim: 256
+  lang_output_dim: 256
+  fusion_dim: 512
+  dropout: 0.1
+
+# Training - FULL PROTOCOL ALIGNMENT
+training:
+  # Duration
+  epochs: 100  # Extended training
+  early_stopping_patience: 10  # Early stopping
+
+  # Batch configuration
+  batch_size: 16
+  gradient_accumulation_steps: 2  # Effective batch = 32
+
+  # Optimizer (official-like)
+  lr: 0.0005  # 5e-4
+  weight_decay: 0.0  # No weight decay (Adam default)
+
+  # Scheduler (official-like)
+  scheduler_type: multistep
+  scheduler_milestones: [25, 40, 50, 60, 70, 80, 90]
+  scheduler_gamma: 0.65
+
+  # Warmup (official-like)
+  warmup_epochs: 5
+  warmup_multiplier: 1.0
+
+  # Encoder LR (official-like)
+  use_separate_encoder_lr: true
+  encoder_lr_factor: 0.1  # Encoder uses 0.1x base LR
+
+  # Other
+  grad_clip: 1.0
+  seed: 42
+
+# Evaluation
+evaluation:
+  batch_size: 32
+  compute_acc_at_5: true
+  compute_sub_metrics: false
+
+# Checkpointing
+checkpoint:
+  dir: outputs/protocol_fidelity/full_aligned
+  save_best_only: true
+  monitor: val_acc
+
+# Logging
+logging:
+  log_dir: outputs/protocol_fidelity/full_aligned/logs
+  log_every_n_steps: 50
+
+# Device
+device: cuda
+
+# Protocol experiment metadata
+protocol_experiment:
+  phase: training_protocol_fidelity
+  experiment_group: full_alignment
+  changes:
+    - optimizer: AdamW -> Adam (no weight decay)
+    - lr: 1e-4 -> 5e-4
+    - weight_decay: 1e-4 -> 0
+    - scheduler: CosineAnnealingLR -> MultiStepLR
+    - warmup: None -> 5 epochs
+    - gradient_accumulation: None -> 2 steps (effective batch 32)
+    - epochs: 30 -> 100
+    - early_stopping: None -> 10 epoch patience
+    - separate_encoder_lr: false -> true (0.1x)

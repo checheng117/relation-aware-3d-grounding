@@ -1,0 +1,23 @@
+{
+  "model": "distilbert-base-uncased",
+  "splits": {
+    "train": {
+      "split": "train_manifest",
+      "num_samples": 1235,
+      "embedding_dim": 768,
+      "output_file": "/home/cc/Project/CC/relation-aware-3d-grounding/data/text_features/train_bert_embeddings.npy"
+    },
+    "val": {
+      "split": "val_manifest",
+      "num_samples": 154,
+      "embedding_dim": 768,
+      "output_file": "/home/cc/Project/CC/relation-aware-3d-grounding/data/text_features/val_bert_embeddings.npy"
+    },
+    "test": {
+      "split": "test_manifest",
+      "num_samples": 155,
+      "embedding_dim": 768,
+      "output_file": "/home/cc/Project/CC/relation-aware-3d-grounding/data/text_features/test_bert_embeddings.npy"
+    }
+  }
+}

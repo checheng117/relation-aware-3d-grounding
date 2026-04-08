@@ -1,0 +1,11 @@
+{
+  "total_nr3d_scenes": 269,
+  "scenes_can_extract_geometry": 269,
+  "scenes_has_aggregation": 269,
+  "scenes_has_coord": 269,
+  "scenes_has_instance": 269,
+  "scenes_has_color": 269,
+  "scenes_missing_all_geometry": 0,
+  "geometry_coverage_pct": 100.0,
+  "missing_scene_ids": []
+}

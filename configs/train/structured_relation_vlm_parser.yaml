@@ -1,0 +1,33 @@
+model: structured_relation
+dataset_config: configs/dataset/referit3d.yaml
+
+# Parser configuration
+parser_source: heuristic  # heuristic / cached_vlm / structured_rule
+fallback_mode: none       # none / hard / hybrid
+fallback_confidence_threshold: 0.5
+fallback_hybrid_blend_factor: 0.5
+
+# Model parameters
+object_dim: 256
+language_dim: 256
+hidden_dim: 256
+relation_dim: 128
+anchor_temperature: 1.0
+use_hierarchical_anchor: false
+
+# Training parameters
+epochs: 5
+batch_size: 8
+lr: 0.0001
+weight_decay: 0.01
+seed: 42
+device: cuda
+dropout: 0.1
+
+# Paths
+checkpoint_dir: outputs/checkpoints/structured_relation_vlm_parser
+metrics_file: outputs/metrics/structured_relation_vlm_parser_metrics.jsonl
+eval_split: val
+
+# Debug/testing
+debug_max_batches: null

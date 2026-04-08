@@ -1,0 +1,60 @@
+# Protocol Alignment - Batch Size Configuration
+# Changes: Gradient accumulation for effective batch size of 32
+
+# Dataset
+dataset:
+  manifest_dir: data/processed
+  train_manifest: train_manifest.jsonl
+  val_manifest: val_manifest.jsonl
+  test_manifest: test_manifest.jsonl
+  raw_root: data/raw/referit3d
+
+# Model
+model:
+  name: referit3dnet
+  encoder_type: simple_point
+  point_input_dim: 256
+  point_hidden_dim: 128
+  point_output_dim: 256
+  lang_output_dim: 256
+  fusion_dim: 512
+  dropout: 0.1
+
+# Training - PROTOCOL CHANGES
+training:
+  epochs: 30
+  batch_size: 16  # Physical batch size
+  # NEW: Gradient accumulation for effective batch size
+  gradient_accumulation_steps: 2  # Effective batch = 16 * 2 = 32
+  lr: 0.0001
+  weight_decay: 0.0001
+  grad_clip: 1.0
+  seed: 42
+
+# Evaluation
+evaluation:
+  batch_size: 32
+  compute_acc_at_5: true
+  compute_sub_metrics: false
+
+# Checkpointing
+checkpoint:
+  dir: outputs/protocol_fidelity/batch_aligned
+  save_best_only: true
+  monitor: val_acc
+
+# Logging
+logging:
+  log_dir: outputs/protocol_fidelity/batch_aligned/logs
+  log_every_n_steps: 50
+
+# Device
+device: cuda
+
+# Protocol experiment metadata
+protocol_experiment:
+  phase: training_protocol_fidelity
+  experiment_group: batch_size
+  changes:
+    - gradient_accumulation: None -> 2 steps
+    - effective_batch_size: 16 -> 32

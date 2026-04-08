@@ -1,0 +1,7 @@
+{
+  "manifest": "data/processed/scene_disjoint/official_scene_disjoint/test_manifest.jsonl",
+  "model": "distilbert-base-uncased",
+  "num_samples": 2681,
+  "embedding_dim": 768,
+  "max_length": 128
+}

@@ -1,0 +1,1354 @@
+{
+  "total": 269,
+  "success": 269,
+  "failed": 0,
+  "total_objects": 9457,
+  "total_points": 43521479,
+  "scenes": [
+    {
+      "scene_id": "scene0002_00",
+      "num_objects": 69,
+      "total_points": 297362
+    },
+    {
+      "scene_id": "scene0006_00",
+      "num_objects": 43,
+      "total_points": 203795
+    },
+    {
+      "scene_id": "scene0008_00",
+      "num_objects": 32,
+      "total_points": 272168
+    },
+    {
+      "scene_id": "scene0012_00",
+      "num_objects": 32,
+      "total_points": 240937
+    },
+    {
+      "scene_id": "scene0014_00",
+      "num_objects": 33,
+      "total_points": 97118
+    },
+    {
+      "scene_id": "scene0016_00",
+      "num_objects": 53,
+      "total_points": 112628
+    },
+    {
+      "scene_id": "scene0017_00",
+      "num_objects": 28,
+      "total_points": 176355
+    },
+    {
+      "scene_id": "scene0020_00",
+      "num_objects": 44,
+      "total_points": 151489
+    },
+    {
+      "scene_id": "scene0023_00",
+      "num_objects": 28,
+      "total_points": 166252
+    },
+    {
+      "scene_id": "scene0024_00",
+      "num_objects": 64,
+      "total_points": 273530
+    },
+    {
+      "scene_id": "scene0025_00",
+      "num_objects": 41,
+      "total_points": 173392
+    },
+    {
+      "scene_id": "scene0028_00",
+      "num_objects": 22,
+      "total_points": 207822
+    },
+    {
+      "scene_id": "scene0034_00",
+      "num_objects": 49,
+      "total_points": 130485
+    },
+    {
+      "scene_id": "scene0040_00",
+      "num_objects": 77,
+      "total_points": 233437
+    },
+    {
+      "scene_id": "scene0042_00",
+      "num_objects": 17,
+      "total_points": 96573
+    },
+    {
+      "scene_id": "scene0047_00",
+      "num_objects": 41,
+      "total_points": 115277
+    },
+    {
+      "scene_id": "scene0056_00",
+      "num_objects": 39,
+      "total_points": 275147
+    },
+    {
+      "scene_id": "scene0058_00",
+      "num_objects": 40,
+      "total_points": 146778
+    },
+    {
+      "scene_id": "scene0059_00",
+      "num_objects": 44,
+      "total_points": 295651
+    },
+    {
+      "scene_id": "scene0063_00",
+      "num_objects": 19,
+      "total_points": 76966
+    },
+    {
+      "scene_id": "scene0068_00",
+      "num_objects": 44,
+      "total_points": 69549
+    },
+    {
+      "scene_id": "scene0072_00",
+      "num_objects": 35,
+      "total_points": 109223
+    },
+    {
+      "scene_id": "scene0074_00",
+      "num_objects": 27,
+      "total_points": 60679
+    },
+    {
+      "scene_id": "scene0079_00",
+      "num_objects": 21,
+      "total_points": 304563
+    },
+    {
+      "scene_id": "scene0081_00",
+      "num_objects": 9,
+      "total_points": 51381
+    },
+    {
+      "scene_id": "scene0085_00",
+      "num_objects": 38,
+      "total_points": 187883
+    },
+    {
+      "scene_id": "scene0086_00",
+      "num_objects": 29,
+      "total_points": 124572
+    },
+    {
+      "scene_id": "scene0087_00",
+      "num_objects": 17,
+      "total_points": 141457
+    },
+    {
+      "scene_id": "scene0091_00",
+      "num_objects": 29,
+      "total_points": 120683
+    },
+    {
+      "scene_id": "scene0092_00",
+      "num_objects": 60,
+      "total_points": 141912
+    },
+    {
+      "scene_id": "scene0093_00",
+      "num_objects": 24,
+      "total_points": 110038
+    },
+    {
+      "scene_id": "scene0095_00",
+      "num_objects": 58,
+      "total_points": 214895
+    },
+    {
+      "scene_id": "scene0098_00",
+      "num_objects": 41,
+      "total_points": 137366
+    },
+    {
+      "scene_id": "scene0101_00",
+      "num_objects": 88,
+      "total_points": 281521
+    },
+    {
+      "scene_id": "scene0103_00",
+      "num_objects": 14,
+      "total_points": 63133
+    },
+    {
+      "scene_id": "scene0107_00",
+      "num_objects": 28,
+      "total_points": 192663
+    },
+    {
+      "scene_id": "scene0108_00",
+      "num_objects": 35,
+      "total_points": 106319
+    },
+    {
+      "scene_id": "scene0109_00",
+      "num_objects": 18,
+      "total_points": 102001
+    },
+    {
+      "scene_id": "scene0110_00",
+      "num_objects": 30,
+      "total_points": 134373
+    },
+    {
+      "scene_id": "scene0111_00",
+      "num_objects": 47,
+      "total_points": 206082
+    },
+    {
+      "scene_id": "scene0117_00",
+      "num_objects": 42,
+      "total_points": 96711
+    },
+    {
+      "scene_id": "scene0120_00",
+      "num_objects": 25,
+      "total_points": 103906
+    },
+    {
+      "scene_id": "scene0124_00",
+      "num_objects": 26,
+      "total_points": 55687
+    },
+    {
+      "scene_id": "scene0125_00",
+      "num_objects": 6,
+      "total_points": 105439
+    },
+    {
+      "scene_id": "scene0126_00",
+      "num_objects": 39,
+      "total_points": 206075
+    },
+    {
+      "scene_id": "scene0127_00",
+      "num_objects": 24,
+      "total_points": 155652
+    },
+    {
+      "scene_id": "scene0128_00",
+      "num_objects": 21,
+      "total_points": 108008
+    },
+    {
+      "scene_id": "scene0131_00",
+      "num_objects": 43,
+      "total_points": 177091
+    },
+    {
+      "scene_id": "scene0132_00",
+      "num_objects": 27,
+      "total_points": 167583
+    },
+    {
+      "scene_id": "scene0136_00",
+      "num_objects": 39,
+      "total_points": 110614
+    },
+    {
+      "scene_id": "scene0138_00",
+      "num_objects": 51,
+      "total_points": 326282
+    },
+    {
+      "scene_id": "scene0141_00",
+      "num_objects": 69,
+      "total_points": 149455
+    },
+    {
+      "scene_id": "scene0142_00",
+      "num_objects": 45,
+      "total_points": 264199
+    },
+    {
+      "scene_id": "scene0143_00",
+      "num_objects": 19,
+      "total_points": 52204
+    },
+    {
+      "scene_id": "scene0147_00",
+      "num_objects": 34,
+      "total_points": 140844
+    },
+    {
+      "scene_id": "scene0154_00",
+      "num_objects": 15,
+      "total_points": 117667
+    },
+    {
+      "scene_id": "scene0155_00",
+      "num_objects": 34,
+      "total_points": 243094
+    },
+    {
+      "scene_id": "scene0158_00",
+      "num_objects": 32,
+      "total_points": 100649
+    },
+    {
+      "scene_id": "scene0159_00",
+      "num_objects": 28,
+      "total_points": 168576
+    },
+    {
+      "scene_id": "scene0164_00",
+      "num_objects": 55,
+      "total_points": 94315
+    },
+    {
+      "scene_id": "scene0166_00",
+      "num_objects": 51,
+      "total_points": 225624
+    },
+    {
+      "scene_id": "scene0167_00",
+      "num_objects": 40,
+      "total_points": 170218
+    },
+    {
+      "scene_id": "scene0168_00",
+      "num_objects": 50,
+      "total_points": 213365
+    },
+    {
+      "scene_id": "scene0174_00",
+      "num_objects": 25,
+      "total_points": 131200
+    },
+    {
+      "scene_id": "scene0175_00",
+      "num_objects": 41,
+      "total_points": 72606
+    },
+    {
+      "scene_id": "scene0178_00",
+      "num_objects": 43,
+      "total_points": 247260
+    },
+    {
+      "scene_id": "scene0179_00",
+      "num_objects": 21,
+      "total_points": 168663
+    },
+    {
+      "scene_id": "scene0181_00",
+      "num_objects": 45,
+      "total_points": 284152
+    },
+    {
+      "scene_id": "scene0182_00",
+      "num_objects": 19,
+      "total_points": 87344
+    },
+    {
+      "scene_id": "scene0184_00",
+      "num_objects": 30,
+      "total_points": 222373
+    },
+    {
+      "scene_id": "scene0189_00",
+      "num_objects": 26,
+      "total_points": 412278
+    },
+    {
+      "scene_id": "scene0193_00",
+      "num_objects": 15,
+      "total_points": 101783
+    },
+    {
+      "scene_id": "scene0194_00",
+      "num_objects": 24,
+      "total_points": 156741
+    },
+    {
+      "scene_id": "scene0201_00",
+      "num_objects": 29,
+      "total_points": 126192
+    },
+    {
+      "scene_id": "scene0203_00",
+      "num_objects": 45,
+      "total_points": 205756
+    },
+    {
+      "scene_id": "scene0207_00",
+      "num_objects": 70,
+      "total_points": 304396
+    },
+    {
+      "scene_id": "scene0208_00",
+      "num_objects": 106,
+      "total_points": 407386
+    },
+    {
+      "scene_id": "scene0211_00",
+      "num_objects": 44,
+      "total_points": 144404
+    },
+    {
+      "scene_id": "scene0213_00",
+      "num_objects": 36,
+      "total_points": 189913
+    },
+    {
+      "scene_id": "scene0216_00",
+      "num_objects": 13,
+      "total_points": 92029
+    },
+    {
+      "scene_id": "scene0221_00",
+      "num_objects": 51,
+      "total_points": 185828
+    },
+    {
+      "scene_id": "scene0223_00",
+      "num_objects": 22,
+      "total_points": 144579
+    },
+    {
+      "scene_id": "scene0225_00",
+      "num_objects": 40,
+      "total_points": 196972
+    },
+    {
+      "scene_id": "scene0227_00",
+      "num_objects": 16,
+      "total_points": 78189
+    },
+    {
+      "scene_id": "scene0229_00",
+      "num_objects": 32,
+      "total_points": 129573
+    },
+    {
+      "scene_id": "scene0235_00",
+      "num_objects": 39,
+      "total_points": 185950
+    },
+    {
+      "scene_id": "scene0236_00",
+      "num_objects": 23,
+      "total_points": 119058
+    },
+    {
+      "scene_id": "scene0238_00",
+      "num_objects": 44,
+      "total_points": 149510
+    },
+    {
+      "scene_id": "scene0239_00",
+      "num_objects": 20,
+      "total_points": 123459
+    },
+    {
+      "scene_id": "scene0240_00",
+      "num_objects": 35,
+      "total_points": 113179
+    },
+    {
+      "scene_id": "scene0244_00",
+      "num_objects": 18,
+      "total_points": 117148
+    },
+    {
+      "scene_id": "scene0246_00",
+      "num_objects": 46,
+      "total_points": 201062
+    },
+    {
+      "scene_id": "scene0247_00",
+      "num_objects": 58,
+      "total_points": 359497
+    },
+    {
+      "scene_id": "scene0254_00",
+      "num_objects": 32,
+      "total_points": 116005
+    },
+    {
+      "scene_id": "scene0255_00",
+      "num_objects": 22,
+      "total_points": 70864
+    },
+    {
+      "scene_id": "scene0256_00",
+      "num_objects": 13,
+      "total_points": 108517
+    },
+    {
+      "scene_id": "scene0259_00",
+      "num_objects": 22,
+      "total_points": 146195
+    },
+    {
+      "scene_id": "scene0260_00",
+      "num_objects": 25,
+      "total_points": 51048
+    },
+    {
+      "scene_id": "scene0261_00",
+      "num_objects": 41,
+      "total_points": 168230
+    },
+    {
+      "scene_id": "scene0262_00",
+      "num_objects": 26,
+      "total_points": 150819
+    },
+    {
+      "scene_id": "scene0263_00",
+      "num_objects": 30,
+      "total_points": 125515
+    },
+    {
+      "scene_id": "scene0265_00",
+      "num_objects": 30,
+      "total_points": 42596
+    },
+    {
+      "scene_id": "scene0266_00",
+      "num_objects": 26,
+      "total_points": 171161
+    },
+    {
+      "scene_id": "scene0268_00",
+      "num_objects": 30,
+      "total_points": 65149
+    },
+    {
+      "scene_id": "scene0269_00",
+      "num_objects": 3,
+      "total_points": 74440
+    },
+    {
+      "scene_id": "scene0270_00",
+      "num_objects": 44,
+      "total_points": 240412
+    },
+    {
+      "scene_id": "scene0273_00",
+      "num_objects": 18,
+      "total_points": 258320
+    },
+    {
+      "scene_id": "scene0279_00",
+      "num_objects": 52,
+      "total_points": 227753
+    },
+    {
+      "scene_id": "scene0280_00",
+      "num_objects": 24,
+      "total_points": 248691
+    },
+    {
+      "scene_id": "scene0282_00",
+      "num_objects": 23,
+      "total_points": 85400
+    },
+    {
+      "scene_id": "scene0286_00",
+      "num_objects": 44,
+      "total_points": 203540
+    },
+    {
+      "scene_id": "scene0296_00",
+      "num_objects": 54,
+      "total_points": 177023
+    },
+    {
+      "scene_id": "scene0299_00",
+      "num_objects": 17,
+      "total_points": 105727
+    },
+    {
+      "scene_id": "scene0300_00",
+      "num_objects": 20,
+      "total_points": 140216
+    },
+    {
+      "scene_id": "scene0301_00",
+      "num_objects": 38,
+      "total_points": 164177
+    },
+    {
+      "scene_id": "scene0305_00",
+      "num_objects": 37,
+      "total_points": 231054
+    },
+    {
+      "scene_id": "scene0306_00",
+      "num_objects": 36,
+      "total_points": 27652
+    },
+    {
+      "scene_id": "scene0307_00",
+      "num_objects": 39,
+      "total_points": 371616
+    },
+    {
+      "scene_id": "scene0309_00",
+      "num_objects": 62,
+      "total_points": 244723
+    },
+    {
+      "scene_id": "scene0310_00",
+      "num_objects": 39,
+      "total_points": 94814
+    },
+    {
+      "scene_id": "scene0312_00",
+      "num_objects": 16,
+      "total_points": 176527
+    },
+    {
+      "scene_id": "scene0315_00",
+      "num_objects": 48,
+      "total_points": 304430
+    },
+    {
+      "scene_id": "scene0323_00",
+      "num_objects": 26,
+      "total_points": 74940
+    },
+    {
+      "scene_id": "scene0324_00",
+      "num_objects": 13,
+      "total_points": 112543
+    },
+    {
+      "scene_id": "scene0325_00",
+      "num_objects": 27,
+      "total_points": 141894
+    },
+    {
+      "scene_id": "scene0327_00",
+      "num_objects": 49,
+      "total_points": 193690
+    },
+    {
+      "scene_id": "scene0330_00",
+      "num_objects": 17,
+      "total_points": 146150
+    },
+    {
+      "scene_id": "scene0331_00",
+      "num_objects": 67,
+      "total_points": 196074
+    },
+    {
+      "scene_id": "scene0333_00",
+      "num_objects": 19,
+      "total_points": 50227
+    },
+    {
+      "scene_id": "scene0335_00",
+      "num_objects": 60,
+      "total_points": 186085
+    },
+    {
+      "scene_id": "scene0340_00",
+      "num_objects": 40,
+      "total_points": 192917
+    },
+    {
+      "scene_id": "scene0341_00",
+      "num_objects": 58,
+      "total_points": 182152
+    },
+    {
+      "scene_id": "scene0348_00",
+      "num_objects": 31,
+      "total_points": 51862
+    },
+    {
+      "scene_id": "scene0352_00",
+      "num_objects": 36,
+      "total_points": 154548
+    },
+    {
+      "scene_id": "scene0353_00",
+      "num_objects": 54,
+      "total_points": 208782
+    },
+    {
+      "scene_id": "scene0357_00",
+      "num_objects": 30,
+      "total_points": 136945
+    },
+    {
+      "scene_id": "scene0361_00",
+      "num_objects": 32,
+      "total_points": 89608
+    },
+    {
+      "scene_id": "scene0362_00",
+      "num_objects": 28,
+      "total_points": 175087
+    },
+    {
+      "scene_id": "scene0365_00",
+      "num_objects": 27,
+      "total_points": 87192
+    },
+    {
+      "scene_id": "scene0368_00",
+      "num_objects": 21,
+      "total_points": 100591
+    },
+    {
+      "scene_id": "scene0369_00",
+      "num_objects": 32,
+      "total_points": 151215
+    },
+    {
+      "scene_id": "scene0375_00",
+      "num_objects": 22,
+      "total_points": 44273
+    },
+    {
+      "scene_id": "scene0378_00",
+      "num_objects": 44,
+      "total_points": 156298
+    },
+    {
+      "scene_id": "scene0379_00",
+      "num_objects": 40,
+      "total_points": 239673
+    },
+    {
+      "scene_id": "scene0380_00",
+      "num_objects": 23,
+      "total_points": 150544
+    },
+    {
+      "scene_id": "scene0385_00",
+      "num_objects": 25,
+      "total_points": 214736
+    },
+    {
+      "scene_id": "scene0390_00",
+      "num_objects": 33,
+      "total_points": 203955
+    },
+    {
+      "scene_id": "scene0391_00",
+      "num_objects": 32,
+      "total_points": 253694
+    },
+    {
+      "scene_id": "scene0392_00",
+      "num_objects": 43,
+      "total_points": 237895
+    },
+    {
+      "scene_id": "scene0395_00",
+      "num_objects": 42,
+      "total_points": 236526
+    },
+    {
+      "scene_id": "scene0400_00",
+      "num_objects": 22,
+      "total_points": 155959
+    },
+    {
+      "scene_id": "scene0404_00",
+      "num_objects": 41,
+      "total_points": 145260
+    },
+    {
+      "scene_id": "scene0407_00",
+      "num_objects": 17,
+      "total_points": 102675
+    },
+    {
+      "scene_id": "scene0412_00",
+      "num_objects": 30,
+      "total_points": 175557
+    },
+    {
+      "scene_id": "scene0413_00",
+      "num_objects": 32,
+      "total_points": 71480
+    },
+    {
+      "scene_id": "scene0416_00",
+      "num_objects": 53,
+      "total_points": 180305
+    },
+    {
+      "scene_id": "scene0418_00",
+      "num_objects": 28,
+      "total_points": 176126
+    },
+    {
+      "scene_id": "scene0419_00",
+      "num_objects": 71,
+      "total_points": 304583
+    },
+    {
+      "scene_id": "scene0421_00",
+      "num_objects": 65,
+      "total_points": 127533
+    },
+    {
+      "scene_id": "scene0425_00",
+      "num_objects": 31,
+      "total_points": 108615
+    },
+    {
+      "scene_id": "scene0426_00",
+      "num_objects": 43,
+      "total_points": 135867
+    },
+    {
+      "scene_id": "scene0431_00",
+      "num_objects": 24,
+      "total_points": 179147
+    },
+    {
+      "scene_id": "scene0435_00",
+      "num_objects": 63,
+      "total_points": 254998
+    },
+    {
+      "scene_id": "scene0442_00",
+      "num_objects": 14,
+      "total_points": 99285
+    },
+    {
+      "scene_id": "scene0448_00",
+      "num_objects": 35,
+      "total_points": 70686
+    },
+    {
+      "scene_id": "scene0450_00",
+      "num_objects": 13,
+      "total_points": 68736
+    },
+    {
+      "scene_id": "scene0458_00",
+      "num_objects": 32,
+      "total_points": 65264
+    },
+    {
+      "scene_id": "scene0462_00",
+      "num_objects": 21,
+      "total_points": 156714
+    },
+    {
+      "scene_id": "scene0464_00",
+      "num_objects": 58,
+      "total_points": 173415
+    },
+    {
+      "scene_id": "scene0465_00",
+      "num_objects": 49,
+      "total_points": 387654
+    },
+    {
+      "scene_id": "scene0467_00",
+      "num_objects": 34,
+      "total_points": 131786
+    },
+    {
+      "scene_id": "scene0473_00",
+      "num_objects": 20,
+      "total_points": 107517
+    },
+    {
+      "scene_id": "scene0476_00",
+      "num_objects": 32,
+      "total_points": 127562
+    },
+    {
+      "scene_id": "scene0477_00",
+      "num_objects": 60,
+      "total_points": 296246
+    },
+    {
+      "scene_id": "scene0479_00",
+      "num_objects": 34,
+      "total_points": 77694
+    },
+    {
+      "scene_id": "scene0482_00",
+      "num_objects": 21,
+      "total_points": 108340
+    },
+    {
+      "scene_id": "scene0487_00",
+      "num_objects": 31,
+      "total_points": 190712
+    },
+    {
+      "scene_id": "scene0489_00",
+      "num_objects": 32,
+      "total_points": 119134
+    },
+    {
+      "scene_id": "scene0498_00",
+      "num_objects": 30,
+      "total_points": 108058
+    },
+    {
+      "scene_id": "scene0499_00",
+      "num_objects": 51,
+      "total_points": 97088
+    },
+    {
+      "scene_id": "scene0501_00",
+      "num_objects": 39,
+      "total_points": 93338
+    },
+    {
+      "scene_id": "scene0503_00",
+      "num_objects": 18,
+      "total_points": 123124
+    },
+    {
+      "scene_id": "scene0504_00",
+      "num_objects": 31,
+      "total_points": 213000
+    },
+    {
+      "scene_id": "scene0505_00",
+      "num_objects": 56,
+      "total_points": 304659
+    },
+    {
+      "scene_id": "scene0507_00",
+      "num_objects": 24,
+      "total_points": 60481
+    },
+    {
+      "scene_id": "scene0510_00",
+      "num_objects": 68,
+      "total_points": 155177
+    },
+    {
+      "scene_id": "scene0511_00",
+      "num_objects": 22,
+      "total_points": 98936
+    },
+    {
+      "scene_id": "scene0515_00",
+      "num_objects": 77,
+      "total_points": 320809
+    },
+    {
+      "scene_id": "scene0517_00",
+      "num_objects": 65,
+      "total_points": 236631
+    },
+    {
+      "scene_id": "scene0521_00",
+      "num_objects": 53,
+      "total_points": 171047
+    },
+    {
+      "scene_id": "scene0522_00",
+      "num_objects": 40,
+      "total_points": 86969
+    },
+    {
+      "scene_id": "scene0524_00",
+      "num_objects": 17,
+      "total_points": 104315
+    },
+    {
+      "scene_id": "scene0525_00",
+      "num_objects": 65,
+      "total_points": 243452
+    },
+    {
+      "scene_id": "scene0526_00",
+      "num_objects": 5,
+      "total_points": 42884
+    },
+    {
+      "scene_id": "scene0529_00",
+      "num_objects": 42,
+      "total_points": 253213
+    },
+    {
+      "scene_id": "scene0530_00",
+      "num_objects": 42,
+      "total_points": 205543
+    },
+    {
+      "scene_id": "scene0533_00",
+      "num_objects": 12,
+      "total_points": 189354
+    },
+    {
+      "scene_id": "scene0535_00",
+      "num_objects": 30,
+      "total_points": 90268
+    },
+    {
+      "scene_id": "scene0536_00",
+      "num_objects": 20,
+      "total_points": 142864
+    },
+    {
+      "scene_id": "scene0537_00",
+      "num_objects": 17,
+      "total_points": 124243
+    },
+    {
+      "scene_id": "scene0540_00",
+      "num_objects": 37,
+      "total_points": 121300
+    },
+    {
+      "scene_id": "scene0541_00",
+      "num_objects": 32,
+      "total_points": 177385
+    },
+    {
+      "scene_id": "scene0542_00",
+      "num_objects": 24,
+      "total_points": 103071
+    },
+    {
+      "scene_id": "scene0547_00",
+      "num_objects": 53,
+      "total_points": 192681
+    },
+    {
+      "scene_id": "scene0549_00",
+      "num_objects": 31,
+      "total_points": 161973
+    },
+    {
+      "scene_id": "scene0552_00",
+      "num_objects": 33,
+      "total_points": 123103
+    },
+    {
+      "scene_id": "scene0554_00",
+      "num_objects": 48,
+      "total_points": 150692
+    },
+    {
+      "scene_id": "scene0555_00",
+      "num_objects": 33,
+      "total_points": 204591
+    },
+    {
+      "scene_id": "scene0556_00",
+      "num_objects": 40,
+      "total_points": 184649
+    },
+    {
+      "scene_id": "scene0560_00",
+      "num_objects": 26,
+      "total_points": 174780
+    },
+    {
+      "scene_id": "scene0564_00",
+      "num_objects": 23,
+      "total_points": 96103
+    },
+    {
+      "scene_id": "scene0565_00",
+      "num_objects": 40,
+      "total_points": 167558
+    },
+    {
+      "scene_id": "scene0571_00",
+      "num_objects": 29,
+      "total_points": 59671
+    },
+    {
+      "scene_id": "scene0578_00",
+      "num_objects": 20,
+      "total_points": 147607
+    },
+    {
+      "scene_id": "scene0582_00",
+      "num_objects": 48,
+      "total_points": 173640
+    },
+    {
+      "scene_id": "scene0584_00",
+      "num_objects": 39,
+      "total_points": 174105
+    },
+    {
+      "scene_id": "scene0585_00",
+      "num_objects": 36,
+      "total_points": 245108
+    },
+    {
+      "scene_id": "scene0586_00",
+      "num_objects": 26,
+      "total_points": 92318
+    },
+    {
+      "scene_id": "scene0589_00",
+      "num_objects": 44,
+      "total_points": 189018
+    },
+    {
+      "scene_id": "scene0590_00",
+      "num_objects": 59,
+      "total_points": 222957
+    },
+    {
+      "scene_id": "scene0591_00",
+      "num_objects": 31,
+      "total_points": 175600
+    },
+    {
+      "scene_id": "scene0592_00",
+      "num_objects": 62,
+      "total_points": 390156
+    },
+    {
+      "scene_id": "scene0604_00",
+      "num_objects": 31,
+      "total_points": 321577
+    },
+    {
+      "scene_id": "scene0612_00",
+      "num_objects": 32,
+      "total_points": 57522
+    },
+    {
+      "scene_id": "scene0613_00",
+      "num_objects": 40,
+      "total_points": 202817
+    },
+    {
+      "scene_id": "scene0614_00",
+      "num_objects": 43,
+      "total_points": 205589
+    },
+    {
+      "scene_id": "scene0615_00",
+      "num_objects": 37,
+      "total_points": 140101
+    },
+    {
+      "scene_id": "scene0616_00",
+      "num_objects": 31,
+      "total_points": 310248
+    },
+    {
+      "scene_id": "scene0617_00",
+      "num_objects": 22,
+      "total_points": 117660
+    },
+    {
+      "scene_id": "scene0619_00",
+      "num_objects": 23,
+      "total_points": 82306
+    },
+    {
+      "scene_id": "scene0622_00",
+      "num_objects": 11,
+      "total_points": 111148
+    },
+    {
+      "scene_id": "scene0625_00",
+      "num_objects": 20,
+      "total_points": 47992
+    },
+    {
+      "scene_id": "scene0626_00",
+      "num_objects": 23,
+      "total_points": 118006
+    },
+    {
+      "scene_id": "scene0630_00",
+      "num_objects": 40,
+      "total_points": 116235
+    },
+    {
+      "scene_id": "scene0632_00",
+      "num_objects": 12,
+      "total_points": 44616
+    },
+    {
+      "scene_id": "scene0635_00",
+      "num_objects": 46,
+      "total_points": 186466
+    },
+    {
+      "scene_id": "scene0637_00",
+      "num_objects": 10,
+      "total_points": 71808
+    },
+    {
+      "scene_id": "scene0640_00",
+      "num_objects": 53,
+      "total_points": 240977
+    },
+    {
+      "scene_id": "scene0642_00",
+      "num_objects": 56,
+      "total_points": 241294
+    },
+    {
+      "scene_id": "scene0644_00",
+      "num_objects": 62,
+      "total_points": 299472
+    },
+    {
+      "scene_id": "scene0646_00",
+      "num_objects": 50,
+      "total_points": 265696
+    },
+    {
+      "scene_id": "scene0647_00",
+      "num_objects": 22,
+      "total_points": 196185
+    },
+    {
+      "scene_id": "scene0648_00",
+      "num_objects": 48,
+      "total_points": 167915
+    },
+    {
+      "scene_id": "scene0651_00",
+      "num_objects": 25,
+      "total_points": 88450
+    },
+    {
+      "scene_id": "scene0652_00",
+      "num_objects": 27,
+      "total_points": 100286
+    },
+    {
+      "scene_id": "scene0653_00",
+      "num_objects": 52,
+      "total_points": 284951
+    },
+    {
+      "scene_id": "scene0658_00",
+      "num_objects": 19,
+      "total_points": 129951
+    },
+    {
+      "scene_id": "scene0659_00",
+      "num_objects": 16,
+      "total_points": 44310
+    },
+    {
+      "scene_id": "scene0665_00",
+      "num_objects": 35,
+      "total_points": 252726
+    },
+    {
+      "scene_id": "scene0668_00",
+      "num_objects": 35,
+      "total_points": 182775
+    },
+    {
+      "scene_id": "scene0670_00",
+      "num_objects": 41,
+      "total_points": 176038
+    },
+    {
+      "scene_id": "scene0671_00",
+      "num_objects": 22,
+      "total_points": 81469
+    },
+    {
+      "scene_id": "scene0673_00",
+      "num_objects": 75,
+      "total_points": 254321
+    },
+    {
+      "scene_id": "scene0674_00",
+      "num_objects": 24,
+      "total_points": 114821
+    },
+    {
+      "scene_id": "scene0675_00",
+      "num_objects": 18,
+      "total_points": 132369
+    },
+    {
+      "scene_id": "scene0676_00",
+      "num_objects": 25,
+      "total_points": 47581
+    },
+    {
+      "scene_id": "scene0677_00",
+      "num_objects": 34,
+      "total_points": 197567
+    },
+    {
+      "scene_id": "scene0679_00",
+      "num_objects": 38,
+      "total_points": 177964
+    },
+    {
+      "scene_id": "scene0685_00",
+      "num_objects": 19,
+      "total_points": 132720
+    },
+    {
+      "scene_id": "scene0688_00",
+      "num_objects": 35,
+      "total_points": 115262
+    },
+    {
+      "scene_id": "scene0691_00",
+      "num_objects": 19,
+      "total_points": 104270
+    },
+    {
+      "scene_id": "scene0695_00",
+      "num_objects": 34,
+      "total_points": 133418
+    },
+    {
+      "scene_id": "scene0696_00",
+      "num_objects": 33,
+      "total_points": 231067
+    },
+    {
+      "scene_id": "scene0697_00",
+      "num_objects": 36,
+      "total_points": 139300
+    },
+    {
+      "scene_id": "scene0698_00",
+      "num_objects": 47,
+      "total_points": 224544
+    },
+    {
+      "scene_id": "scene0699_00",
+      "num_objects": 39,
+      "total_points": 153041
+    },
+    {
+      "scene_id": "scene0704_00",
+      "num_objects": 27,
+      "total_points": 183029
+    },
+    {
+      "scene_id": "scene0705_00",
+      "num_objects": 14,
+      "total_points": 86277
+    },
+    {
+      "scene_id": "scene0706_00",
+      "num_objects": 32,
+      "total_points": 137070
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "model": "distilbert-base-uncased",
+  "splits": {
+    "train": {
+      "split": "train_manifest",
+      "num_samples": 18459,
+      "embedding_dim": 768,
+      "output_file": "data/text_features/recovered_23k/train_bert_embeddings.npy"
+    },
+    "val": {
+      "split": "val_manifest",
+      "num_samples": 2046,
+      "embedding_dim": 768,
+      "output_file": "data/text_features/recovered_23k/val_bert_embeddings.npy"
+    },
+    "test": {
+      "split": "test_manifest",
+      "num_samples": 2681,
+      "embedding_dim": 768,
+      "output_file": "data/text_features/recovered_23k/test_bert_embeddings.npy"
+    }
+  }
+}

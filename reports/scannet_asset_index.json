@@ -1,0 +1,5382 @@
+{
+  "scene0002_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0002_00/scene0002_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0006_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0006_00/scene0006_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0008_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0008_00/scene0008_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0012_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0012_00/scene0012_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0014_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0014_00/scene0014_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0016_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0016_00/scene0016_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0017_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0017_00/scene0017_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0020_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0020_00/scene0020_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0023_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0023_00/scene0023_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0024_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0024_00/scene0024_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0028_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0028_00/scene0028_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0034_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0034_00/scene0034_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0040_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0040_00/scene0040_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0042_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0042_00/scene0042_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0047_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0047_00/scene0047_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0056_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0056_00/scene0056_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0058_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0058_00/scene0058_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0059_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0059_00/scene0059_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0068_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0068_00/scene0068_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0072_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0072_00/scene0072_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0074_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0074_00/scene0074_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0079_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0079_00/scene0079_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0085_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0085_00/scene0085_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0087_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0087_00/scene0087_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0091_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0091_00/scene0091_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0092_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0092_00/scene0092_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0093_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0093_00/scene0093_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0098_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0098_00/scene0098_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0101_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0101_00/scene0101_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0103_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0103_00/scene0103_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0107_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0107_00/scene0107_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0108_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0108_00/scene0108_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0109_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0109_00/scene0109_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0110_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0110_00/scene0110_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0111_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0111_00/scene0111_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0117_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0117_00/scene0117_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0120_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0120_00/scene0120_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0124_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0124_00/scene0124_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0125_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0125_00/scene0125_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0126_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0126_00/scene0126_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0127_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0127_00/scene0127_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0128_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0128_00/scene0128_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0132_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0132_00/scene0132_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0136_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0136_00/scene0136_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0138_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0138_00/scene0138_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0141_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0141_00/scene0141_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0142_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0142_00/scene0142_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0143_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0143_00/scene0143_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0147_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0147_00/scene0147_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0154_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0154_00/scene0154_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0155_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0155_00/scene0155_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0158_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0158_00/scene0158_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0159_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0159_00/scene0159_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0166_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0166_00/scene0166_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0167_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0167_00/scene0167_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0168_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0168_00/scene0168_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0174_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0174_00/scene0174_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0175_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0175_00/scene0175_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0178_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0178_00/scene0178_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0179_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0179_00/scene0179_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0181_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0181_00/scene0181_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0182_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0182_00/scene0182_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0184_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0184_00/scene0184_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0189_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0189_00/scene0189_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0194_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0194_00/scene0194_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0201_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0201_00/scene0201_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0211_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0211_00/scene0211_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0213_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0213_00/scene0213_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0216_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0216_00/scene0216_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0223_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0223_00/scene0223_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0225_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0225_00/scene0225_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0227_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0227_00/scene0227_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0229_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0229_00/scene0229_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0235_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0235_00/scene0235_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0236_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0236_00/scene0236_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0238_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0238_00/scene0238_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0239_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0239_00/scene0239_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0240_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0240_00/scene0240_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0244_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0244_00/scene0244_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0247_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0247_00/scene0247_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0254_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0254_00/scene0254_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0255_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0255_00/scene0255_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0259_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0259_00/scene0259_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0260_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0260_00/scene0260_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0261_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0261_00/scene0261_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0262_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0262_00/scene0262_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0263_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0263_00/scene0263_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0265_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0265_00/scene0265_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0266_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0266_00/scene0266_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0268_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0268_00/scene0268_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0269_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0269_00/scene0269_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0270_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0270_00/scene0270_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0273_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0273_00/scene0273_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0279_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0279_00/scene0279_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0280_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0280_00/scene0280_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0282_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0282_00/scene0282_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0286_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0286_00/scene0286_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0296_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0296_00/scene0296_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0299_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0299_00/scene0299_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0301_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0301_00/scene0301_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0305_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0305_00/scene0305_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0306_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0306_00/scene0306_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0309_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0309_00/scene0309_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0310_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0310_00/scene0310_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0312_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0312_00/scene0312_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0315_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0315_00/scene0315_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0323_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0323_00/scene0323_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0324_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0324_00/scene0324_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0325_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0325_00/scene0325_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0327_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0327_00/scene0327_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0330_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0330_00/scene0330_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0331_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0331_00/scene0331_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0333_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0333_00/scene0333_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0335_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0335_00/scene0335_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0340_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0340_00/scene0340_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0341_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0341_00/scene0341_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0348_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0348_00/scene0348_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0352_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0352_00/scene0352_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0361_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0361_00/scene0361_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0362_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0362_00/scene0362_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0365_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0365_00/scene0365_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0368_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0368_00/scene0368_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0369_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0369_00/scene0369_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0375_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0375_00/scene0375_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0379_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0379_00/scene0379_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0380_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0380_00/scene0380_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0385_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0385_00/scene0385_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0390_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0390_00/scene0390_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0391_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0391_00/scene0391_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0392_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0392_00/scene0392_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0395_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0395_00/scene0395_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0400_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0400_00/scene0400_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0404_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0404_00/scene0404_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0407_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0407_00/scene0407_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0413_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0413_00/scene0413_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0416_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0416_00/scene0416_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0418_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0418_00/scene0418_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0419_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0419_00/scene0419_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0421_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0421_00/scene0421_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0425_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0425_00/scene0425_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0431_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0431_00/scene0431_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0442_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0442_00/scene0442_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0448_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0448_00/scene0448_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0450_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0450_00/scene0450_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0464_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0464_00/scene0464_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0465_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0465_00/scene0465_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0467_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0467_00/scene0467_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0473_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0473_00/scene0473_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0476_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0476_00/scene0476_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0477_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0477_00/scene0477_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0479_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0479_00/scene0479_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0482_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0482_00/scene0482_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0487_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0487_00/scene0487_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0489_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0489_00/scene0489_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0498_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0498_00/scene0498_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0499_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0499_00/scene0499_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0501_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0501_00/scene0501_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0503_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0503_00/scene0503_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0504_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0504_00/scene0504_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0505_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0505_00/scene0505_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0507_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0507_00/scene0507_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0510_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0510_00/scene0510_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0511_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0511_00/scene0511_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0515_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0515_00/scene0515_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0517_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0517_00/scene0517_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0521_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0521_00/scene0521_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0522_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0522_00/scene0522_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0524_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0524_00/scene0524_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0525_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0525_00/scene0525_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0526_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0526_00/scene0526_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0529_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0529_00/scene0529_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0530_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0530_00/scene0530_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0533_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0533_00/scene0533_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0536_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0536_00/scene0536_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0537_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0537_00/scene0537_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0540_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0540_00/scene0540_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0541_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0541_00/scene0541_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0542_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0542_00/scene0542_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0547_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0547_00/scene0547_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0554_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0554_00/scene0554_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0555_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0555_00/scene0555_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0556_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0556_00/scene0556_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0560_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0560_00/scene0560_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0564_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0564_00/scene0564_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0571_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0571_00/scene0571_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0582_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0582_00/scene0582_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0584_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0584_00/scene0584_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0585_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0585_00/scene0585_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0586_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0586_00/scene0586_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0589_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0589_00/scene0589_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0590_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0590_00/scene0590_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0592_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0592_00/scene0592_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0604_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0604_00/scene0604_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0612_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0612_00/scene0612_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0613_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0613_00/scene0613_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0614_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0614_00/scene0614_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0615_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0615_00/scene0615_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0617_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0617_00/scene0617_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0619_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0619_00/scene0619_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0622_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0622_00/scene0622_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0625_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0625_00/scene0625_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0626_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0626_00/scene0626_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0630_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0630_00/scene0630_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0632_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0632_00/scene0632_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0635_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0635_00/scene0635_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0637_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0637_00/scene0637_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0640_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0640_00/scene0640_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0642_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0642_00/scene0642_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0646_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0646_00/scene0646_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0659_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0659_00/scene0659_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0668_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0668_00/scene0668_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0673_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0673_00/scene0673_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0674_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0674_00/scene0674_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0675_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0675_00/scene0675_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0676_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0676_00/scene0676_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0677_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0677_00/scene0677_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0679_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0679_00/scene0679_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0688_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0688_00/scene0688_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0691_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0691_00/scene0691_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0698_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0698_00/scene0698_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0705_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0705_00/scene0705_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0706_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0706_00/scene0706_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0025_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0025_00/scene0025_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0063_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0063_00/scene0063_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0081_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0081_00/scene0081_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0086_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0086_00/scene0086_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0095_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0095_00/scene0095_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0131_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0131_00/scene0131_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0164_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0164_00/scene0164_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0193_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0193_00/scene0193_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0203_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0203_00/scene0203_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0207_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0207_00/scene0207_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0208_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0208_00/scene0208_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0221_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0221_00/scene0221_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0246_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0246_00/scene0246_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0256_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0256_00/scene0256_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0300_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0300_00/scene0300_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0307_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0307_00/scene0307_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0353_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0353_00/scene0353_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0357_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0357_00/scene0357_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0378_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0378_00/scene0378_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0412_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0412_00/scene0412_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0426_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0426_00/scene0426_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0435_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0435_00/scene0435_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0458_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0458_00/scene0458_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0462_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0462_00/scene0462_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0535_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0535_00/scene0535_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0549_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0549_00/scene0549_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0552_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0552_00/scene0552_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0565_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0565_00/scene0565_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0578_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0578_00/scene0578_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0591_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0591_00/scene0591_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0616_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0616_00/scene0616_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0644_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0644_00/scene0644_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0647_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0647_00/scene0647_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0648_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0648_00/scene0648_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0651_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0651_00/scene0651_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0652_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0652_00/scene0652_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0653_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0653_00/scene0653_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0658_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0658_00/scene0658_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0665_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0665_00/scene0665_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0670_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0670_00/scene0670_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0671_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0671_00/scene0671_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0685_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0685_00/scene0685_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0695_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0695_00/scene0695_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0696_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0696_00/scene0696_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0697_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0697_00/scene0697_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0699_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0699_00/scene0699_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  },
+  "scene0704_00": {
+    "pointcept": {
+      "color.npy": true,
+      "coord.npy": true,
+      "instance.npy": true,
+      "normal.npy": true,
+      "segment20.npy": true,
+      "segment200.npy": true
+    },
+    "has_coord": true,
+    "has_instance": true,
+    "has_color": true,
+    "aggregation": {
+      "aggregation_json": true,
+      "aggregation_path": "/home/cc/Project/CC/relation-aware-3d-grounding/data/raw/referit3d/scans/scene0704_00/scene0704_00.aggregation.json"
+    },
+    "has_aggregation": true,
+    "can_extract_geometry": true,
+    "geometry_source": "pointcept"
+  }
+}

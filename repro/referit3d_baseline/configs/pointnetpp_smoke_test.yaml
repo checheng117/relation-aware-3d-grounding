@@ -1,0 +1,59 @@
+# ReferIt3D PointNet++ Encoder Smoke Test Configuration
+# Quick test with debug mode enabled
+
+# Dataset
+dataset:
+  manifest_dir: data/processed
+  train_manifest: train_manifest.jsonl
+  val_manifest: val_manifest.jsonl
+  test_manifest: test_manifest.jsonl
+  raw_root: data/raw/referit3d
+
+# Model
+model:
+  name: referit3dnet
+  encoder_type: pointnetpp
+  pointnetpp_num_points: 1024
+  pointnetpp_sa1_npoints: 512
+  pointnetpp_sa1_radius: 0.2
+  pointnetpp_sa1_nsamples: 32
+  pointnetpp_sa2_npoints: 128
+  pointnetpp_sa2_radius: 0.4
+  pointnetpp_sa2_nsamples: 64
+  point_output_dim: 256
+  lang_output_dim: 256
+  fusion_dim: 512
+  dropout: 0.1
+
+# Training
+training:
+  epochs: 2  # Just 2 epochs for smoke test
+  batch_size: 8  # Smaller batch for smoke test
+  lr: 0.0001
+  weight_decay: 0.0001
+  grad_clip: 1.0
+  seed: 42
+
+# Evaluation
+evaluation:
+  batch_size: 16
+  compute_acc_at_5: true
+  compute_sub_metrics: false
+
+# Checkpointing
+checkpoint:
+  dir: outputs/encoder_upgrade/smoke_test
+  save_best_only: true
+  monitor: val_acc
+
+# Logging
+logging:
+  log_dir: outputs/encoder_upgrade/smoke_test/logs
+  log_every_n_steps: 10
+
+# Device
+device: cuda
+
+# Debug - smoke test mode
+debug:
+  max_batches: 5  # Only 5 batches per epoch for smoke test

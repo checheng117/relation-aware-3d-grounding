@@ -10,12 +10,19 @@ from typing import Any
 
 from rag3d.datasets.layout import ReferIt3DRawLayout
 from rag3d.datasets.nr3d_hf import parse_nr3d_row_meta, scene_objects_entity_subset_from_aggregation
-from rag3d.datasets.scannet_objects import load_scene_objects_for_scene_id
+from rag3d.datasets.nr3d_official import parse_nr3d_official_row
+from rag3d.datasets.scannet_objects import (
+    load_scene_objects_for_scene_id,
+    load_scene_objects_with_geometry,
+)
 from rag3d.datasets.schemas import GroundingSample, SceneObject
 from rag3d.datasets.transforms import apply_tags_to_sample
 from rag3d.utils.io import load_manifest_records, write_json, write_jsonl
 
 log = logging.getLogger(__name__)
+
+# Default geometry directory for real geometry
+DEFAULT_GEOMETRY_DIR = Path("data/geometry")
 
 
 def _norm_key(row: dict[str, str], *aliases: str) -> str | None:
@@ -91,12 +98,20 @@ def build_records_nr3d_hf_with_scans(
     max_rows: int | None = None,
     max_scenes: int | None = None,
     candidate_set: str = "full_scene",
+    geometry_dir: Path | None = None,
+    feature_dir: Path | None = None,
+    use_real_geometry: bool = True,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
     """NR3D HF JSON + ScanNet-style aggregation per scene.
 
     ``candidate_set``:
     - ``full_scene``: all instances from aggregation (hard retrieval).
     - ``entity_only``: only NR3D ``entities`` (+ target if absent), geometry from aggregation rows.
+
+    ``use_real_geometry``: If True and geometry_dir is set, prefer pre-extracted geometry files
+    with real point-based centers/sizes over placeholder geometry from aggregation.
+
+    ``feature_dir``: Directory containing pre-computed object features.
     """
     import json
 
@@ -125,7 +140,13 @@ def build_records_nr3d_hf_with_scans(
         if max_scenes is not None and sid not in scenes_seen and len(scenes_seen) >= max_scenes:
             continue
         try:
-            full_objects = load_scene_objects_for_scene_id(layout.scans_dir, sid)
+            # Use real geometry if available
+            if use_real_geometry and geometry_dir is not None:
+                full_objects = load_scene_objects_with_geometry(
+                    layout.scans_dir, sid, geometry_dir, feature_dir, prefer_geometry_file=True
+                )
+            else:
+                full_objects = load_scene_objects_for_scene_id(layout.scans_dir, sid)
         except FileNotFoundError:
             skipped_no_agg += 1
             continue
@@ -159,6 +180,101 @@ def build_records_nr3d_hf_with_scans(
         "skipped_entity_subset_incomplete": skipped_entity_subset,
         "geometry_backed": True,
         "candidate_set": candidate_set,
+    }
+    return records, stats
+
+
+def build_records_nr3d_official_with_scans(
+    nr3d_csv_path: Path,
+    layout: ReferIt3DRawLayout,
+    geometry_dir: Path | None = None,
+    feature_dir: Path | None = None,
+    use_real_geometry: bool = True,
+    geometry_scenes: set[str] | None = None,
+    max_rows: int | None = None,
+    max_scenes: int | None = None,
+) -> tuple[list[dict[str, Any]], dict[str, Any]]:
+    """Build records from official Nr3D CSV with ScanNet geometry.
+
+    Args:
+        nr3d_csv_path: Path to official nr3d_official.csv
+        layout: ReferIt3DRawLayout for scans directory
+        geometry_dir: Directory with pre-extracted geometry files
+        feature_dir: Directory with pre-computed object features
+        use_real_geometry: If True, prefer geometry files over aggregation
+        geometry_scenes: Set of scene IDs with geometry. If None, all scenes allowed.
+        max_rows: Maximum rows to process
+        max_scenes: Maximum scenes to use
+
+    Returns:
+        Tuple of (records, stats)
+    """
+    import csv
+
+    if not nr3d_csv_path.is_file():
+        raise FileNotFoundError(f"Nr3D CSV not found: {nr3d_csv_path}")
+
+    records: list[dict[str, Any]] = []
+    scenes_seen: set[str] = set()
+    skipped_no_meta = 0
+    skipped_no_agg = 0
+    skipped_no_target = 0
+    skipped_no_geometry = 0
+
+    with nr3d_csv_path.open("r", encoding="utf-8", newline="") as f:
+        reader = csv.DictReader(f)
+        for row in reader:
+            if max_rows is not None and len(records) >= max_rows:
+                break
+
+            # Parse official format
+            meta = parse_nr3d_official_row(row)
+            if not meta:
+                skipped_no_meta += 1
+                continue
+
+            sid = meta["scene_id"]
+
+            # Check geometry availability
+            if geometry_scenes is not None and sid not in geometry_scenes:
+                skipped_no_geometry += 1
+                continue
+
+            if max_scenes is not None and sid not in scenes_seen and len(scenes_seen) >= max_scenes:
+                continue
+
+            # Load scene objects
+            try:
+                if use_real_geometry and geometry_dir is not None:
+                    objects = load_scene_objects_with_geometry(
+                        layout.scans_dir, sid, geometry_dir, feature_dir, prefer_geometry_file=True
+                    )
+                else:
+                    objects = load_scene_objects_for_scene_id(layout.scans_dir, sid)
+            except FileNotFoundError:
+                skipped_no_agg += 1
+                continue
+
+            # Build record
+            rec = csv_row_to_record(meta, objects, sid)
+            if rec:
+                records.append(rec)
+                scenes_seen.add(sid)
+            else:
+                skipped_no_target += 1
+
+    stats = {
+        "source": "nr3d_official_csv",
+        "csv_path": str(nr3d_csv_path),
+        "nr3d_rows_total": sum(1 for _ in open(nr3d_csv_path)) - 1,  # Subtract header
+        "records_kept": len(records),
+        "unique_scenes_used": len(scenes_seen),
+        "skipped_no_meta": skipped_no_meta,
+        "skipped_no_aggregation": skipped_no_agg,
+        "skipped_no_geometry": skipped_no_geometry,
+        "skipped_target_not_in_scene": skipped_no_target,
+        "geometry_backed": True,
+        "geometry_filter_applied": geometry_scenes is not None,
     }
     return records, stats
 
@@ -282,6 +398,70 @@ def split_records(
     va = [records[i] for i in idx[n_tr : n_tr + n_va]]
     te = [records[i] for i in idx[n_tr + n_va :]]
     return tr, va, te
+
+
+def split_records_by_scene(
+    records: list[dict[str, Any]],
+    train_ratio: float = 0.8,
+    val_ratio: float = 0.1,
+    seed: int = 42,
+) -> tuple[list[dict[str, Any]], list[dict[str, Any]], list[dict[str, Any]], dict[str, Any]]:
+    """Split records by scene, ensuring scene-disjoint splits.
+
+    All samples from a scene go to the same split. This prevents scene-level
+    leakage between splits, which is required for valid 3D grounding evaluation.
+
+    Returns: (train_records, val_records, test_records, scene_info)
+    where scene_info contains scene lists for each split.
+    """
+    import random
+
+    # Group records by scene_id
+    by_scene: dict[str, list[dict[str, Any]]] = {}
+    for r in records:
+        sid = str(r.get("scene_id", ""))
+        if not sid:
+            log.warning("Record missing scene_id, assigning to 'unknown'")
+            sid = "unknown"
+        by_scene.setdefault(sid, []).append(r)
+
+    # Shuffle scene IDs
+    scene_ids = list(by_scene.keys())
+    rng = random.Random(seed)
+    rng.shuffle(scene_ids)
+
+    # Assign scenes to splits
+    n_scenes = len(scene_ids)
+    n_tr = int(n_scenes * train_ratio)
+    n_va = int(n_scenes * val_ratio)
+
+    train_scenes = set(scene_ids[:n_tr])
+    val_scenes = set(scene_ids[n_tr : n_tr + n_va])
+    test_scenes = set(scene_ids[n_tr + n_va :])
+
+    # Assign all samples of each scene to its split
+    train_records = [r for sid in train_scenes for r in by_scene[sid]]
+    val_records = [r for sid in val_scenes for r in by_scene[sid]]
+    test_records = [r for sid in test_scenes for r in by_scene[sid]]
+
+    # Build scene info for validation
+    scene_info = {
+        "train_scenes": sorted(train_scenes),
+        "val_scenes": sorted(val_scenes),
+        "test_scenes": sorted(test_scenes),
+        "n_train_scenes": len(train_scenes),
+        "n_val_scenes": len(val_scenes),
+        "n_test_scenes": len(test_scenes),
+        "train_samples_per_scene": {sid: len(by_scene[sid]) for sid in train_scenes},
+        "val_samples_per_scene": {sid: len(by_scene[sid]) for sid in val_scenes},
+        "test_samples_per_scene": {sid: len(by_scene[sid]) for sid in test_scenes},
+        "split_method": "scene_disjoint",
+        "seed": seed,
+        "train_ratio": train_ratio,
+        "val_ratio": val_ratio,
+    }
+
+    return train_records, val_records, test_records, scene_info
 
 
 def summarize_manifests(

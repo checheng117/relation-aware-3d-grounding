@@ -1,15 +1,29 @@
-"""ScanNet-style scene instance loading (aggregation.json → SceneObject list)."""
+"""ScanNet-style scene instance loading (aggregation.json → SceneObject list).
+
+Supports two geometry sources:
+1. Pre-extracted geometry files (data/geometry/<scene_id>_geometry.npz) - REAL geometry
+2. Aggregation JSON files - fallback with placeholder geometry
+"""
 
 from __future__ import annotations
 
+import json
 import logging
 from pathlib import Path
 from typing import Any
+
+import numpy as np
 
 from rag3d.datasets.schemas import SceneObject
 from rag3d.utils.io import read_json
 
 log = logging.getLogger(__name__)
+
+# Default geometry directory for pre-extracted geometry
+DEFAULT_GEOMETRY_DIR = Path("data/geometry")
+
+# Default object feature directory
+DEFAULT_FEATURE_DIR = Path("data/object_features")
 
 
 def resolve_aggregation_path(scene_dir: Path, scene_id: str) -> Path | None:
@@ -114,3 +128,147 @@ def load_scene_objects_from_processed(scene_json: Path) -> list[SceneObject]:
             )
         )
     return out
+
+
+def resolve_geometry_path(scene_id: str, geometry_dir: Path | None = None) -> Path | None:
+    """Locate pre-extracted geometry file for a scene."""
+    gdir = geometry_dir or DEFAULT_GEOMETRY_DIR
+    if not gdir.is_dir():
+        return None
+    candidates = [
+        gdir / f"{scene_id}_geometry.npz",
+    ]
+    for c in candidates:
+        if c.is_file():
+            return c
+    return None
+
+
+def scene_objects_from_geometry_file(
+    geometry_path: Path,
+    agg_path: Path | None = None,
+    feature_dir: Path | None = None,
+) -> list[SceneObject]:
+    """Load SceneObject list from pre-extracted geometry file.
+
+    This uses REAL geometry extracted from Pointcept data:
+    - Real centers computed from point bboxes
+    - Real sizes computed from point bboxes
+    - Real point counts
+    - Optional: pre-computed point features
+
+    Args:
+        geometry_path: Path to *_geometry.npz file
+        agg_path: Optional path to aggregation.json for additional metadata (labels)
+        feature_dir: Optional directory containing pre-computed object features
+
+    Returns:
+        List of SceneObject with real geometry and optional features
+    """
+    data = np.load(geometry_path, allow_pickle=True)
+
+    object_ids = data["object_ids"]
+    centers = data["centers"]
+    sizes = data["sizes"]
+    bboxes = data["bboxes"]
+    point_counts = data.get("point_counts", np.zeros(len(object_ids), dtype=np.int32))
+    labels = data.get("labels", np.array([f"object_{i}" for i in object_ids]))
+
+    # Load aggregation for additional labels if available
+    agg_labels: dict[int, str] = {}
+    if agg_path is not None and agg_path.is_file():
+        try:
+            agg_data = read_json(agg_path)
+            for g in agg_data.get("segGroups", []):
+                oid = g.get("objectId")
+                label = g.get("label", "object")
+                if oid is not None:
+                    agg_labels[int(oid)] = label
+        except Exception:
+            pass
+
+    # Load pre-computed features if available
+    features_dict: dict[int, np.ndarray] = {}
+    if feature_dir is not None and feature_dir.is_dir():
+        scene_id = geometry_path.stem.replace("_geometry", "")
+        feat_path = feature_dir / f"{scene_id}_features.npz"
+        if feat_path.is_file():
+            try:
+                feat_data = np.load(feat_path, allow_pickle=True)
+                feat_ids = feat_data["object_ids"]
+                feat_vectors = feat_data["features"]
+                for idx, oid in enumerate(feat_ids):
+                    features_dict[int(oid)] = feat_vectors[idx]
+                log.debug(f"Loaded {len(features_dict)} object features for {scene_id}")
+            except Exception as e:
+                log.warning(f"Failed to load features for {scene_id}: {e}")
+
+    out: list[SceneObject] = []
+    for i, oid in enumerate(object_ids):
+        oid_int = int(oid)
+        oid_str = str(oid_int)
+
+        # Use aggregation label if available, otherwise geometry label
+        label = agg_labels.get(oid_int, str(labels[i]) if i < len(labels) else f"object_{oid_int}")
+
+        center = tuple(float(x) for x in centers[i])
+        size = tuple(float(x) for x in sizes[i])
+        bbox = tuple(float(x) for x in bboxes[i])
+
+        # Get pre-computed feature vector if available
+        feature_vector = None
+        feat_source: str = "pointcept_extracted"
+        if oid_int in features_dict:
+            feature_vector = features_dict[oid_int].tolist()
+            feat_source = "point_features_computed"
+
+        out.append(
+            SceneObject(
+                object_id=oid_str,
+                class_name=label,
+                center=center,
+                size=size,
+                bbox=bbox,
+                visibility_occlusion_proxy=None,
+                feature_vector=feature_vector,
+                geometry_quality="point_bbox",  # type: ignore[arg-type]
+                feature_source=feat_source,  # type: ignore[arg-type]
+            )
+        )
+
+    return out
+
+
+def load_scene_objects_with_geometry(
+    scans_dir: Path,
+    scene_id: str,
+    geometry_dir: Path | None = None,
+    feature_dir: Path | None = None,
+    prefer_geometry_file: bool = True,
+) -> list[SceneObject]:
+    """Load scene objects with preference for real geometry files.
+
+    Args:
+        scans_dir: Directory containing scene subdirectories with aggregation JSON
+        scene_id: Scene identifier (e.g., "scene0002_00")
+        geometry_dir: Directory containing pre-extracted geometry files
+        feature_dir: Directory containing pre-computed object features
+        prefer_geometry_file: If True, use geometry file if available (recommended)
+
+    Returns:
+        List of SceneObject with geometry from best available source
+    """
+    if prefer_geometry_file:
+        geom_path = resolve_geometry_path(scene_id, geometry_dir)
+        if geom_path is not None:
+            scene_dir = scans_dir / scene_id
+            agg_path = resolve_aggregation_path(scene_dir, scene_id)
+            try:
+                objects = scene_objects_from_geometry_file(geom_path, agg_path, feature_dir)
+                log.debug("Loaded real geometry for %s from %s", scene_id, geom_path)
+                return objects
+            except Exception as e:
+                log.warning("Failed to load geometry file %s: %s, falling back to aggregation", geom_path, e)
+
+    # Fallback to aggregation-based loading
+    return load_scene_objects_for_scene_id(scans_dir, scene_id)

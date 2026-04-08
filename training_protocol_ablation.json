@@ -1,0 +1,133 @@
+{
+  "experiments": {
+    "baseline_feature_integrated": {
+      "config": "official_baseline.yaml",
+      "encoder": "simple_point",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "weight_decay": 0.0001,
+      "scheduler": "CosineAnnealingLR",
+      "warmup": 0,
+      "epochs": 30,
+      "batch_size": 16,
+      "separate_encoder_lr": false,
+      "val_acc_at_1": 0.2273,
+      "test_acc_at_1": 0.0968,
+      "test_acc_at_5": 0.4000,
+      "best_epoch": "unknown",
+      "notes": "Feature-integrated baseline from earlier phase"
+    },
+    "optimizer_aligned": {
+      "config": "protocol_align_optimizer.yaml",
+      "encoder": "simple_point",
+      "optimizer": "AdamW",
+      "lr": 0.0005,
+      "weight_decay": 0.0,
+      "scheduler": "CosineAnnealingLR",
+      "warmup": 0,
+      "epochs": 30,
+      "batch_size": 16,
+      "separate_encoder_lr": true,
+      "encoder_lr_factor": 0.1,
+      "val_acc_at_1": 0.2468,
+      "test_acc_at_1": 0.0129,
+      "test_acc_at_5": 0.0645,
+      "best_epoch": 19,
+      "notes": "Higher LR and separate encoder LR improved val but not test"
+    },
+    "full_protocol_aligned": {
+      "config": "protocol_align_full.yaml",
+      "encoder": "simple_point",
+      "optimizer": "AdamW",
+      "lr": 0.0005,
+      "weight_decay": 0.0,
+      "scheduler": "MultiStepLR",
+      "warmup": 5,
+      "epochs": 37,
+      "batch_size": 16,
+      "gradient_accumulation": 2,
+      "effective_batch_size": 32,
+      "separate_encoder_lr": true,
+      "encoder_lr_factor": 0.1,
+      "early_stopping_patience": 10,
+      "val_acc_at_1": 0.2727,
+      "test_acc_at_1": 0.0387,
+      "test_acc_at_5": 0.3032,
+      "best_epoch": 27,
+      "notes": "Full protocol alignment improved val significantly but test still low"
+    },
+    "pointnetpp_encoder": {
+      "config": "pointnetpp_encoder.yaml",
+      "encoder": "pointnetpp",
+      "optimizer": "AdamW",
+      "lr": 0.0001,
+      "weight_decay": 0.0001,
+      "scheduler": "CosineAnnealingLR",
+      "warmup": 0,
+      "epochs": 15,
+      "batch_size": 8,
+      "separate_encoder_lr": false,
+      "val_acc_at_1": 0.2143,
+      "test_acc_at_1": 0.1097,
+      "test_acc_at_5": 0.6000,
+      "best_epoch": 15,
+      "notes": "PointNet++ gives best test performance despite lower val"
+    }
+  },
+  "protocol_changes_impact": {
+    "lr_increase_1e4_to_5e4": {
+      "val_acc_delta": "+1.95%",
+      "test_acc_delta": "-8.39%",
+      "verdict": "Helps val, hurts test - overfitting?"
+    },
+    "no_weight_decay": {
+      "val_acc_delta": "included above",
+      "test_acc_delta": "included above",
+      "verdict": "Unknown isolated effect"
+    },
+    "multistep_lr_scheduler": {
+      "val_acc_delta": "included in full",
+      "test_acc_delta": "included in full",
+      "verdict": "Unknown isolated effect"
+    },
+    "warmup_5_epochs": {
+      "val_acc_delta": "included in full",
+      "test_acc_delta": "included in full",
+      "verdict": "Unknown isolated effect"
+    },
+    "separate_encoder_lr": {
+      "val_acc_delta": "included above",
+      "test_acc_delta": "included above",
+      "verdict": "Unknown isolated effect"
+    },
+    "gradient_accumulation_batch_32": {
+      "val_acc_delta": "included in full",
+      "test_acc_delta": "included in full",
+      "verdict": "Unknown isolated effect"
+    },
+    "early_stopping": {
+      "val_acc_delta": "prevented overfitting",
+      "test_acc_delta": "prevented overfitting",
+      "verdict": "Beneficial"
+    },
+    "full_protocol_alignment": {
+      "val_acc_delta": "+4.54%",
+      "test_acc_delta": "-5.81%",
+      "verdict": "Improved val but hurt test - suggests overfitting to val"
+    }
+  },
+  "key_findings": {
+    "val_test_discrepancy": "Protocol changes improve validation accuracy but decrease test accuracy, suggesting overfitting to validation set",
+    "best_val_acc": "27.27% (full_protocol_aligned)",
+    "best_test_acc": "10.97% (pointnetpp_encoder)",
+    "encoder_comparison": "PointNet++ encoder gives better test performance than SimplePointEncoder despite lower validation accuracy",
+    "train_test_gap": "Significant train/test distribution mismatch exists in the data"
+  },
+  "conclusions": {
+    "protocol_alignment_helps_validation": true,
+    "protocol_alignment_helps_test": false,
+    "overfitting_issue": true,
+    "encoder_matters": "PointNet++ better for generalization",
+    "remaining_gap_cause": "Likely data distribution mismatch or missing features (multi-view)"
+  }
+}

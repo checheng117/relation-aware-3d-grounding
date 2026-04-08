@@ -1,0 +1,19 @@
+# Scene-disjoint split configuration for trustworthy evaluation.
+# Use this for all future experiments. Old split is deprecated.
+name: referit3d_scene_disjoint
+raw_root: data/raw/referit3d
+processed_dir: data/processed/scene_disjoint
+scans_subdir: scans
+annotations_subdir: annotations
+variant: nr3d_scene_disjoint
+split_method: scene_disjoint
+note: "Scene-disjoint splits - zero overlap between val and test. Use for trustworthy evaluation."
+nr3d_hf:
+  repo_id: chouss/nr3d
+  annotation_json: nr3d_annotations.json
+  auto_download_if_missing: true
+max_objects_per_scene: 64
+point_sample_size: 1024
+debug:
+  max_build_samples: null
+  max_build_scenes: null

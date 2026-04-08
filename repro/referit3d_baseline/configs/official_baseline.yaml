@@ -1,0 +1,53 @@
+# ReferIt3D Official Baseline Configuration
+
+# Dataset
+dataset:
+  manifest_dir: data/processed
+  train_manifest: train_manifest.jsonl
+  val_manifest: val_manifest.jsonl
+  test_manifest: test_manifest.jsonl
+  raw_root: data/raw/referit3d
+
+# Model
+model:
+  name: referit3dnet
+  point_input_dim: 256  # Geometry features: center(3) + size(3) + class_hash(250)
+  point_hidden_dim: 128
+  point_output_dim: 256
+  lang_output_dim: 256
+  fusion_dim: 512
+  dropout: 0.1
+
+# Training
+training:
+  epochs: 30
+  batch_size: 16
+  lr: 0.0001
+  weight_decay: 0.0001
+  grad_clip: 1.0
+  seed: 42
+
+# Evaluation
+evaluation:
+  batch_size: 32
+  compute_acc_at_5: true
+  compute_sub_metrics: false  # Requires easy/hard labels
+
+# Checkpointing
+checkpoint:
+  dir: outputs/repro/referit3d_baseline
+  save_best_only: true
+  monitor: val_acc
+
+# Logging
+logging:
+  log_dir: outputs/repro/referit3d_baseline/logs
+  log_every_n_steps: 50
+
+# Device
+device: cuda  # or cpu
+
+# Debug
+debug:
+  max_batches: null  # Set to small number for debugging
+  overfit_one_batch: false

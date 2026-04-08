@@ -1,0 +1,72 @@
+# Protocol Alignment - Scheduler Configuration
+# Changes: MultiStepLR with warmup (matching official ReferIt3D)
+
+# Dataset
+dataset:
+  manifest_dir: data/processed
+  train_manifest: train_manifest.jsonl
+  val_manifest: val_manifest.jsonl
+  test_manifest: test_manifest.jsonl
+  raw_root: data/raw/referit3d
+
+# Model
+model:
+  name: referit3dnet
+  encoder_type: simple_point
+  point_input_dim: 256
+  point_hidden_dim: 128
+  point_output_dim: 256
+  lang_output_dim: 256
+  fusion_dim: 512
+  dropout: 0.1
+
+# Training - PROTOCOL CHANGES
+training:
+  epochs: 100  # CHANGED: Extended for step scheduler
+  batch_size: 16
+  lr: 0.0005
+  weight_decay: 0.0
+  grad_clip: 1.0
+  seed: 42
+  # NEW: Warmup configuration
+  warmup_epochs: 5
+  warmup_multiplier: 1.0
+  # NEW: Scheduler configuration
+  scheduler_type: multistep  # CHANGED: From cosine to multistep
+  scheduler_milestones: [25, 40, 50, 60, 70, 80, 90]
+  scheduler_gamma: 0.65
+  # Early stopping
+  early_stopping_patience: 10
+  # Separate encoder LR
+  encoder_lr_factor: 0.1
+  use_separate_encoder_lr: true
+
+# Evaluation
+evaluation:
+  batch_size: 32
+  compute_acc_at_5: true
+  compute_sub_metrics: false
+
+# Checkpointing
+checkpoint:
+  dir: outputs/protocol_fidelity/scheduler_aligned
+  save_best_only: true
+  monitor: val_acc
+
+# Logging
+logging:
+  log_dir: outputs/protocol_fidelity/scheduler_aligned/logs
+  log_every_n_steps: 50
+
+# Device
+device: cuda
+
+# Protocol experiment metadata
+protocol_experiment:
+  phase: training_protocol_fidelity
+  experiment_group: scheduler
+  changes:
+    - scheduler: CosineAnnealingLR -> MultiStepLR
+    - warmup: None -> 5 epochs
+    - epochs: 30 -> 100
+    - early_stopping: None -> 10 epoch patience

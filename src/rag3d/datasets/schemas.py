@@ -25,8 +25,8 @@ class FailureTag(str, Enum):
     WEAK_FEATURE_SOURCE = "weak_feature_source"
 
 
-GeometryQuality = Literal["obb_aabb", "fallback_centroid", "unknown"]
-FeatureSource = Literal["synthetic_collate", "aggregated_file", "user_provided", "unknown"]
+GeometryQuality = Literal["obb_aabb", "point_bbox", "fallback_centroid", "unknown"]
+FeatureSource = Literal["synthetic_collate", "aggregated_file", "user_provided", "pointcept_extracted", "point_features_computed", "unknown"]
 
 
 class SceneObject(BaseModel):
@@ -55,6 +55,11 @@ class ParsedUtterance(BaseModel):
     paraphrase_set: list[str] = Field(default_factory=list)
     parse_source: str = "unknown"
     parse_warnings: list[str] = Field(default_factory=list)
+    # Phase 3 additions for parser quality and fallback tracking
+    parse_status: str = "unknown"  # valid/partial/invalid/missing/fallback_used
+    fallback_triggered: bool = False
+    fallback_reason: str | None = None
+    vlm_metadata: dict[str, Any] | None = Field(default_factory=dict)
 
 
 class ModelPrediction(BaseModel):
