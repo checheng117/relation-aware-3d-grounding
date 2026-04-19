@@ -7,7 +7,9 @@
 
 The first-round diagnostics provide direct support for the coverage-failure hypothesis: sparse nearest-neighbor anchor selection leaves a substantial fraction of anchor evidence uncovered, and this gap is especially severe for multi-anchor expressions, where all-anchor coverage at k=5 is only **13.98%**. This motivates dense candidate-anchor coverage, but does not yet prove that dense reranking improves final grounding accuracy.
 
-This second pass connects the coverage gap to errors: among baseline-wrong, anchor-evaluable samples, sparse top-5 misses every annotated anchor in **110** cases and misses at least one annotated anchor in **157** cases. Dense all-pair reachability recovers these anchors at the candidate-set level whenever geometry is available.
+The updated diagnostics strengthen P2 beyond aggregate coverage statistics. Among baseline-wrong, anchor-evaluable samples, **33.95%** miss all annotated anchors under sparse top-5 selection and **48.46%** miss at least one annotated anchor. Dense all-pair candidate coverage recovers these sparse-miss cases at the candidate-set level, indicating that coverage failure is not merely descriptive but directly coupled with a substantial portion of baseline errors.
+
+These results do not yet establish that a learned dense relation scorer improves final grounding accuracy, nor do they prove calibration necessity. They show that dense coverage creates recoverable conditions; whether these conditions translate into robust gains still depends on relation scoring and calibration.
 
 ## Diagnostic Definition
 

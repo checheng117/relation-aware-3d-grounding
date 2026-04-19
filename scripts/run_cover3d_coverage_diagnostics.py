@@ -597,11 +597,13 @@ def write_report(
         "",
         f"The first-round diagnostics provide direct support for the coverage-failure hypothesis: sparse nearest-neighbor anchor selection leaves a substantial fraction of anchor evidence uncovered, and this gap is especially severe for multi-anchor expressions, where all-anchor coverage at k={recovery_k} is only **{format_pct(multi_summary[f'all_coverage@{recovery_k}'])}**. This motivates dense candidate-anchor coverage, but does not yet prove that dense reranking improves final grounding accuracy.",
         "",
-        "This second pass connects the coverage gap to errors: among baseline-wrong, anchor-evaluable samples, sparse top-{k} misses every annotated anchor in **{any_missed}** cases and misses at least one annotated anchor in **{all_incomplete}** cases. Dense all-pair reachability recovers these anchors at the candidate-set level whenever geometry is available.".format(
+        "The updated diagnostics strengthen P2 beyond aggregate coverage statistics. Among baseline-wrong, anchor-evaluable samples, **{any_missed_pct}** miss all annotated anchors under sparse top-{k} selection and **{all_incomplete_pct}** miss at least one annotated anchor. Dense all-pair candidate coverage recovers these sparse-miss cases at the candidate-set level, indicating that coverage failure is not merely descriptive but directly coupled with a substantial portion of baseline errors.".format(
             k=recovery_k,
-            any_missed=recovery_summary["sparse_any_missed_count"],
-            all_incomplete=recovery_summary["sparse_all_incomplete_count"],
+            any_missed_pct=format_pct(recovery_summary["sparse_any_missed_pct_of_evaluable"]),
+            all_incomplete_pct=format_pct(recovery_summary["sparse_all_incomplete_pct_of_evaluable"]),
         ),
+        "",
+        "These results do not yet establish that a learned dense relation scorer improves final grounding accuracy, nor do they prove calibration necessity. They show that dense coverage creates recoverable conditions; whether these conditions translate into robust gains still depends on relation scoring and calibration.",
         "",
         "## Diagnostic Definition",
         "",

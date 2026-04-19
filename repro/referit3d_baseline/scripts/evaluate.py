@@ -74,6 +74,34 @@ def sample_points(points: np.ndarray, num_points: int = 1024) -> np.ndarray:
         return points[indices]
 
 
+# No caching - load fresh each time to avoid memory issues
+def load_scene_geometry(scene_id: str, geometry_dir: Path = GEOMETRY_DIR) -> Optional[dict]:
+    """Load center/size geometry from file for a scene (no cache).
+
+    Returns dict mapping object_id -> {center, size}, or None if not available.
+    """
+    geom_path = geometry_dir / f"{scene_id}_geometry.npz"
+    if not geom_path.exists():
+        return None
+
+    try:
+        data = np.load(geom_path, allow_pickle=True)
+        object_ids = data["object_ids"]
+        centers = data["centers"]
+        sizes = data["sizes"]
+
+        result = {}
+        for i, oid in enumerate(object_ids):
+            result[int(oid)] = {
+                "center": centers[i].tolist(),  # Convert to list for stability
+                "size": sizes[i].tolist(),
+            }
+        data.close()  # Explicitly close
+        return result
+    except Exception as e:
+        return None
+
+
 class IndexedDataset(torch.utils.data.Dataset):
     """Wrapper dataset that returns (index, sample) tuples for proper BERT alignment."""
 
@@ -88,12 +116,39 @@ class IndexedDataset(torch.utils.data.Dataset):
         return (idx, sample)
 
 
+def build_class_vocabulary(manifest_paths: List[Path]) -> tuple:
+    """Build class vocabulary from manifest files.
+
+    Returns:
+        class_to_idx: Dict mapping class name to index
+        idx_to_class: List mapping index to class name
+    """
+    class_names = set()
+    for manifest_path in manifest_paths:
+        if not manifest_path.exists():
+            continue
+        with open(manifest_path) as f:
+            for line in f:
+                sample = json.loads(line)
+                for obj in sample.get("objects", []):
+                    class_names.add(obj["class_name"])
+
+    sorted_classes = sorted(list(class_names))
+    class_to_idx = {name: idx for idx, name in enumerate(sorted_classes)}
+    return class_to_idx, sorted_classes
+
+
 def collate_fn(
     batch: List[tuple],
     feat_dim: int = 256,
     text_features: Optional[np.ndarray] = None,
+    class_to_idx: Optional[Dict[str, int]] = None,
 ) -> Dict[str, Any]:
-    """Collate samples into batch tensors with BERT features and geometry features."""
+    """Collate samples into batch tensors with BERT features and geometry features.
+
+    NOTE: Real geometry integration attempted but caused memory issues.
+    Current: uses manifest center/size (which are fallback values).
+    """
     B = len(batch)
     max_n = max(len(s.objects) for idx, s in batch)
 
@@ -105,6 +160,11 @@ def collate_fn(
     target_ids = []
     sample_indices = []
 
+    # For learned class embedding
+    class_indices = None
+    if class_to_idx is not None:
+        class_indices = torch.zeros(B, max_n, dtype=torch.long)
+
     for i, (idx, sample) in enumerate(batch):
         texts.append(sample.utterance)
         scene_ids.append(sample.scene_id)
@@ -114,15 +174,19 @@ def collate_fn(
         for j, obj in enumerate(sample.objects):
             # Use geometry features: center + size + class hash
             if obj.center:
-                object_features[i, j, 0:3] = torch.tensor(obj.center) / 5.0
+                object_features[i, j, 0:3] = torch.tensor(obj.center).float() / 5.0
             if obj.size:
-                object_features[i, j, 3:6] = torch.tensor(obj.size) / 2.0
+                object_features[i, j, 3:6] = torch.tensor(obj.size).float() / 2.0
             # Use deterministic hash for class name features
             import hashlib
             class_hash = int(hashlib.md5(obj.class_name.encode()).hexdigest()[:8], 16)
             feat_hash = class_hash % (feat_dim - 6)
             object_features[i, j, 6 + feat_hash] = 1.0
             object_mask[i, j] = True
+
+            # Learned class embedding index
+            if class_to_idx is not None:
+                class_indices[i, j] = class_to_idx.get(obj.class_name, 0)
 
         target_index[i] = sample.target_index
 
@@ -135,6 +199,10 @@ def collate_fn(
         "scene_ids": scene_ids,
         "target_ids": target_ids,
     }
+
+    # Add class indices for learned embedding
+    if class_indices is not None:
+        result["class_indices"] = class_indices
 
     # Add real BERT features
     if text_features is not None:
@@ -222,6 +290,10 @@ def build_model_from_checkpoint(checkpoint_path: Path, device: torch.device) -> 
         dropout=model_config.get("dropout", 0.1),
         encoder_type=model_config.get("encoder_type", "simple_point"),
         pointnetpp_num_points=model_config.get("pointnetpp_num_points", 1024),
+        # Learned class embedding parameters
+        use_learned_class_embedding=model_config.get("use_learned_class_embedding", False),
+        num_object_classes=model_config.get("num_classes", 516),
+        class_embed_dim=model_config.get("class_embed_dim", 64),
     )
 
     if "model_state_dict" in checkpoint:
@@ -242,6 +314,7 @@ def evaluate(
     device: torch.device,
     use_bert: bool = True,
     encoder_type: str = "simple_point",
+    export_logits: bool = False,
 ) -> Dict[str, Any]:
     """Evaluate model and return detailed metrics."""
     model.eval()
@@ -270,10 +343,16 @@ def evaluate(
             batch_size = points_input.shape[0]
             text_features = torch.randn(batch_size, 768, device=device)
 
+        # Get class indices for learned embedding
+        class_indices = None
+        if "class_indices" in batch:
+            class_indices = batch["class_indices"].to(device)
+
         outputs = model(
             points=points_input,
             object_mask=object_mask,
             text_features=text_features,
+            class_indices=class_indices,
         )
         logits = outputs["logits"]
 
@@ -297,7 +376,7 @@ def evaluate(
             topk_indices = masked_logits.topk(k).indices.tolist()
             is_correct_at_5 = target in topk_indices
 
-            all_predictions.append({
+            prediction = {
                 "scene_id": sample.scene_id,
                 "utterance": sample.utterance,
                 "target_id": sample.target_object_id,
@@ -306,7 +385,29 @@ def evaluate(
                 "pred_top5": topk_indices,
                 "correct_at_1": is_correct_at_1,
                 "correct_at_5": is_correct_at_5,
-            })
+            }
+
+            if export_logits:
+                valid_logits = masked_logits[:num_valid].detach().cpu()
+                sorted_values, sorted_indices = valid_logits.sort(descending=True)
+                top1_logit = float(sorted_values[0].item()) if num_valid >= 1 else None
+                top2_logit = float(sorted_values[1].item()) if num_valid >= 2 else None
+                base_margin = (
+                    float((sorted_values[0] - sorted_values[1]).item())
+                    if num_valid >= 2 else None
+                )
+                target_matches = (sorted_indices == target).nonzero(as_tuple=False)
+                target_rank = int(target_matches[0].item() + 1) if len(target_matches) else None
+                prediction.update({
+                    "base_logits": [float(x) for x in valid_logits.tolist()],
+                    "base_margin": base_margin,
+                    "base_top1_logit": top1_logit,
+                    "base_top2_logit": top2_logit,
+                    "target_logit": float(valid_logits[target].item()) if target < num_valid else None,
+                    "target_rank": target_rank,
+                })
+
+            all_predictions.append(prediction)
 
             if is_correct_at_1:
                 correct_at_1 += 1
@@ -331,6 +432,11 @@ def main():
     parser.add_argument("--bert-dir", type=Path, default=None)
     parser.add_argument("--device", type=str, default="cuda")
     parser.add_argument("--output-dir", type=Path, default=None)
+    parser.add_argument(
+        "--export-logits",
+        action="store_true",
+        help="Include per-object logits and base margin diagnostics in predictions JSON.",
+    )
     args = parser.parse_args()
 
     setup_logging()
@@ -393,6 +499,27 @@ def main():
         use_bert = False
 
     # Select collate based on encoder type
+    # Check if model uses learned class embedding
+    use_learned_class_embedding = False
+    # Reload checkpoint to check config (not returned from build_model_from_checkpoint)
+    checkpoint_reload = torch.load(args.checkpoint, map_location=device)
+    if "config" in checkpoint_reload:
+        model_config_check = checkpoint_reload["config"].get("model", {})
+        use_learned_class_embedding = model_config_check.get("use_learned_class_embedding", False)
+
+    class_to_idx = None
+    if use_learned_class_embedding:
+        log.info("Building class vocabulary for learned class embedding...")
+        # Build vocab from all splits for full coverage (516 classes)
+        manifest_dir_path = manifest_dir
+        manifest_paths = [
+            manifest_dir_path / "train_manifest.jsonl",
+            manifest_dir_path / "val_manifest.jsonl",
+            manifest_dir_path / "test_manifest.jsonl",
+        ]
+        class_to_idx, _ = build_class_vocabulary(manifest_paths)
+        log.info(f"Class vocabulary size: {len(class_to_idx)}")
+
     if encoder_type == "pointnetpp":
         log.info("Using PointNet++ collate with raw points")
         loader = DataLoader(
@@ -408,13 +535,20 @@ def main():
             dataset,
             batch_size=32,
             shuffle=False,
-            collate_fn=lambda b: collate_fn(b, 256, text_features),
+            collate_fn=lambda b: collate_fn(b, 256, text_features, class_to_idx),
             num_workers=0,
         )
 
     # Evaluate
     log.info("Evaluating...")
-    results = evaluate(model, loader, device, use_bert=use_bert, encoder_type=encoder_type)
+    results = evaluate(
+        model,
+        loader,
+        device,
+        use_bert=use_bert,
+        encoder_type=encoder_type,
+        export_logits=args.export_logits,
+    )
 
     log.info(f"Results:")
     log.info(f"  Acc@1: {results['acc_at_1']:.4f} ({results['acc_at_1']*100:.2f}%)")
