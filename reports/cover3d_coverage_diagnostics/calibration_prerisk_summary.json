@@ -1,0 +1,74 @@
+{
+  "k": 5,
+  "strict_limitations": [
+    "Trusted baseline predictions do not contain logits or probabilities, so true base margin is unavailable.",
+    "No trained dense relation scores are used here; dense evidence means candidate-anchor reachability.",
+    "Parser confidence is not available for the trusted full-test baseline predictions; old parser-ablation outputs cover only a small separate subset and are not used for the main claim."
+  ],
+  "proxy_definitions": {
+    "potential_benefit_any": "baseline-wrong samples where sparse top-k misses every anchor but dense all-pair can include an anchor",
+    "potential_benefit_all": "baseline-wrong samples where sparse top-k misses at least one anchor but dense all-pair can include all anchors",
+    "potential_harm_any": "baseline-correct samples where sparse top-k misses every anchor but dense all-pair adds relation evidence that could perturb a correct base prediction",
+    "potential_harm_all": "baseline-correct samples where sparse top-k misses at least one anchor but dense all-pair adds relation evidence"
+  },
+  "evaluable_anchor_count": 417,
+  "potential_benefit_any_count": 110,
+  "potential_benefit_any_pct": 26.38,
+  "potential_benefit_all_count": 157,
+  "potential_benefit_all_pct": 37.65,
+  "potential_harm_any_count": 24,
+  "potential_harm_any_pct": 5.76,
+  "potential_harm_all_count": 34,
+  "potential_harm_all_pct": 8.15,
+  "benefit_any_to_harm_any_ratio": 4.58,
+  "benefit_all_to_harm_all_ratio": 4.62,
+  "benefit_any_subset_distribution": {
+    "same_class_clutter": 70,
+    "same_class_high_clutter": 36,
+    "multi_anchor": 22,
+    "single_anchor": 88,
+    "relative_position": 27,
+    "directional": 36,
+    "between": 6,
+    "relational": 74,
+    "dense_scene": 16,
+    "annotation_exact": 26,
+    "annotation_fallback": 84
+  },
+  "harm_any_subset_distribution": {
+    "same_class_clutter": 2,
+    "same_class_high_clutter": 0,
+    "multi_anchor": 1,
+    "single_anchor": 23,
+    "relative_position": 10,
+    "directional": 9,
+    "between": 0,
+    "relational": 20,
+    "dense_scene": 1,
+    "annotation_exact": 7,
+    "annotation_fallback": 17
+  },
+  "anchor_bin_summary": {
+    "single_anchor": {
+      "count": 324,
+      "baseline_acc_at_1": 23.15,
+      "any_coverage@5": 65.74,
+      "all_coverage@5": 65.74,
+      "mean_min_anchor_rank": 6.0
+    },
+    "multi_anchor": {
+      "count": 93,
+      "baseline_acc_at_1": 19.35,
+      "any_coverage@5": 75.27,
+      "all_coverage@5": 13.98,
+      "mean_min_anchor_rank": 3.34
+    },
+    "three_plus_anchors": {
+      "count": 15,
+      "baseline_acc_at_1": 0.0,
+      "any_coverage@5": 53.33,
+      "all_coverage@5": 6.67,
+      "mean_min_anchor_rank": 4.27
+    }
+  }
+}

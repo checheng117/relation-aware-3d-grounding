@@ -310,6 +310,213 @@ def make_casebook(samples: list[dict[str, Any]], k: int, limit: int) -> list[dic
     return rows
 
 
+def subset_distribution(samples: list[dict[str, Any]]) -> dict[str, int]:
+    keys = [
+        "same_class_clutter",
+        "same_class_high_clutter",
+        "multi_anchor",
+        "single_anchor",
+        "relative_position",
+        "directional",
+        "between",
+        "relational",
+        "dense_scene",
+        "annotation_exact",
+        "annotation_fallback",
+    ]
+    counts = {key: 0 for key in keys}
+    for sample in samples:
+        for key in keys:
+            if key == "annotation_exact":
+                counts[key] += int(sample["annotation_match"] == "exact_utterance")
+            elif key == "annotation_fallback":
+                counts[key] += int(sample["annotation_match"] == "target_fallback")
+            else:
+                counts[key] += int(sample["subsets"].get(key, False))
+    return counts
+
+
+def summarize_recovered_vs_unrecovered(samples: list[dict[str, Any]], k: int) -> dict[str, Any]:
+    baseline_wrong_anchor = [
+        s for s in samples
+        if not s["correct_at_1"] and s["anchor_count"] > 0
+    ]
+    evaluable = [
+        s for s in baseline_wrong_anchor
+        if s["geometry_valid"] and s["anchor_geometry_count"] > 0
+    ]
+    sparse_any_missed = [
+        s for s in evaluable
+        if not s["any_anchor_covered_at"][str(k)]
+    ]
+    sparse_all_incomplete = [
+        s for s in evaluable
+        if not s["all_anchors_covered_at"][str(k)]
+    ]
+    dense_recovered_any = [s for s in sparse_any_missed if s["dense_any_reachable"]]
+    dense_recovered_all = [s for s in sparse_all_incomplete if s["dense_all_reachable"]]
+    non_evaluable = [
+        s for s in baseline_wrong_anchor
+        if not (s["geometry_valid"] and s["anchor_geometry_count"] > 0)
+    ]
+
+    def rank_stats(rows: list[dict[str, Any]]) -> dict[str, Any]:
+        ranks = [s["min_anchor_rank"] for s in rows if s["min_anchor_rank"] is not None]
+        if not ranks:
+            return {"mean_min_anchor_rank": None, "median_min_anchor_rank": None}
+        return {
+            "mean_min_anchor_rank": round(sum(ranks) / len(ranks), 2),
+            "median_min_anchor_rank": sorted(ranks)[len(ranks) // 2],
+        }
+
+    return {
+        "k": k,
+        "definition": {
+            "sparse_any_missed": "baseline-wrong, anchor-evaluable samples where sparse top-k contains no annotated anchor",
+            "sparse_all_incomplete": "baseline-wrong, anchor-evaluable samples where sparse top-k does not contain every annotated anchor",
+            "dense_recovered": "annotated anchors are reachable by dense all-pair candidate-anchor scoring",
+        },
+        "baseline_wrong_anchor_count": len(baseline_wrong_anchor),
+        "baseline_wrong_anchor_evaluable_count": len(evaluable),
+        "baseline_wrong_anchor_non_evaluable_count": len(non_evaluable),
+        "sparse_any_missed_count": len(sparse_any_missed),
+        "sparse_any_missed_pct_of_evaluable": pct(len(sparse_any_missed), len(evaluable)),
+        "dense_recovered_any_count": len(dense_recovered_any),
+        "dense_recovered_any_pct": pct(len(dense_recovered_any), len(sparse_any_missed)),
+        "sparse_all_incomplete_count": len(sparse_all_incomplete),
+        "sparse_all_incomplete_pct_of_evaluable": pct(len(sparse_all_incomplete), len(evaluable)),
+        "dense_recovered_all_count": len(dense_recovered_all),
+        "dense_recovered_all_pct": pct(len(dense_recovered_all), len(sparse_all_incomplete)),
+        "sparse_any_missed_subset_distribution": subset_distribution(sparse_any_missed),
+        "sparse_all_incomplete_subset_distribution": subset_distribution(sparse_all_incomplete),
+        "sparse_any_missed_rank_stats": rank_stats(sparse_any_missed),
+        "sparse_all_incomplete_rank_stats": rank_stats(sparse_all_incomplete),
+    }
+
+
+def make_dense_recovery_casebook(samples: list[dict[str, Any]], k: int, limit: int) -> list[dict[str, Any]]:
+    candidates = [
+        s for s in samples
+        if not s["correct_at_1"]
+        and s["anchor_count"] > 0
+        and s["geometry_valid"]
+        and s["anchor_geometry_count"] > 0
+        and not s["any_anchor_covered_at"][str(k)]
+        and s["dense_any_reachable"]
+    ]
+    candidates.sort(
+        key=lambda s: (
+            s["annotation_match"] != "exact_utterance",
+            not s["is_multi_anchor"],
+            -(s["same_class_count"]),
+            s["min_anchor_rank"] if s["min_anchor_rank"] is not None else 9999,
+        )
+    )
+    rows = []
+    for s in candidates[:limit]:
+        sparse_topk = set(s["nearest_sparse_candidates"][:k])
+        missed_ids = [anchor_id for anchor_id in s["anchor_ids"] if anchor_id not in sparse_topk]
+        rows.append({
+            "scene_id": s["scene_id"],
+            "utterance": s["utterance"],
+            "target_id": s["target_id"],
+            "target_class": s["target_class"],
+            "pred_top1": s["pred_top1"],
+            "pred_top5": s["pred_top5"],
+            "same_class_count": s["same_class_count"],
+            "relation_type": s["relation_type"],
+            "annotation_match": s["annotation_match"],
+            "anchor_ids": s["anchor_ids"],
+            "anchor_classes": s["anchor_classes"],
+            "missed_anchor_ids_at_k": missed_ids,
+            "anchor_ranks": s["anchor_ranks"],
+            "min_anchor_rank": s["min_anchor_rank"],
+            "dense_any_reachable": s["dense_any_reachable"],
+            "dense_all_reachable": s["dense_all_reachable"],
+            "subset_tags": [name for name, value in s["subsets"].items() if value and name != "all"],
+        })
+    return rows
+
+
+def summarize_calibration_prerisk(samples: list[dict[str, Any]], k: int) -> dict[str, Any]:
+    evaluable = [
+        s for s in samples
+        if s["anchor_count"] > 0 and s["geometry_valid"] and s["anchor_geometry_count"] > 0
+    ]
+    benefit_any = [
+        s for s in evaluable
+        if not s["correct_at_1"]
+        and not s["any_anchor_covered_at"][str(k)]
+        and s["dense_any_reachable"]
+    ]
+    benefit_all = [
+        s for s in evaluable
+        if not s["correct_at_1"]
+        and not s["all_anchors_covered_at"][str(k)]
+        and s["dense_all_reachable"]
+    ]
+    harm_any = [
+        s for s in evaluable
+        if s["correct_at_1"]
+        and not s["any_anchor_covered_at"][str(k)]
+        and s["dense_any_reachable"]
+    ]
+    harm_all = [
+        s for s in evaluable
+        if s["correct_at_1"]
+        and not s["all_anchors_covered_at"][str(k)]
+        and s["dense_all_reachable"]
+    ]
+
+    anchor_bins = {
+        "single_anchor": lambda s: s["anchor_count"] == 1,
+        "multi_anchor": lambda s: s["anchor_count"] >= 2,
+        "three_plus_anchors": lambda s: s["anchor_count"] >= 3,
+    }
+    anchor_bin_summary = {}
+    for name, predicate in anchor_bins.items():
+        rows = [s for s in evaluable if predicate(s)]
+        anchor_bin_summary[name] = {
+            "count": len(rows),
+            "baseline_acc_at_1": pct(sum(s["correct_at_1"] for s in rows), len(rows)),
+            f"any_coverage@{k}": pct(sum(s["any_anchor_covered_at"][str(k)] for s in rows), len(rows)),
+            f"all_coverage@{k}": pct(sum(s["all_anchors_covered_at"][str(k)] for s in rows), len(rows)),
+            "mean_min_anchor_rank": (
+                round(sum(s["min_anchor_rank"] for s in rows if s["min_anchor_rank"] is not None) / len(rows), 2)
+                if rows else None
+            ),
+        }
+
+    return {
+        "k": k,
+        "strict_limitations": [
+            "Trusted baseline predictions do not contain logits or probabilities, so true base margin is unavailable.",
+            "No trained dense relation scores are used here; dense evidence means candidate-anchor reachability.",
+            "Parser confidence is not available for the trusted full-test baseline predictions; old parser-ablation outputs cover only a small separate subset and are not used for the main claim.",
+        ],
+        "proxy_definitions": {
+            "potential_benefit_any": "baseline-wrong samples where sparse top-k misses every anchor but dense all-pair can include an anchor",
+            "potential_benefit_all": "baseline-wrong samples where sparse top-k misses at least one anchor but dense all-pair can include all anchors",
+            "potential_harm_any": "baseline-correct samples where sparse top-k misses every anchor but dense all-pair adds relation evidence that could perturb a correct base prediction",
+            "potential_harm_all": "baseline-correct samples where sparse top-k misses at least one anchor but dense all-pair adds relation evidence",
+        },
+        "evaluable_anchor_count": len(evaluable),
+        "potential_benefit_any_count": len(benefit_any),
+        "potential_benefit_any_pct": pct(len(benefit_any), len(evaluable)),
+        "potential_benefit_all_count": len(benefit_all),
+        "potential_benefit_all_pct": pct(len(benefit_all), len(evaluable)),
+        "potential_harm_any_count": len(harm_any),
+        "potential_harm_any_pct": pct(len(harm_any), len(evaluable)),
+        "potential_harm_all_count": len(harm_all),
+        "potential_harm_all_pct": pct(len(harm_all), len(evaluable)),
+        "benefit_any_to_harm_any_ratio": round(len(benefit_any) / len(harm_any), 2) if harm_any else None,
+        "benefit_all_to_harm_all_ratio": round(len(benefit_all) / len(harm_all), 2) if harm_all else None,
+        "benefit_any_subset_distribution": subset_distribution(benefit_any),
+        "harm_any_subset_distribution": subset_distribution(harm_any),
+        "anchor_bin_summary": anchor_bin_summary,
+    }
+
+
 def write_csv(path: Path, rows: list[dict[str, Any]]) -> None:
     if not rows:
         path.write_text("")
@@ -374,13 +581,27 @@ def write_report(
     summary: dict[str, Any],
     subset_summary: dict[str, dict[str, Any]],
     casebook: list[dict[str, Any]],
+    recovery_summary: dict[str, Any],
+    calibration_prerisk: dict[str, Any],
 ) -> None:
     all_summary = subset_summary["all"]
+    multi_summary = subset_summary["multi_anchor"]
+    recovery_k = recovery_summary["k"]
     lines = [
         "# COVER-3D Coverage Diagnostics Report",
         "",
         "**Date**: 2026-04-19",
         "**Training**: none. This report uses frozen ReferIt3DNet baseline predictions.",
+        "",
+        "## Executive Summary",
+        "",
+        f"The first-round diagnostics provide direct support for the coverage-failure hypothesis: sparse nearest-neighbor anchor selection leaves a substantial fraction of anchor evidence uncovered, and this gap is especially severe for multi-anchor expressions, where all-anchor coverage at k={recovery_k} is only **{format_pct(multi_summary[f'all_coverage@{recovery_k}'])}**. This motivates dense candidate-anchor coverage, but does not yet prove that dense reranking improves final grounding accuracy.",
+        "",
+        "This second pass connects the coverage gap to errors: among baseline-wrong, anchor-evaluable samples, sparse top-{k} misses every annotated anchor in **{any_missed}** cases and misses at least one annotated anchor in **{all_incomplete}** cases. Dense all-pair reachability recovers these anchors at the candidate-set level whenever geometry is available.".format(
+            k=recovery_k,
+            any_missed=recovery_summary["sparse_any_missed_count"],
+            all_incomplete=recovery_summary["sparse_all_incomplete_count"],
+        ),
         "",
         "## Diagnostic Definition",
         "",
@@ -471,6 +692,57 @@ def write_report(
     lines.extend([
         "- These numbers are evidence about sparse geometric reachability, not method gains. They should decide whether the next step deserves calibrated reranker training.",
         "",
+        "## Dense vs Sparse Recovery",
+        "",
+        f"Recovery is measured on baseline-wrong samples with anchor annotations, using sparse top-{recovery_summary['k']} nearest-neighbor anchor selection as the sparse proxy.",
+        "",
+        "| Pool | Count | Percent | Dense Candidate Recovery |",
+        "| --- | ---: | ---: | ---: |",
+        f"| Baseline-wrong anchor samples | {recovery_summary['baseline_wrong_anchor_count']} | 100.00% | n/a |",
+        f"| Geometry-evaluable baseline-wrong anchor samples | {recovery_summary['baseline_wrong_anchor_evaluable_count']} | {format_pct(pct(recovery_summary['baseline_wrong_anchor_evaluable_count'], recovery_summary['baseline_wrong_anchor_count']))} | n/a |",
+        f"| Sparse misses every anchor | {recovery_summary['sparse_any_missed_count']} | {format_pct(recovery_summary['sparse_any_missed_pct_of_evaluable'])} | {format_pct(recovery_summary['dense_recovered_any_pct'])} |",
+        f"| Sparse misses at least one anchor | {recovery_summary['sparse_all_incomplete_count']} | {format_pct(recovery_summary['sparse_all_incomplete_pct_of_evaluable'])} | {format_pct(recovery_summary['dense_recovered_all_pct'])} |",
+        "",
+        "Subset concentration for baseline-wrong samples where sparse top-k misses every anchor:",
+        "",
+        "| Subset | Count |",
+        "| --- | ---: |",
+    ])
+    for key, value in recovery_summary["sparse_any_missed_subset_distribution"].items():
+        if value:
+            lines.append(f"| {key} | {value} |")
+    lines.extend([
+        "",
+        "The key distinction is candidate-set recovery, not final reranking accuracy. Dense all-pair scoring can include the missed anchors; a trained scorer still has to assign them useful evidence.",
+        "",
+        "## Calibration Pre-Risk Analysis",
+        "",
+        "This section is intentionally conservative. The trusted baseline predictions do not include logits or probabilities, so true base margin is unavailable. The analysis uses observable proxies only.",
+        "",
+        "| Proxy Pool | Count | Percent of Anchor-Evaluable Samples |",
+        "| --- | ---: | ---: |",
+        f"| Potential benefit, any-anchor criterion | {calibration_prerisk['potential_benefit_any_count']} | {format_pct(calibration_prerisk['potential_benefit_any_pct'])} |",
+        f"| Potential benefit, all-anchor criterion | {calibration_prerisk['potential_benefit_all_count']} | {format_pct(calibration_prerisk['potential_benefit_all_pct'])} |",
+        f"| Potential harm, any-anchor criterion | {calibration_prerisk['potential_harm_any_count']} | {format_pct(calibration_prerisk['potential_harm_any_pct'])} |",
+        f"| Potential harm, all-anchor criterion | {calibration_prerisk['potential_harm_all_count']} | {format_pct(calibration_prerisk['potential_harm_all_pct'])} |",
+        "",
+        f"Benefit/harm ratio under the stricter all-anchor criterion: **{calibration_prerisk['benefit_all_to_harm_all_ratio']}**.",
+        "",
+        "Anchor-count proxy for uncertainty:",
+        "",
+        "| Anchor Bin | Count | Baseline Acc@1 | Any@5 | All@5 | Mean Min Rank |",
+        "| --- | ---: | ---: | ---: | ---: | ---: |",
+    ])
+    for key, row in calibration_prerisk["anchor_bin_summary"].items():
+        lines.append(
+            f"| {key} | {row['count']} | {format_pct(row['baseline_acc_at_1'])} | "
+            f"{format_pct(row[f'any_coverage@{recovery_k}'])} | "
+            f"{format_pct(row[f'all_coverage@{recovery_k}'])} | {row['mean_min_anchor_rank']} |"
+        )
+    lines.extend([
+        "",
+        "Interpretation for gate design: dense evidence has a real benefit pool, but there is also a non-trivial harm pool where the base prediction is already correct and additional relation evidence could perturb it. This supports calibration as a necessary next test, not as a completed claim.",
+        "",
         "## Missed-Anchor Casebook Preview",
         "",
     ])
@@ -492,6 +764,9 @@ def write_report(
         "## Artifacts",
         "",
         "- `coverage_summary.json`: aggregate and subset metrics.",
+        "- `dense_sparse_recovery_summary.json`: sparse-miss recovery statistics.",
+        "- `dense_recovery_casebook_top5.json` / `.csv`: baseline-wrong sparse-miss cases recovered by dense candidate reachability.",
+        "- `calibration_prerisk_summary.json`: pre-gate risk proxies.",
         "- `subset_coverage_curves.csv`: coverage@k curves by subset.",
         "- `anchor_rank_histogram.csv`: anchor distance-rank histogram.",
         "- `per_sample_coverage.jsonl`: per-sample diagnostic records.",
@@ -623,6 +898,9 @@ def run_coverage_diagnostics(
         for name, predicate in subset_predicates.items()
     }
     casebook = make_casebook(per_sample, casebook_k, casebook_limit)
+    recovery_summary = summarize_recovered_vs_unrecovered(per_sample, casebook_k)
+    dense_recovery_casebook = make_dense_recovery_casebook(per_sample, casebook_k, casebook_limit)
+    calibration_prerisk = summarize_calibration_prerisk(per_sample, casebook_k)
 
     output_dir.mkdir(parents=True, exist_ok=True)
     summary = {
@@ -652,9 +930,23 @@ def run_coverage_diagnostics(
     with (output_dir / f"missed_anchor_casebook_top{casebook_k}.json").open("w") as f:
         json.dump(casebook, f, indent=2)
     write_csv(output_dir / f"missed_anchor_casebook_top{casebook_k}.csv", casebook)
+    with (output_dir / "dense_sparse_recovery_summary.json").open("w") as f:
+        json.dump(recovery_summary, f, indent=2)
+    with (output_dir / f"dense_recovery_casebook_top{casebook_k}.json").open("w") as f:
+        json.dump(dense_recovery_casebook, f, indent=2)
+    write_csv(output_dir / f"dense_recovery_casebook_top{casebook_k}.csv", dense_recovery_casebook)
+    with (output_dir / "calibration_prerisk_summary.json").open("w") as f:
+        json.dump(calibration_prerisk, f, indent=2)
     write_subset_curve_csv(output_dir / "subset_coverage_curves.csv", subset_summary)
     write_anchor_rank_histogram_csv(output_dir / "anchor_rank_histogram.csv", per_sample)
-    write_report(output_dir / "coverage_diagnostics_report.md", summary, subset_summary, casebook)
+    write_report(
+        output_dir / "coverage_diagnostics_report.md",
+        summary,
+        subset_summary,
+        casebook,
+        recovery_summary,
+        calibration_prerisk,
+    )
 
     return summary
 
@@ -688,6 +980,11 @@ def main() -> None:
     print(f"  dense any reachability: {all_subset['dense_any_reachability']}%")
     for k in K_VALUES:
         print(f"  any coverage@{k}: {all_subset[f'any_coverage@{k}']}%")
+    recovery = json.load((args.output_dir / "dense_sparse_recovery_summary.json").open())
+    prerisk = json.load((args.output_dir / "calibration_prerisk_summary.json").open())
+    print(f"  baseline-wrong sparse-any-missed@{args.casebook_k}: {recovery['sparse_any_missed_count']}")
+    print(f"  baseline-wrong sparse-all-incomplete@{args.casebook_k}: {recovery['sparse_all_incomplete_count']}")
+    print(f"  pre-gate benefit/harm all-ratio: {prerisk['benefit_all_to_harm_all_ratio']}")
     print(f"  report: {args.output_dir / 'coverage_diagnostics_report.md'}")
 
 

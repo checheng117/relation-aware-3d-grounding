@@ -3,6 +3,12 @@
 **Date**: 2026-04-19
 **Training**: none. This report uses frozen ReferIt3DNet baseline predictions.
 
+## Executive Summary
+
+The first-round diagnostics provide direct support for the coverage-failure hypothesis: sparse nearest-neighbor anchor selection leaves a substantial fraction of anchor evidence uncovered, and this gap is especially severe for multi-anchor expressions, where all-anchor coverage at k=5 is only **13.98%**. This motivates dense candidate-anchor coverage, but does not yet prove that dense reranking improves final grounding accuracy.
+
+This second pass connects the coverage gap to errors: among baseline-wrong, anchor-evaluable samples, sparse top-5 misses every annotated anchor in **110** cases and misses at least one annotated anchor in **157** cases. Dense all-pair reachability recovers these anchors at the candidate-set level whenever geometry is available.
+
 ## Diagnostic Definition
 
 This is the first direct evidence pass for the COVER-3D coverage hypothesis.
@@ -61,6 +67,58 @@ This does not prove a trained sparse relation model would rank anchors identical
 - Multi-anchor samples are the stress case: top-5 any-anchor coverage is **75.27%**, while all-anchor coverage should be read separately in the JSON output.
 - These numbers are evidence about sparse geometric reachability, not method gains. They should decide whether the next step deserves calibrated reranker training.
 
+## Dense vs Sparse Recovery
+
+Recovery is measured on baseline-wrong samples with anchor annotations, using sparse top-5 nearest-neighbor anchor selection as the sparse proxy.
+
+| Pool | Count | Percent | Dense Candidate Recovery |
+| --- | ---: | ---: | ---: |
+| Baseline-wrong anchor samples | 334 | 100.00% | n/a |
+| Geometry-evaluable baseline-wrong anchor samples | 324 | 97.01% | n/a |
+| Sparse misses every anchor | 110 | 33.95% | 100.00% |
+| Sparse misses at least one anchor | 157 | 48.46% | 100.00% |
+
+Subset concentration for baseline-wrong samples where sparse top-k misses every anchor:
+
+| Subset | Count |
+| --- | ---: |
+| same_class_clutter | 70 |
+| same_class_high_clutter | 36 |
+| multi_anchor | 22 |
+| single_anchor | 88 |
+| relative_position | 27 |
+| directional | 36 |
+| between | 6 |
+| relational | 74 |
+| dense_scene | 16 |
+| annotation_exact | 26 |
+| annotation_fallback | 84 |
+
+The key distinction is candidate-set recovery, not final reranking accuracy. Dense all-pair scoring can include the missed anchors; a trained scorer still has to assign them useful evidence.
+
+## Calibration Pre-Risk Analysis
+
+This section is intentionally conservative. The trusted baseline predictions do not include logits or probabilities, so true base margin is unavailable. The analysis uses observable proxies only.
+
+| Proxy Pool | Count | Percent of Anchor-Evaluable Samples |
+| --- | ---: | ---: |
+| Potential benefit, any-anchor criterion | 110 | 26.38% |
+| Potential benefit, all-anchor criterion | 157 | 37.65% |
+| Potential harm, any-anchor criterion | 24 | 5.76% |
+| Potential harm, all-anchor criterion | 34 | 8.15% |
+
+Benefit/harm ratio under the stricter all-anchor criterion: **4.62**.
+
+Anchor-count proxy for uncertainty:
+
+| Anchor Bin | Count | Baseline Acc@1 | Any@5 | All@5 | Mean Min Rank |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| single_anchor | 324 | 23.15% | 65.74% | 65.74% | 6.0 |
+| multi_anchor | 93 | 19.35% | 75.27% | 13.98% | 3.34 |
+| three_plus_anchors | 15 | 0.00% | 53.33% | 6.67% | 4.27 |
+
+Interpretation for gate design: dense evidence has a real benefit pool, but there is also a non-trivial harm pool where the base prediction is already correct and additional relation evidence could perturb it. This supports calibration as a necessary next test, not as a completed claim.
+
 ## Missed-Anchor Casebook Preview
 
 | Scene | Target | Correct | Min Rank | Anchors | Utterance |
@@ -79,6 +137,9 @@ This does not prove a trained sparse relation model would rank anchors identical
 ## Artifacts
 
 - `coverage_summary.json`: aggregate and subset metrics.
+- `dense_sparse_recovery_summary.json`: sparse-miss recovery statistics.
+- `dense_recovery_casebook_top5.json` / `.csv`: baseline-wrong sparse-miss cases recovered by dense candidate reachability.
+- `calibration_prerisk_summary.json`: pre-gate risk proxies.
 - `subset_coverage_curves.csv`: coverage@k curves by subset.
 - `anchor_rank_histogram.csv`: anchor distance-rank histogram.
 - `per_sample_coverage.jsonl`: per-sample diagnostic records.
