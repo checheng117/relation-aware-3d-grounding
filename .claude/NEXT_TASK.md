@@ -46,9 +46,12 @@ All paper drafts and implementation tasks should support this claim.
    - Plot subset-level coverage curves for clutter >= 3, clutter >= 5, multi-anchor, relative-position, and dense-scene subsets.
 
 3. **Minimal P3 verification before full training** - active next task
-   - Recover or regenerate the exact BERT feature cache needed to reproduce the trusted 30.79 baseline with logits.
-   - Use `repro/referit3d_baseline/scripts/evaluate.py --export-logits` only after it reproduces the trusted baseline.
-   - Replace the rank proxy with real `base_logits`, `base_margin`, and `target_rank`.
+   - The Apr9 trusted 30.79 checkpoint does **not** currently reproduce with exported logits; see `reports/cover3d_logits_audit/base_logits_recovery_audit.md`.
+   - Do not use fresh Apr9 logits for P3 claims unless the original class vocabulary / run assets are recovered.
+   - Use the Apr14 `vocabulary_fix` logits only as an infrastructure smoke baseline:
+     `outputs/cover3d_logits_audit/vocabfix_20260414_distilbert_test_logits/`.
+   - Preferred next step: train a clean sorted-vocabulary ReferIt3DNet baseline and export logits from that same run.
+   - Replace the rank proxy with real `base_logits`, tie-aware margin features, and `target_rank`.
    - Train or fit a minimal dense relation scorer; do not use oracle-anchor proxy as final method evidence.
    - Compare Base, Sparse no-cal, Dense no-cal, and Dense calibrated under identical inputs.
    - Report recoveries, harms, hard subsets, Acc@5 retention, and gate behavior.
