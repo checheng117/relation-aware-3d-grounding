@@ -1,7 +1,7 @@
 # COVER-3D Related Work and Positioning
 
-**Date**: 2026-04-19  
-**Purpose**: Position COVER-3D against existing 3D visual grounding work using searched sources and current Phase 1 diagnostics.  
+**Date**: 2026-04-19
+**Purpose**: Position COVER-3D against existing 3D visual grounding work using searched sources and current Phase 1 diagnostics.
 **Bottom line**: COVER-3D is a defensible research direction if framed as **coverage-calibrated relational reranking with hard-subset diagnostics**, not as the first relation-aware 3D grounding model.
 
 ---
