@@ -138,6 +138,13 @@ def build_class_vocabulary(manifest_paths: List[Path]) -> tuple:
     return class_to_idx, sorted_classes
 
 
+def softmax_entropy(logits: torch.Tensor) -> tuple[float, list[float]]:
+    """Return entropy and probabilities for one valid logit vector."""
+    probs = torch.softmax(logits, dim=0)
+    entropy = float((-(probs * torch.log(probs.clamp_min(1e-12))).sum()).item())
+    return entropy, [float(x) for x in probs.detach().cpu().tolist()]
+
+
 def collate_fn(
     batch: List[tuple],
     feat_dim: int = 256,
@@ -396,14 +403,44 @@ def evaluate(
                     float((sorted_values[0] - sorted_values[1]).item())
                     if num_valid >= 2 else None
                 )
+                base_entropy = None
+                base_probabilities = None
+                base_top1_probability = None
+                base_top2_probability = None
+                base_probability_margin = None
+                target_probability = None
+                top1_tie_count = None
+                if num_valid >= 1:
+                    base_entropy, base_probabilities = softmax_entropy(valid_logits)
+                    sorted_probs = sorted(base_probabilities, reverse=True)
+                    base_top1_probability = sorted_probs[0]
+                    if len(sorted_probs) >= 2:
+                        base_top2_probability = sorted_probs[1]
+                        base_probability_margin = base_top1_probability - base_top2_probability
+                    if target < num_valid:
+                        target_probability = base_probabilities[target]
+                    top1_tie_count = int(
+                        torch.isclose(
+                            valid_logits,
+                            sorted_values[0],
+                            rtol=1e-6,
+                            atol=1e-6,
+                        ).sum().item()
+                    )
                 target_matches = (sorted_indices == target).nonzero(as_tuple=False)
                 target_rank = int(target_matches[0].item() + 1) if len(target_matches) else None
                 prediction.update({
                     "base_logits": [float(x) for x in valid_logits.tolist()],
                     "base_margin": base_margin,
+                    "base_entropy": base_entropy,
+                    "base_prob_margin": base_probability_margin,
+                    "base_top1_probability": base_top1_probability,
+                    "base_top2_probability": base_top2_probability,
                     "base_top1_logit": top1_logit,
                     "base_top2_logit": top2_logit,
+                    "base_top1_tie_count": top1_tie_count,
                     "target_logit": float(valid_logits[target].item()) if target < num_valid else None,
+                    "target_probability": target_probability,
                     "target_rank": target_rank,
                 })
 
@@ -509,16 +546,23 @@ def main():
 
     class_to_idx = None
     if use_learned_class_embedding:
-        log.info("Building class vocabulary for learned class embedding...")
-        # Build vocab from all splits for full coverage (516 classes)
-        manifest_dir_path = manifest_dir
-        manifest_paths = [
-            manifest_dir_path / "train_manifest.jsonl",
-            manifest_dir_path / "val_manifest.jsonl",
-            manifest_dir_path / "test_manifest.jsonl",
-        ]
-        class_to_idx, _ = build_class_vocabulary(manifest_paths)
-        log.info(f"Class vocabulary size: {len(class_to_idx)}")
+        if "class_to_idx" in checkpoint_reload and checkpoint_reload["class_to_idx"]:
+            class_to_idx = checkpoint_reload["class_to_idx"]
+            log.info(
+                "Using class vocabulary stored in checkpoint "
+                f"({len(class_to_idx)} classes)"
+            )
+        else:
+            log.info("Building sorted class vocabulary for learned class embedding...")
+            # Build vocab from all splits for full coverage.
+            manifest_dir_path = manifest_dir
+            manifest_paths = [
+                manifest_dir_path / "train_manifest.jsonl",
+                manifest_dir_path / "val_manifest.jsonl",
+                manifest_dir_path / "test_manifest.jsonl",
+            ]
+            class_to_idx, _ = build_class_vocabulary(manifest_paths)
+            log.info(f"Class vocabulary size: {len(class_to_idx)}")
 
     if encoder_type == "pointnetpp":
         log.info("Using PointNet++ collate with raw points")

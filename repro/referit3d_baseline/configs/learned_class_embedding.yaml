@@ -1,0 +1,59 @@
+# Learned Class Embedding Experiment Configuration
+# Tests whether learned class embeddings improve over MD5 hash
+
+dataset:
+  manifest_dir: data/processed/scene_disjoint/official_scene_disjoint
+  train_manifest: train_manifest.jsonl
+  val_manifest: val_manifest.jsonl
+  test_manifest: test_manifest.jsonl
+  raw_root: data/raw/referit3d
+  bert_dir: data/text_features/full_official_nr3d
+
+model:
+  name: referit3dnet
+  encoder_type: simple_point
+  point_input_dim: 256
+  point_hidden_dim: 128
+  point_output_dim: 256
+  lang_output_dim: 256
+  fusion_dim: 512
+  dropout: 0.1
+  # Learned class embedding settings
+  use_learned_class_embedding: true
+  num_classes: 493  # Updated from actual vocabulary
+  class_embed_dim: 64
+
+training:
+  epochs: 30
+  batch_size: 16
+  lr: 0.0001
+  weight_decay: 0.0001
+  grad_clip: 1.0
+  seed: 42
+
+evaluation:
+  batch_size: 32
+  compute_acc_at_5: true
+  compute_sub_metrics: false
+
+checkpoint:
+  dir: outputs/20260409_learned_class_embedding/formal
+  save_best_only: true
+  monitor: val_acc
+
+logging:
+  log_dir: outputs/20260409_learned_class_embedding/formal/logs
+  log_every_n_steps: 50
+
+device: cuda
+
+debug:
+  max_batches: null
+  overfit_one_batch: false
+
+experiment:
+  phase: learned_class_embedding
+  split: official_scene_disjoint
+  dataset_samples: 41503
+  baseline_comparison: true
+  factor: learned_class_embedding_vs_hash

@@ -256,6 +256,8 @@ class ReferIt3DNet(nn.Module):
     2. Encode language utterance → language feature
     3. Cross-modal fusion (concatenation + MLP)
     4. Per-object classification scores
+
+    Supports PointNet++ with class semantics for grounding tasks.
     """
 
     def __init__(
@@ -272,11 +274,28 @@ class ReferIt3DNet(nn.Module):
         encoder_type: str = "simple_point",  # "simple_point" or "pointnetpp"
         # PointNet++ specific params (simplified)
         pointnetpp_num_points: int = 1024,
+        # Class semantics for PointNet++
+        class_feature_dim: int = 250,  # Class hash dimension
+        use_class_semantics: bool = True,  # Enable class semantics for PointNet++
+        # Learned class embedding (NEW)
+        use_learned_class_embedding: bool = False,
+        num_object_classes: int = 516,  # Nr3D class vocabulary size
+        class_embed_dim: int = 64,
     ):
         super().__init__()
 
         self.encoder_type = encoder_type
         self.point_output_dim = point_output_dim
+        self.use_class_semantics = use_class_semantics
+        self.use_learned_class_embedding = use_learned_class_embedding
+        self.class_embed_dim = class_embed_dim
+
+        # Learned class embedding for SimplePointEncoder mode
+        if use_learned_class_embedding and encoder_type == "simple_point":
+            self.class_embedding = nn.Embedding(num_object_classes, class_embed_dim)
+            log.info(f"Using learned class embedding: {num_object_classes} classes -> {class_embed_dim} dims")
+        else:
+            self.class_embedding = None
 
         # Point cloud encoder - select based on encoder_type
         if encoder_type == "pointnetpp":
@@ -286,6 +305,16 @@ class ReferIt3DNet(nn.Module):
                 output_dim=point_output_dim,
             )
             log.info(f"Using PointNet++ encoder with {pointnetpp_num_points} points per object")
+
+            # Class feature encoder for PointNet++ mode
+            if use_class_semantics:
+                self.class_encoder = nn.Sequential(
+                    nn.Linear(class_feature_dim, 128),
+                    nn.ReLU(),
+                    nn.Linear(128, 64),
+                    nn.ReLU(),
+                )
+                log.info(f"Using class semantics with dim={class_feature_dim}")
         else:
             self.point_encoder = SimplePointEncoder(
                 input_dim=point_input_dim,
@@ -302,8 +331,17 @@ class ReferIt3DNet(nn.Module):
         )
 
         # Cross-modal fusion
+        # For PointNet++ with class semantics, fusion input is point_output_dim + class_dim + lang_output_dim
+        # For SimplePointEncoder with learned class embedding, add class_embed_dim
+        if encoder_type == "pointnetpp" and use_class_semantics:
+            fusion_input_dim = point_output_dim + 64 + lang_output_dim  # 64 from class_encoder
+        elif use_learned_class_embedding and encoder_type == "simple_point":
+            fusion_input_dim = point_output_dim + class_embed_dim + lang_output_dim
+        else:
+            fusion_input_dim = point_output_dim + lang_output_dim
+
         self.fusion = nn.Sequential(
-            nn.Linear(point_output_dim + lang_output_dim, fusion_dim),
+            nn.Linear(fusion_input_dim, fusion_dim),
             nn.ReLU(),
             nn.Dropout(dropout),
             nn.Linear(fusion_dim, fusion_dim),
@@ -320,6 +358,8 @@ class ReferIt3DNet(nn.Module):
         object_mask: torch.Tensor,
         input_ids: Optional[torch.Tensor] = None,
         text_features: Optional[torch.Tensor] = None,
+        class_features: Optional[torch.Tensor] = None,  # For PointNet++ with class semantics
+        class_indices: Optional[torch.Tensor] = None,  # For learned class embedding
     ) -> Dict[str, torch.Tensor]:
         """
         Forward pass.
@@ -329,6 +369,8 @@ class ReferIt3DNet(nn.Module):
             object_mask: [B, N] boolean mask for valid objects
             input_ids: [B, L] token indices
             text_features: [B, D] pre-computed text features
+            class_features: [B, N, 250] class semantic features (for PointNet++ mode)
+            class_indices: [B, N] class indices for learned embedding
 
         Returns:
             Dict containing:
@@ -340,6 +382,22 @@ class ReferIt3DNet(nn.Module):
 
         # Encode objects
         obj_features = self.point_encoder(points, object_mask)  # [B, N, D]
+
+        # Add class semantics for PointNet++ mode
+        if self.encoder_type == "pointnetpp" and self.use_class_semantics:
+            if class_features is None:
+                # Fallback: use zeros for class features
+                class_features = torch.zeros(B, N, 250, device=points.device, dtype=points.dtype)
+            class_embed = self.class_encoder(class_features)  # [B, N, 64]
+            obj_features = torch.cat([obj_features, class_embed], dim=-1)  # [B, N, D+64]
+
+        # Add learned class embedding for SimplePointEncoder mode
+        elif self.use_learned_class_embedding and self.class_embedding is not None:
+            if class_indices is None:
+                # Fallback: use index 0
+                class_indices = torch.zeros(B, N, dtype=torch.long, device=points.device)
+            class_embed = self.class_embedding(class_indices)  # [B, N, class_embed_dim]
+            obj_features = torch.cat([obj_features, class_embed], dim=-1)  # [B, N, D+class_embed_dim]
 
         # Encode language
         lang_features = self.lang_encoder(input_ids, text_features)  # [B, D]

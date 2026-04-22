@@ -1,0 +1,2386 @@
+[
+  {
+    "scene_id": "scene0635_00",
+    "utterance": "The small box on the top shelf of the tall shelving unit with a ladder in front of it.",
+    "target_id": "25",
+    "target_class": "box",
+    "pred_top1": 31,
+    "pred_top5": [
+      34,
+      31,
+      35,
+      45,
+      38
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "directional",
+    "anchor_ids": [
+      "14",
+      "16"
+    ],
+    "anchor_classes": [
+      "bookshelf",
+      "ladder"
+    ],
+    "anchor_ranks": [
+      7,
+      8
+    ],
+    "anchor_distances": [
+      1.256,
+      1.2978
+    ],
+    "min_anchor_rank": 7,
+    "nearest_sparse_candidates": [
+      "17",
+      "18",
+      "44",
+      "19",
+      "21"
+    ],
+    "annotation_match": "exact_utterance",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "multi_anchor",
+      "directional",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0635_00",
+    "utterance": "Please select the highest box on top of the book case, on the right hand side of the ladder as your facing it.",
+    "target_id": "25",
+    "target_class": "box",
+    "pred_top1": 1,
+    "pred_top5": [
+      5,
+      1,
+      25,
+      37,
+      28
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "relative",
+    "anchor_ids": [
+      "14",
+      "16"
+    ],
+    "anchor_classes": [
+      "bookshelf",
+      "ladder"
+    ],
+    "anchor_ranks": [
+      7,
+      8
+    ],
+    "anchor_distances": [
+      1.256,
+      1.2978
+    ],
+    "min_anchor_rank": 7,
+    "nearest_sparse_candidates": [
+      "17",
+      "18",
+      "44",
+      "19",
+      "21"
+    ],
+    "annotation_match": "exact_utterance",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "multi_anchor",
+      "relative_position",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0635_00",
+    "utterance": "the highest box",
+    "target_id": "25",
+    "target_class": "box",
+    "pred_top1": 1,
+    "pred_top5": [
+      5,
+      1,
+      25,
+      37,
+      28
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "other",
+    "anchor_ids": [
+      "14",
+      "16"
+    ],
+    "anchor_classes": [
+      "bookshelf",
+      "ladder"
+    ],
+    "anchor_ranks": [
+      7,
+      8
+    ],
+    "anchor_distances": [
+      1.256,
+      1.2978
+    ],
+    "min_anchor_rank": 7,
+    "nearest_sparse_candidates": [
+      "17",
+      "18",
+      "44",
+      "19",
+      "21"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "multi_anchor",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0635_00",
+    "utterance": "The highest of the boxes.",
+    "target_id": "25",
+    "target_class": "box",
+    "pred_top1": 1,
+    "pred_top5": [
+      5,
+      1,
+      25,
+      37,
+      28
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "other",
+    "anchor_ids": [
+      "14",
+      "16"
+    ],
+    "anchor_classes": [
+      "bookshelf",
+      "ladder"
+    ],
+    "anchor_ranks": [
+      7,
+      8
+    ],
+    "anchor_distances": [
+      1.256,
+      1.2978
+    ],
+    "min_anchor_rank": 7,
+    "nearest_sparse_candidates": [
+      "17",
+      "18",
+      "44",
+      "19",
+      "21"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "multi_anchor",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0635_00",
+    "utterance": "This box is high atop the tall bookshelf.",
+    "target_id": "25",
+    "target_class": "box",
+    "pred_top1": 1,
+    "pred_top5": [
+      5,
+      1,
+      25,
+      37,
+      28
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "other",
+    "anchor_ids": [
+      "14",
+      "16"
+    ],
+    "anchor_classes": [
+      "bookshelf",
+      "ladder"
+    ],
+    "anchor_ranks": [
+      7,
+      8
+    ],
+    "anchor_distances": [
+      1.256,
+      1.2978
+    ],
+    "min_anchor_rank": 7,
+    "nearest_sparse_candidates": [
+      "17",
+      "18",
+      "44",
+      "19",
+      "21"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "multi_anchor",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0635_00",
+    "utterance": "Facing the door, the box is on top of the tall brown bookcase to the left, above the ladder.",
+    "target_id": "25",
+    "target_class": "box",
+    "pred_top1": 1,
+    "pred_top5": [
+      5,
+      1,
+      25,
+      37,
+      28
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "relative",
+    "anchor_ids": [
+      "14",
+      "16"
+    ],
+    "anchor_classes": [
+      "bookshelf",
+      "ladder"
+    ],
+    "anchor_ranks": [
+      7,
+      8
+    ],
+    "anchor_distances": [
+      1.256,
+      1.2978
+    ],
+    "min_anchor_rank": 7,
+    "nearest_sparse_candidates": [
+      "17",
+      "18",
+      "44",
+      "19",
+      "21"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "multi_anchor",
+      "relative_position",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0635_00",
+    "utterance": "This is the highest box in the room, on top of a bookshelf next to the door.",
+    "target_id": "25",
+    "target_class": "box",
+    "pred_top1": 1,
+    "pred_top5": [
+      5,
+      1,
+      25,
+      37,
+      28
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "relative",
+    "anchor_ids": [
+      "14",
+      "16"
+    ],
+    "anchor_classes": [
+      "bookshelf",
+      "ladder"
+    ],
+    "anchor_ranks": [
+      7,
+      8
+    ],
+    "anchor_distances": [
+      1.256,
+      1.2978
+    ],
+    "min_anchor_rank": 7,
+    "nearest_sparse_candidates": [
+      "17",
+      "18",
+      "44",
+      "19",
+      "21"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "multi_anchor",
+      "relative_position",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0670_00",
+    "utterance": "The trash can is small and white. It is near brown cabinets and there is a poster that says \"kitchen\" above it.",
+    "target_id": "25",
+    "target_class": "trash can",
+    "pred_top1": 3,
+    "pred_top5": [
+      25,
+      24,
+      3,
+      19,
+      18
+    ],
+    "correct_at_1": false,
+    "same_class_count": 3,
+    "relation_type": "relative",
+    "anchor_ids": [
+      "27",
+      "33"
+    ],
+    "anchor_classes": [
+      "cabinet",
+      "picture"
+    ],
+    "anchor_ranks": [
+      6,
+      11
+    ],
+    "anchor_distances": [
+      1.1676,
+      1.5447
+    ],
+    "min_anchor_rank": 6,
+    "nearest_sparse_candidates": [
+      "22",
+      "31",
+      "34",
+      "23",
+      "14"
+    ],
+    "annotation_match": "exact_utterance",
+    "subset_tags": [
+      "same_class_clutter",
+      "multi_anchor",
+      "relative_position",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0670_00",
+    "utterance": "Choose the garbage can  next to the  counter and under the poster that says KITCHEN",
+    "target_id": "25",
+    "target_class": "trash can",
+    "pred_top1": 3,
+    "pred_top5": [
+      25,
+      24,
+      3,
+      4,
+      31
+    ],
+    "correct_at_1": false,
+    "same_class_count": 3,
+    "relation_type": "relative",
+    "anchor_ids": [
+      "27",
+      "33"
+    ],
+    "anchor_classes": [
+      "cabinet",
+      "picture"
+    ],
+    "anchor_ranks": [
+      6,
+      11
+    ],
+    "anchor_distances": [
+      1.1676,
+      1.5447
+    ],
+    "min_anchor_rank": 6,
+    "nearest_sparse_candidates": [
+      "22",
+      "31",
+      "34",
+      "23",
+      "14"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "multi_anchor",
+      "relative_position",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0670_00",
+    "utterance": "The small trash can by itself.",
+    "target_id": "25",
+    "target_class": "trash can",
+    "pred_top1": 3,
+    "pred_top5": [
+      25,
+      24,
+      3,
+      7,
+      4
+    ],
+    "correct_at_1": false,
+    "same_class_count": 3,
+    "relation_type": "relative",
+    "anchor_ids": [
+      "27",
+      "33"
+    ],
+    "anchor_classes": [
+      "cabinet",
+      "picture"
+    ],
+    "anchor_ranks": [
+      6,
+      11
+    ],
+    "anchor_distances": [
+      1.1676,
+      1.5447
+    ],
+    "min_anchor_rank": 6,
+    "nearest_sparse_candidates": [
+      "22",
+      "31",
+      "34",
+      "23",
+      "14"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "multi_anchor",
+      "relative_position",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0670_00",
+    "utterance": "This trashcan is between the brown kitchen cabinets.",
+    "target_id": "25",
+    "target_class": "trash can",
+    "pred_top1": 3,
+    "pred_top5": [
+      25,
+      24,
+      3,
+      8,
+      4
+    ],
+    "correct_at_1": false,
+    "same_class_count": 3,
+    "relation_type": "between",
+    "anchor_ids": [
+      "27",
+      "33"
+    ],
+    "anchor_classes": [
+      "cabinet",
+      "picture"
+    ],
+    "anchor_ranks": [
+      6,
+      11
+    ],
+    "anchor_distances": [
+      1.1676,
+      1.5447
+    ],
+    "min_anchor_rank": 6,
+    "nearest_sparse_candidates": [
+      "22",
+      "31",
+      "34",
+      "23",
+      "14"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "multi_anchor",
+      "between",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0670_00",
+    "utterance": "The trash can that is closest to the stove.",
+    "target_id": "25",
+    "target_class": "trash can",
+    "pred_top1": 3,
+    "pred_top5": [
+      25,
+      24,
+      3,
+      4,
+      13
+    ],
+    "correct_at_1": false,
+    "same_class_count": 3,
+    "relation_type": "directional",
+    "anchor_ids": [
+      "27",
+      "33"
+    ],
+    "anchor_classes": [
+      "cabinet",
+      "picture"
+    ],
+    "anchor_ranks": [
+      6,
+      11
+    ],
+    "anchor_distances": [
+      1.1676,
+      1.5447
+    ],
+    "min_anchor_rank": 6,
+    "nearest_sparse_candidates": [
+      "22",
+      "31",
+      "34",
+      "23",
+      "14"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "multi_anchor",
+      "directional",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0670_00",
+    "utterance": "The trash can that is by it self",
+    "target_id": "25",
+    "target_class": "trash can",
+    "pred_top1": 3,
+    "pred_top5": [
+      25,
+      24,
+      3,
+      4,
+      1
+    ],
+    "correct_at_1": false,
+    "same_class_count": 3,
+    "relation_type": "relative",
+    "anchor_ids": [
+      "27",
+      "33"
+    ],
+    "anchor_classes": [
+      "cabinet",
+      "picture"
+    ],
+    "anchor_ranks": [
+      6,
+      11
+    ],
+    "anchor_distances": [
+      1.1676,
+      1.5447
+    ],
+    "min_anchor_rank": 6,
+    "nearest_sparse_candidates": [
+      "22",
+      "31",
+      "34",
+      "23",
+      "14"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "multi_anchor",
+      "relative_position",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0670_00",
+    "utterance": "A white trash bin in the kitchen on a wall between to sets of counters.",
+    "target_id": "25",
+    "target_class": "trash can",
+    "pred_top1": 3,
+    "pred_top5": [
+      25,
+      24,
+      3,
+      4,
+      1
+    ],
+    "correct_at_1": false,
+    "same_class_count": 3,
+    "relation_type": "between",
+    "anchor_ids": [
+      "27",
+      "33"
+    ],
+    "anchor_classes": [
+      "cabinet",
+      "picture"
+    ],
+    "anchor_ranks": [
+      6,
+      11
+    ],
+    "anchor_distances": [
+      1.1676,
+      1.5447
+    ],
+    "min_anchor_rank": 6,
+    "nearest_sparse_candidates": [
+      "22",
+      "31",
+      "34",
+      "23",
+      "14"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "multi_anchor",
+      "between",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0098_00",
+    "utterance": "Choose the single box that is in front of the whiteboard next to the empty bookshelf.",
+    "target_id": "36",
+    "target_class": "box",
+    "pred_top1": 1,
+    "pred_top5": [
+      36,
+      27,
+      1,
+      21,
+      20
+    ],
+    "correct_at_1": false,
+    "same_class_count": 3,
+    "relation_type": "directional",
+    "anchor_ids": [
+      "17",
+      "20"
+    ],
+    "anchor_classes": [
+      "whiteboard",
+      "bookshelf"
+    ],
+    "anchor_ranks": [
+      10,
+      9
+    ],
+    "anchor_distances": [
+      1.2937,
+      1.1634
+    ],
+    "min_anchor_rank": 9,
+    "nearest_sparse_candidates": [
+      "30",
+      "34",
+      "32",
+      "31",
+      "33"
+    ],
+    "annotation_match": "exact_utterance",
+    "subset_tags": [
+      "same_class_clutter",
+      "multi_anchor",
+      "directional",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0425_00",
+    "utterance": "The correct dresser is infront of the blue sheet on the wall and beside the bed.",
+    "target_id": "30",
+    "target_class": "dresser",
+    "pred_top1": 19,
+    "pred_top5": [
+      19,
+      30,
+      3,
+      22,
+      21
+    ],
+    "correct_at_1": false,
+    "same_class_count": 2,
+    "relation_type": "directional",
+    "anchor_ids": [
+      "1",
+      "29",
+      "3"
+    ],
+    "anchor_classes": [
+      "wall_hanging",
+      "wall",
+      "bed"
+    ],
+    "anchor_ranks": [
+      11,
+      8,
+      10
+    ],
+    "anchor_distances": [
+      1.2756,
+      0.9176,
+      1.2002
+    ],
+    "min_anchor_rank": 8,
+    "nearest_sparse_candidates": [
+      "9",
+      "8",
+      "23",
+      "11",
+      "31"
+    ],
+    "annotation_match": "exact_utterance",
+    "subset_tags": [
+      "multi_anchor",
+      "directional",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0425_00",
+    "utterance": "This one is right next to the bed",
+    "target_id": "30",
+    "target_class": "dresser",
+    "pred_top1": 14,
+    "pred_top5": [
+      14,
+      20,
+      30,
+      19,
+      6
+    ],
+    "correct_at_1": false,
+    "same_class_count": 2,
+    "relation_type": "relative",
+    "anchor_ids": [
+      "1",
+      "29",
+      "3"
+    ],
+    "anchor_classes": [
+      "wall_hanging",
+      "wall",
+      "bed"
+    ],
+    "anchor_ranks": [
+      11,
+      8,
+      10
+    ],
+    "anchor_distances": [
+      1.2756,
+      0.9176,
+      1.2002
+    ],
+    "min_anchor_rank": 8,
+    "nearest_sparse_candidates": [
+      "9",
+      "8",
+      "23",
+      "11",
+      "31"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "multi_anchor",
+      "relative_position",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0425_00",
+    "utterance": "The correct dresser is closest to the computer and has a red and black back pack in front of it.",
+    "target_id": "30",
+    "target_class": "dresser",
+    "pred_top1": 19,
+    "pred_top5": [
+      19,
+      30,
+      24,
+      11,
+      5
+    ],
+    "correct_at_1": false,
+    "same_class_count": 2,
+    "relation_type": "directional",
+    "anchor_ids": [
+      "1",
+      "29",
+      "3"
+    ],
+    "anchor_classes": [
+      "wall_hanging",
+      "wall",
+      "bed"
+    ],
+    "anchor_ranks": [
+      11,
+      8,
+      10
+    ],
+    "anchor_distances": [
+      1.2756,
+      0.9176,
+      1.2002
+    ],
+    "min_anchor_rank": 8,
+    "nearest_sparse_candidates": [
+      "9",
+      "8",
+      "23",
+      "11",
+      "31"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "multi_anchor",
+      "directional",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0425_00",
+    "utterance": "Your looking for the dresser that is closet to the bed. The one under the blue curtain covering the window.",
+    "target_id": "30",
+    "target_class": "dresser",
+    "pred_top1": 19,
+    "pred_top5": [
+      19,
+      30,
+      25,
+      13,
+      8
+    ],
+    "correct_at_1": false,
+    "same_class_count": 2,
+    "relation_type": "attribute",
+    "anchor_ids": [
+      "1",
+      "29",
+      "3"
+    ],
+    "anchor_classes": [
+      "wall_hanging",
+      "wall",
+      "bed"
+    ],
+    "anchor_ranks": [
+      11,
+      8,
+      10
+    ],
+    "anchor_distances": [
+      1.2756,
+      0.9176,
+      1.2002
+    ],
+    "min_anchor_rank": 8,
+    "nearest_sparse_candidates": [
+      "9",
+      "8",
+      "23",
+      "11",
+      "31"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "multi_anchor",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0425_00",
+    "utterance": "This dresser is between the bed and computer desk.",
+    "target_id": "30",
+    "target_class": "dresser",
+    "pred_top1": 19,
+    "pred_top5": [
+      19,
+      30,
+      11,
+      3,
+      21
+    ],
+    "correct_at_1": false,
+    "same_class_count": 2,
+    "relation_type": "between",
+    "anchor_ids": [
+      "1",
+      "29",
+      "3"
+    ],
+    "anchor_classes": [
+      "wall_hanging",
+      "wall",
+      "bed"
+    ],
+    "anchor_ranks": [
+      11,
+      8,
+      10
+    ],
+    "anchor_distances": [
+      1.2756,
+      0.9176,
+      1.2002
+    ],
+    "min_anchor_rank": 8,
+    "nearest_sparse_candidates": [
+      "9",
+      "8",
+      "23",
+      "11",
+      "31"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "multi_anchor",
+      "between",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0425_00",
+    "utterance": "It is the dresser next to the desk.",
+    "target_id": "30",
+    "target_class": "dresser",
+    "pred_top1": 11,
+    "pred_top5": [
+      11,
+      30,
+      19,
+      20,
+      14
+    ],
+    "correct_at_1": false,
+    "same_class_count": 2,
+    "relation_type": "relative",
+    "anchor_ids": [
+      "1",
+      "29",
+      "3"
+    ],
+    "anchor_classes": [
+      "wall_hanging",
+      "wall",
+      "bed"
+    ],
+    "anchor_ranks": [
+      11,
+      8,
+      10
+    ],
+    "anchor_distances": [
+      1.2756,
+      0.9176,
+      1.2002
+    ],
+    "min_anchor_rank": 8,
+    "nearest_sparse_candidates": [
+      "9",
+      "8",
+      "23",
+      "11",
+      "31"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "multi_anchor",
+      "relative_position",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0425_00",
+    "utterance": "dresser directly between the bed and desk.",
+    "target_id": "30",
+    "target_class": "dresser",
+    "pred_top1": 19,
+    "pred_top5": [
+      19,
+      30,
+      11,
+      22,
+      21
+    ],
+    "correct_at_1": false,
+    "same_class_count": 2,
+    "relation_type": "between",
+    "anchor_ids": [
+      "1",
+      "29",
+      "3"
+    ],
+    "anchor_classes": [
+      "wall_hanging",
+      "wall",
+      "bed"
+    ],
+    "anchor_ranks": [
+      11,
+      8,
+      10
+    ],
+    "anchor_distances": [
+      1.2756,
+      0.9176,
+      1.2002
+    ],
+    "min_anchor_rank": 8,
+    "nearest_sparse_candidates": [
+      "9",
+      "8",
+      "23",
+      "11",
+      "31"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "multi_anchor",
+      "between",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0246_00",
+    "utterance": "Big white pillow on top, at left side of bed.",
+    "target_id": "42",
+    "target_class": "pillow",
+    "pred_top1": 38,
+    "pred_top5": [
+      39,
+      38,
+      40,
+      42,
+      41
+    ],
+    "correct_at_1": false,
+    "same_class_count": 6,
+    "relation_type": "directional",
+    "anchor_ids": [
+      "13"
+    ],
+    "anchor_classes": [
+      "bed"
+    ],
+    "anchor_ranks": [
+      10
+    ],
+    "anchor_distances": [
+      0.8548
+    ],
+    "min_anchor_rank": 10,
+    "nearest_sparse_candidates": [
+      "43",
+      "20",
+      "22",
+      "15",
+      "7"
+    ],
+    "annotation_match": "exact_utterance",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "directional",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0246_00",
+    "utterance": "The white pillow on the left as you look at the head of the bed, with no other pillows on top of it..",
+    "target_id": "42",
+    "target_class": "pillow",
+    "pred_top1": 38,
+    "pred_top5": [
+      39,
+      38,
+      40,
+      42,
+      41
+    ],
+    "correct_at_1": false,
+    "same_class_count": 6,
+    "relation_type": "attribute",
+    "anchor_ids": [
+      "13"
+    ],
+    "anchor_classes": [
+      "bed"
+    ],
+    "anchor_ranks": [
+      10
+    ],
+    "anchor_distances": [
+      0.8548
+    ],
+    "min_anchor_rank": 10,
+    "nearest_sparse_candidates": [
+      "43",
+      "20",
+      "22",
+      "15",
+      "7"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0246_00",
+    "utterance": "the white pillow on the left of the colored pillows",
+    "target_id": "42",
+    "target_class": "pillow",
+    "pred_top1": 38,
+    "pred_top5": [
+      39,
+      38,
+      40,
+      42,
+      41
+    ],
+    "correct_at_1": false,
+    "same_class_count": 6,
+    "relation_type": "directional",
+    "anchor_ids": [
+      "13"
+    ],
+    "anchor_classes": [
+      "bed"
+    ],
+    "anchor_ranks": [
+      10
+    ],
+    "anchor_distances": [
+      0.8548
+    ],
+    "min_anchor_rank": 10,
+    "nearest_sparse_candidates": [
+      "43",
+      "20",
+      "22",
+      "15",
+      "7"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "directional",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0246_00",
+    "utterance": "Standing at the end of the bed looking at the pillows, choose the pillow on the left side nearest the bathroom.",
+    "target_id": "42",
+    "target_class": "pillow",
+    "pred_top1": 38,
+    "pred_top5": [
+      39,
+      38,
+      40,
+      42,
+      41
+    ],
+    "correct_at_1": false,
+    "same_class_count": 6,
+    "relation_type": "directional",
+    "anchor_ids": [
+      "13"
+    ],
+    "anchor_classes": [
+      "bed"
+    ],
+    "anchor_ranks": [
+      10
+    ],
+    "anchor_distances": [
+      0.8548
+    ],
+    "min_anchor_rank": 10,
+    "nearest_sparse_candidates": [
+      "43",
+      "20",
+      "22",
+      "15",
+      "7"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "directional",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0246_00",
+    "utterance": "The large white pillow on the left side of the bed",
+    "target_id": "42",
+    "target_class": "pillow",
+    "pred_top1": 38,
+    "pred_top5": [
+      39,
+      38,
+      40,
+      42,
+      41
+    ],
+    "correct_at_1": false,
+    "same_class_count": 6,
+    "relation_type": "directional",
+    "anchor_ids": [
+      "13"
+    ],
+    "anchor_classes": [
+      "bed"
+    ],
+    "anchor_ranks": [
+      10
+    ],
+    "anchor_distances": [
+      0.8548
+    ],
+    "min_anchor_rank": 10,
+    "nearest_sparse_candidates": [
+      "43",
+      "20",
+      "22",
+      "15",
+      "7"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "directional",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0246_00",
+    "utterance": "Big, white pillow on top and on the left side of the bed, when looking from the foot of the bed.",
+    "target_id": "42",
+    "target_class": "pillow",
+    "pred_top1": 38,
+    "pred_top5": [
+      39,
+      38,
+      40,
+      42,
+      41
+    ],
+    "correct_at_1": false,
+    "same_class_count": 6,
+    "relation_type": "directional",
+    "anchor_ids": [
+      "13"
+    ],
+    "anchor_classes": [
+      "bed"
+    ],
+    "anchor_ranks": [
+      10
+    ],
+    "anchor_distances": [
+      0.8548
+    ],
+    "min_anchor_rank": 10,
+    "nearest_sparse_candidates": [
+      "43",
+      "20",
+      "22",
+      "15",
+      "7"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "directional",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0246_00",
+    "utterance": "Facing the bed, choose the pillow on the right that is closest to the bed's headboard.",
+    "target_id": "41",
+    "target_class": "pillow",
+    "pred_top1": 38,
+    "pred_top5": [
+      39,
+      38,
+      40,
+      42,
+      41
+    ],
+    "correct_at_1": false,
+    "same_class_count": 6,
+    "relation_type": "directional",
+    "anchor_ids": [
+      "13"
+    ],
+    "anchor_classes": [
+      "bed"
+    ],
+    "anchor_ranks": [
+      13
+    ],
+    "anchor_distances": [
+      0.9799
+    ],
+    "min_anchor_rank": 13,
+    "nearest_sparse_candidates": [
+      "40",
+      "39",
+      "38",
+      "5",
+      "18"
+    ],
+    "annotation_match": "exact_utterance",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "directional",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0166_00",
+    "utterance": "bottom right bag hanging on the wall with the others",
+    "target_id": "37",
+    "target_class": "bag",
+    "pred_top1": 45,
+    "pred_top5": [
+      46,
+      45,
+      47,
+      49,
+      48
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "other",
+    "anchor_ids": [
+      "18"
+    ],
+    "anchor_classes": [
+      "wall"
+    ],
+    "anchor_ranks": [
+      9
+    ],
+    "anchor_distances": [
+      1.0516
+    ],
+    "min_anchor_rank": 9,
+    "nearest_sparse_candidates": [
+      "36",
+      "38",
+      "39",
+      "19",
+      "20"
+    ],
+    "annotation_match": "exact_utterance",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "dense_scene",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0635_00",
+    "utterance": "The box is on the floor. It has two cardboard tubes on top of it.",
+    "target_id": "28",
+    "target_class": "box",
+    "pred_top1": 1,
+    "pred_top5": [
+      5,
+      1,
+      25,
+      37,
+      28
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "support",
+    "anchor_ids": [
+      "41"
+    ],
+    "anchor_classes": [
+      "floor"
+    ],
+    "anchor_ranks": [
+      10
+    ],
+    "anchor_distances": [
+      1.3825
+    ],
+    "min_anchor_rank": 10,
+    "nearest_sparse_candidates": [
+      "33",
+      "32",
+      "31",
+      "34",
+      "38"
+    ],
+    "annotation_match": "exact_utterance",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0635_00",
+    "utterance": "It is the small short box on the right as you face the purple file cabinet.",
+    "target_id": "28",
+    "target_class": "box",
+    "pred_top1": 2,
+    "pred_top5": [
+      3,
+      2,
+      4,
+      39,
+      1
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "attribute",
+    "anchor_ids": [
+      "41"
+    ],
+    "anchor_classes": [
+      "floor"
+    ],
+    "anchor_ranks": [
+      10
+    ],
+    "anchor_distances": [
+      1.3825
+    ],
+    "min_anchor_rank": 10,
+    "nearest_sparse_candidates": [
+      "33",
+      "32",
+      "31",
+      "34",
+      "38"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0635_00",
+    "utterance": "The box on the floor in the corner.",
+    "target_id": "28",
+    "target_class": "box",
+    "pred_top1": 1,
+    "pred_top5": [
+      5,
+      1,
+      25,
+      37,
+      28
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "support",
+    "anchor_ids": [
+      "41"
+    ],
+    "anchor_classes": [
+      "floor"
+    ],
+    "anchor_ranks": [
+      10
+    ],
+    "anchor_distances": [
+      1.3825
+    ],
+    "min_anchor_rank": 10,
+    "nearest_sparse_candidates": [
+      "33",
+      "32",
+      "31",
+      "34",
+      "38"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0635_00",
+    "utterance": "the box is near the two black bins and on floor.",
+    "target_id": "28",
+    "target_class": "box",
+    "pred_top1": 1,
+    "pred_top5": [
+      5,
+      1,
+      25,
+      37,
+      28
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "relative",
+    "anchor_ids": [
+      "41"
+    ],
+    "anchor_classes": [
+      "floor"
+    ],
+    "anchor_ranks": [
+      10
+    ],
+    "anchor_distances": [
+      1.3825
+    ],
+    "min_anchor_rank": 10,
+    "nearest_sparse_candidates": [
+      "33",
+      "32",
+      "31",
+      "34",
+      "38"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "relative_position",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0635_00",
+    "utterance": "The small box under the shelves in the corner of the two windows",
+    "target_id": "28",
+    "target_class": "box",
+    "pred_top1": 31,
+    "pred_top5": [
+      34,
+      31,
+      35,
+      45,
+      38
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "attribute",
+    "anchor_ids": [
+      "41"
+    ],
+    "anchor_classes": [
+      "floor"
+    ],
+    "anchor_ranks": [
+      10
+    ],
+    "anchor_distances": [
+      1.3825
+    ],
+    "min_anchor_rank": 10,
+    "nearest_sparse_candidates": [
+      "33",
+      "32",
+      "31",
+      "34",
+      "38"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0635_00",
+    "utterance": "The box on the ground to the right of the red filing cabinet.",
+    "target_id": "28",
+    "target_class": "box",
+    "pred_top1": 1,
+    "pred_top5": [
+      5,
+      1,
+      25,
+      37,
+      28
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "directional",
+    "anchor_ids": [
+      "41"
+    ],
+    "anchor_classes": [
+      "floor"
+    ],
+    "anchor_ranks": [
+      10
+    ],
+    "anchor_distances": [
+      1.3825
+    ],
+    "min_anchor_rank": 10,
+    "nearest_sparse_candidates": [
+      "33",
+      "32",
+      "31",
+      "34",
+      "38"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "directional",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0635_00",
+    "utterance": "pick the only box sitting on the floor",
+    "target_id": "28",
+    "target_class": "box",
+    "pred_top1": 1,
+    "pred_top5": [
+      5,
+      1,
+      25,
+      37,
+      28
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "support",
+    "anchor_ids": [
+      "41"
+    ],
+    "anchor_classes": [
+      "floor"
+    ],
+    "anchor_ranks": [
+      10
+    ],
+    "anchor_distances": [
+      1.3825
+    ],
+    "min_anchor_rank": 10,
+    "nearest_sparse_candidates": [
+      "33",
+      "32",
+      "31",
+      "34",
+      "38"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "relational",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0166_00",
+    "utterance": "The backpack on the wall is on the top left of the options",
+    "target_id": "38",
+    "target_class": "bag",
+    "pred_top1": 16,
+    "pred_top5": [
+      36,
+      16,
+      37,
+      39,
+      38
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "directional",
+    "anchor_ids": [
+      "18"
+    ],
+    "anchor_classes": [
+      "wall"
+    ],
+    "anchor_ranks": [
+      11
+    ],
+    "anchor_distances": [
+      1.3609
+    ],
+    "min_anchor_rank": 11,
+    "nearest_sparse_candidates": [
+      "39",
+      "36",
+      "37",
+      "15",
+      "14"
+    ],
+    "annotation_match": "exact_utterance",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "directional",
+      "relational",
+      "dense_scene",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0164_00",
+    "utterance": "Facing the refrigerator, the upper kitchen cabinet that is next to the refrigerator.",
+    "target_id": "14",
+    "target_class": "kitchen cabinet",
+    "pred_top1": 11,
+    "pred_top5": [
+      12,
+      11,
+      13,
+      35,
+      14
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "relative",
+    "anchor_ids": [
+      "16"
+    ],
+    "anchor_classes": [
+      "refrigerator"
+    ],
+    "anchor_ranks": [
+      12
+    ],
+    "anchor_distances": [
+      1.1872
+    ],
+    "min_anchor_rank": 12,
+    "nearest_sparse_candidates": [
+      "55",
+      "11",
+      "15",
+      "48",
+      "47"
+    ],
+    "annotation_match": "exact_utterance",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "relative_position",
+      "relational",
+      "dense_scene",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0164_00",
+    "utterance": "There are two cabinets on the wall opposite the stove. Choose the bigger one.",
+    "target_id": "14",
+    "target_class": "kitchen cabinet",
+    "pred_top1": 11,
+    "pred_top5": [
+      12,
+      11,
+      13,
+      35,
+      14
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "relative",
+    "anchor_ids": [
+      "16"
+    ],
+    "anchor_classes": [
+      "refrigerator"
+    ],
+    "anchor_ranks": [
+      12
+    ],
+    "anchor_distances": [
+      1.1872
+    ],
+    "min_anchor_rank": 12,
+    "nearest_sparse_candidates": [
+      "55",
+      "11",
+      "15",
+      "48",
+      "47"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "relative_position",
+      "relational",
+      "dense_scene",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0164_00",
+    "utterance": "It's the double cabinet right above the paper towels.",
+    "target_id": "14",
+    "target_class": "kitchen cabinet",
+    "pred_top1": 11,
+    "pred_top5": [
+      12,
+      11,
+      13,
+      35,
+      14
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "other",
+    "anchor_ids": [
+      "16"
+    ],
+    "anchor_classes": [
+      "refrigerator"
+    ],
+    "anchor_ranks": [
+      12
+    ],
+    "anchor_distances": [
+      1.1872
+    ],
+    "min_anchor_rank": 12,
+    "nearest_sparse_candidates": [
+      "55",
+      "11",
+      "15",
+      "48",
+      "47"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "dense_scene",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0164_00",
+    "utterance": "There are two groups of kitchen cabinets; three along the wall with the stove, and two on the opposite wall. Looking at the wall opposite the stove, the one with the refrigerator, please select the kitchen cabinet closest to the refrigerator.",
+    "target_id": "14",
+    "target_class": "kitchen cabinet",
+    "pred_top1": 9,
+    "pred_top5": [
+      15,
+      10,
+      9,
+      12,
+      11
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "directional",
+    "anchor_ids": [
+      "16"
+    ],
+    "anchor_classes": [
+      "refrigerator"
+    ],
+    "anchor_ranks": [
+      12
+    ],
+    "anchor_distances": [
+      1.1872
+    ],
+    "min_anchor_rank": 12,
+    "nearest_sparse_candidates": [
+      "55",
+      "11",
+      "15",
+      "48",
+      "47"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "directional",
+      "relational",
+      "dense_scene",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0164_00",
+    "utterance": "the top left of the cabinets near the fridge",
+    "target_id": "14",
+    "target_class": "kitchen cabinet",
+    "pred_top1": 11,
+    "pred_top5": [
+      12,
+      11,
+      13,
+      35,
+      14
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "directional",
+    "anchor_ids": [
+      "16"
+    ],
+    "anchor_classes": [
+      "refrigerator"
+    ],
+    "anchor_ranks": [
+      12
+    ],
+    "anchor_distances": [
+      1.1872
+    ],
+    "min_anchor_rank": 12,
+    "nearest_sparse_candidates": [
+      "55",
+      "11",
+      "15",
+      "48",
+      "47"
+    ],
+    "annotation_match": "exact_utterance",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "directional",
+      "relational",
+      "dense_scene",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0164_00",
+    "utterance": "Facing the fridge, its the upper cabinet closest to it.",
+    "target_id": "14",
+    "target_class": "kitchen cabinet",
+    "pred_top1": 11,
+    "pred_top5": [
+      12,
+      11,
+      13,
+      35,
+      14
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "directional",
+    "anchor_ids": [
+      "16"
+    ],
+    "anchor_classes": [
+      "refrigerator"
+    ],
+    "anchor_ranks": [
+      12
+    ],
+    "anchor_distances": [
+      1.1872
+    ],
+    "min_anchor_rank": 12,
+    "nearest_sparse_candidates": [
+      "55",
+      "11",
+      "15",
+      "48",
+      "47"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "directional",
+      "relational",
+      "dense_scene",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0164_00",
+    "utterance": "The large kitchen cabinet on the wall with the fridge. If you click the left of two larger doors it should select the box",
+    "target_id": "14",
+    "target_class": "kitchen cabinet",
+    "pred_top1": 11,
+    "pred_top5": [
+      12,
+      11,
+      13,
+      35,
+      14
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "directional",
+    "anchor_ids": [
+      "16"
+    ],
+    "anchor_classes": [
+      "refrigerator"
+    ],
+    "anchor_ranks": [
+      12
+    ],
+    "anchor_distances": [
+      1.1872
+    ],
+    "min_anchor_rank": 12,
+    "nearest_sparse_candidates": [
+      "55",
+      "11",
+      "15",
+      "48",
+      "47"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "directional",
+      "relational",
+      "dense_scene",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0164_00",
+    "utterance": "The hanging cabinet in the corner behind the open cabinet door",
+    "target_id": "35",
+    "target_class": "kitchen cabinet",
+    "pred_top1": 11,
+    "pred_top5": [
+      12,
+      11,
+      13,
+      35,
+      14
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "directional",
+    "anchor_ids": [
+      "17"
+    ],
+    "anchor_classes": [
+      "stove"
+    ],
+    "anchor_ranks": [
+      17
+    ],
+    "anchor_distances": [
+      1.36
+    ],
+    "min_anchor_rank": 17,
+    "nearest_sparse_candidates": [
+      "43",
+      "42",
+      "3",
+      "41",
+      "24"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "directional",
+      "relational",
+      "dense_scene",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0164_00",
+    "utterance": "When facing the stove, pick the top cabinet on the left above the microwave",
+    "target_id": "35",
+    "target_class": "kitchen cabinet",
+    "pred_top1": 11,
+    "pred_top5": [
+      12,
+      11,
+      13,
+      35,
+      14
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "relative",
+    "anchor_ids": [
+      "17"
+    ],
+    "anchor_classes": [
+      "stove"
+    ],
+    "anchor_ranks": [
+      17
+    ],
+    "anchor_distances": [
+      1.36
+    ],
+    "min_anchor_rank": 17,
+    "nearest_sparse_candidates": [
+      "43",
+      "42",
+      "3",
+      "41",
+      "24"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "relative_position",
+      "relational",
+      "dense_scene",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0164_00",
+    "utterance": "Choose the kitchen cabinet that is far left of the stove on the other side of the wall.",
+    "target_id": "35",
+    "target_class": "kitchen cabinet",
+    "pred_top1": 11,
+    "pred_top5": [
+      12,
+      11,
+      13,
+      35,
+      14
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "directional",
+    "anchor_ids": [
+      "17"
+    ],
+    "anchor_classes": [
+      "stove"
+    ],
+    "anchor_ranks": [
+      17
+    ],
+    "anchor_distances": [
+      1.36
+    ],
+    "min_anchor_rank": 17,
+    "nearest_sparse_candidates": [
+      "43",
+      "42",
+      "3",
+      "41",
+      "24"
+    ],
+    "annotation_match": "exact_utterance",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "directional",
+      "relational",
+      "dense_scene",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0164_00",
+    "utterance": "the cabinet above the microwave on the counter",
+    "target_id": "35",
+    "target_class": "kitchen cabinet",
+    "pred_top1": 9,
+    "pred_top5": [
+      15,
+      10,
+      9,
+      43,
+      11
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "support",
+    "anchor_ids": [
+      "17"
+    ],
+    "anchor_classes": [
+      "stove"
+    ],
+    "anchor_ranks": [
+      17
+    ],
+    "anchor_distances": [
+      1.36
+    ],
+    "min_anchor_rank": 17,
+    "nearest_sparse_candidates": [
+      "43",
+      "42",
+      "3",
+      "41",
+      "24"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "relational",
+      "dense_scene",
+      "baseline_wrong"
+    ]
+  },
+  {
+    "scene_id": "scene0164_00",
+    "utterance": "It's a small cabinet above a dark rectangular appliance [toaster oven?].",
+    "target_id": "35",
+    "target_class": "kitchen cabinet",
+    "pred_top1": 11,
+    "pred_top5": [
+      12,
+      11,
+      13,
+      35,
+      14
+    ],
+    "correct_at_1": false,
+    "same_class_count": 5,
+    "relation_type": "attribute",
+    "anchor_ids": [
+      "17"
+    ],
+    "anchor_classes": [
+      "stove"
+    ],
+    "anchor_ranks": [
+      17
+    ],
+    "anchor_distances": [
+      1.36
+    ],
+    "min_anchor_rank": 17,
+    "nearest_sparse_candidates": [
+      "43",
+      "42",
+      "3",
+      "41",
+      "24"
+    ],
+    "annotation_match": "target_fallback",
+    "subset_tags": [
+      "same_class_clutter",
+      "same_class_high_clutter",
+      "single_anchor",
+      "dense_scene",
+      "baseline_wrong"
+    ]
+  }
+]

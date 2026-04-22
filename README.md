@@ -1,6 +1,10 @@
-# Relation-Aware 3D Grounding Benchmark and Methods
+# Relation-Aware 3D Grounding: Benchmark and Diagnostics
 
-A reproducible research codebase for 3D referring-expression grounding on the Nr3D/ReferIt3D benchmark. This project establishes a trustworthy evaluation foundation through dataset recovery, scene-disjoint splitting, and baseline reproduction, then explores relation-aware grounding methods toward the final research target: coverage-calibrated relational reranking.
+A reproducible research codebase for 3D referring-expression grounding on the Nr3D/ReferIt3D benchmark. This project establishes a **trustworthy evaluation foundation** through dataset recovery, scene-disjoint splitting, and baseline reproduction, then provides **diagnostic analysis** of failure modes and a simple dense reranker with modest gains.
+
+**Project Status**: Diagnostic paper + open-source release. Method exploration is complete.
+
+---
 
 ## Why This Project Matters
 
@@ -11,130 +15,95 @@ Most public 3D grounding repositories suffer from reproducibility problems:
 - **Unclear protocols**: Metric definitions vary across papers
 - **Weak traceability**: No run artifacts, no ablations, no failure analysis
 
-This makes apples-to-apples comparison impossible and published numbers unreliable. This project fixes that by building a fully transparent evaluation pipeline before making method claims.
+This makes apples-to-apples comparison impossible and published numbers unreliable. This project fixes that by building a fully transparent evaluation pipeline and honestly reporting what works and what doesn't.
 
 ---
 
-## What Has Been Built
+## Quick Results Summary
 
-### Dataset Recovery
+| Method | Test Acc@1 | Test Acc@5 | Net | Status |
+|--------|------------|------------|-----|--------|
+| **Base (clean)** | **30.83%** | **91.87%** | - | **Reference** |
+| **Dense-no-cal-v1** | **31.05%** | **92.01%** | +9 | **Retained** |
 
-- Recovered official Nr3D to **41,503 samples** (from incomplete public versions)
-- Expanded scene coverage from 269 to **641 ScanNet scenes**
-- Validated **zero duplicate samples** across the full dataset
-- Preserved original target object IDs and utterance metadata
-- Built scene-disjoint splits with verified zero overlap
+**Other methods explored** (calibration, dense strengthening) **did not improve results** and are frozen. See [reports/final_diagnostic_master_summary.md](reports/final_diagnostic_master_summary.md) for complete analysis.
 
-### Trustworthy Evaluation
+---
 
-- **Scene-disjoint split**: Train/val/test share no scenes
-- **Zero overlap verified**: All pairwise scene intersections validated as empty
-- **Unified metrics**: Acc@1 and Acc@5 computed consistently across all methods
-- **Apples-to-apples comparison**: Same data, same split, same evaluation protocol
+## Core Contributions
 
-### Reproduced Baselines
+### 1. Trustworthy Evaluation Foundation
 
-| Baseline | Test Acc@1 | Test Acc@5 | Status |
-|----------|------------|------------|--------|
-| ReferIt3DNet | 30.79% | 91.75% | Primary trusted baseline |
-| SAT | 28.27% | 87.64% | Secondary baseline (weaker) |
+- **Recovered full Nr3D dataset**: 41,503 samples across 641 ScanNet scenes
+- **Scene-disjoint splits**: Train/val/test share zero scenes (verified)
+- **Zero duplicates**: All samples validated as unique
+- **Unified metrics**: Acc@1 and Acc@5 computed consistently
+
+### 2. Reproduced Baselines
+
+| Baseline | Test Acc@1 | Test Acc@5 | Notes |
+|----------|------------|------------|-------|
+| ReferIt3DNet (reproduced) | 30.79% | 91.75% | Primary trusted baseline |
+| SAT (reproduced) | 28.27% | 87.64% | Secondary baseline |
 
 Both baselines reproduced from original papers with scene-disjoint evaluation.
 
-### Custom Methods Explored
+### 3. Diagnostic Framework
 
-| Method | Test Acc@1 | Val Acc@1 | Verdict |
-|--------|------------|-----------|---------|
-| Parser v1 | 30.04% | — | Discarded (parser noise, unstable fusion) |
-| Parser v2 | 28.81% | — | Discarded (below baseline, overfitting) |
-| Implicit v1 (dense) | 31.26% | ~33.26% | Promising, crashed (memory overflow) |
-| Implicit v2 (sparse top-k) | 28.55% | 31.03% | Discarded (coverage insufficient) |
-| Implicit v3 (chunked dense) | 30.36% | 32.90% | Promising but unconfirmed |
+- **Hard-subset tagging**: same-class clutter, multi-anchor, relative-position
+- **Coverage analysis**: anchor reachability, coverage@k, long-range evidence
+- **Harm/recovered taxonomy**: identifies where methods help vs hurt
+- **Case study export**: qualitative analysis with relation score diagnostics
+
+### 4. Limited Method Signal
+
+**Dense-no-cal-v1** - A simple dense relation reranker:
+
+| Metric | Value | Delta vs Base |
+|--------|-------|---------------|
+| Acc@1 | 31.05% | +0.22% |
+| Acc@5 | 92.01% | +0.14% |
+| Net | +9 | 402 recovered, 393 harmed |
+| Multi-Anchor | 28.34% | +5.3% |
+| Parameters | 398K | Lightweight |
+
+**What it is**: Modest but real gain, simple weighted aggregation, no calibration overhead.
+
+**What it is NOT**: SOTA-challenging, scalable foundation, or strong method contribution.
+
+### 5. Negative Findings (With Evidence)
+
+| Method | Acc@1 | Net | Why It Failed |
+|--------|-------|-----|---------------|
+| Dense-calibrated-v2 | 30.55% | -12 | Calibration signals uninformative |
+| Dense-v2-AttPool | 25.24% | -238 | Attention too complex for weak foundation |
+| Dense-v3-Geo | 24.32% | -277 | No geometry data available |
+| Dense-v4-HardNeg | 24.47% | -271 | Focal weighting hurts initial training |
+
+**Fundamentals debug revealed**:
+- Relation scores are mostly noisy (score gap = -0.95, correct targets score LOWER)
+- Pair ranking is weak (Hit@1 = 7%)
+- Adding complexity amplifies noise, not signal
+
+See [reports/dense_fundamentals_summary.md](reports/dense_fundamentals_summary.md) for detailed analysis.
 
 ---
 
-## Final Benchmark Results
+## Who Should Use This Repository
 
-| Method | Test Acc@1 | Test Acc@5 | Status |
-|--------|------------:|------------:|--------|
-| ReferIt3DNet | 30.79% | 91.75% | Primary baseline |
-| SAT | 28.27% | 87.64% | Secondary baseline |
-| Implicit v1 | 31.26% | — | Positive signal (incomplete) |
-| Implicit v2 | 28.55% | — | Stable but weaker |
-| Implicit v3 | 30.36% | — | Promising but unconfirmed |
+### Good Fit For
 
----
+- **Benchmark users** - Need trustworthy scene-disjoint evaluation
+- **Diagnostics researchers** - Study failure modes, hard subsets, coverage
+- **Reproducibility researchers** - Want clean baseline reproduction
+- **Method researchers** - Need clean starting point for new ideas
 
-## Key Research Findings
+### Not For
 
-1. **Trustworthy benchmarking matters more than flashy models** — Scene-disjoint splits and reproducible protocols are foundational. Many prior comparisons may be unreliable.
-
-2. **Validation scores alone can mislead** — SAT showed competitive validation performance but underperformed on test. Split leakage masks overfitting.
-
-3. **Parser-based explicit reasoning underperformed** — Heuristic and structured parsers introduce extraction noise. Span grounding is unreliable for spatial reasoning. Hard parser decisions hurt generalization.
-
-4. **Dense pairwise relation modeling showed positive signal** — Implicit v1 achieved +0.47% over baseline before crashing. Val performance suggests dense relations capture useful spatial semantics.
-
-5. **Sparse top-k relation approximation degraded performance** — Implicit v2 with k=5 neighbors lost -2.24% versus baseline. Relation coverage matters; missing long-range evidence hurts.
-
-6. **Chunked dense computation solved memory scaling** — Implicit v3 preserves dense N² semantics with chunked implementation. Numerical equivalence verified. Memory-safe for full scenes.
-
----
-
-## AAAI Upgrade Path
-
-The current repository is **not yet a paper-ready AAAI main-track method submission**. The trusted contribution is the evaluation and reproduction foundation; the method contribution still needs stable, multi-seed evidence.
-
-### Current Reviewer Verdict
-
-As a strict AAAI reviewer, the current method state would be:
-
-| Submission Framing | Likely Verdict | Reason |
-|--------------------|----------------|--------|
-| Current method paper | Reject / Weak Reject | Custom methods do not yet provide stable, confirmed gains over ReferIt3DNet |
-| v3 only, if it reaches ~31.3–31.8% | Weak Reject / Borderline | Small engineering gain, limited novelty unless supported by stronger diagnostics |
-| COVER-3D with 3-seed overall + hard-subset gains | Accept | Coverage and calibration claims become testable and supported |
-| COVER-3D with cross-backbone gains and full diagnostics | Strong Accept potential | Method, protocol, and diagnostic contributions reinforce each other |
-
-### Target Paper Direction
-
-Working title:
-
-**COVER-3D: Coverage-Calibrated Relational Grounding for Scene-Disjoint 3D Referring Expressions**
-
-Core claim:
-
-Hard relational failures in 3D grounding are caused by two coupled problems:
-
-1. **Coverage failure**: sparse/top-k relation neighborhoods miss useful anchors, especially in long-range, multi-anchor, and same-class clutter cases.
-2. **Calibration failure**: relation branches can overpower reliable base predictions when parser, anchor, or relation evidence is noisy.
-
-The final method should show that **dense relation coverage plus uncertainty-calibrated fusion** improves hard relational subsets while preserving overall accuracy.
-
-### Minimum Acceptance Bar
-
-The project should only be positioned as a AAAI method paper if all of the following hold:
-
-- Overall Acc@1 improves over the trusted ReferIt3DNet baseline by at least **+1.2 points** (target: **32.0%+** vs 30.79%).
-- Hard relational, same-class clutter, and long-range anchor subsets improve by roughly **+3 to +5 Acc@1 points**.
-- Acc@5 remains close to the baseline level and does not collapse.
-- Results hold across **at least 3 seeds** with mean/std and statistical tests where differences are small.
-- Gains are not restricted to a weak baseline or a single lucky run.
-- Ablations show that both **coverage** and **calibration** are necessary.
-- Qualitative cases match the quantitative story: dense coverage finds useful anchors; calibration prevents noisy relation evidence from hurting easy cases.
-
-### COVER-3D Roadmap
-
-1. **Freeze the official scene-disjoint protocol** using `data/processed/scene_disjoint/official_scene_disjoint`.
-2. **Implement coverage diagnostics** before more training: coverage@k, anchor reachability, long-range anchor rank, same-class clutter, shared-anchor negatives.
-3. **Build a model-agnostic backbone adapter** that exposes `base_logits`, `object_embeddings`, `object_geometry`, `candidate_mask`, and `utterance_features`.
-4. **Convert relation modeling into a reranker** rather than another standalone backbone.
-5. **Reuse chunked dense all-pair relation computation** as the coverage-preserving primitive.
-6. **Add calibrated fusion** using base margin, anchor entropy, parser confidence, relation margin, and relation evidence strength.
-7. **Add hard relational training hooks** for same-class distractors, shared anchors, long-range anchors, relation counterfactuals, paraphrases, and ambiguous low-margin cases.
-8. **Run 3-seed formal experiments on stable hardware only**.
-9. **Report main, hard-subset, ablation, paraphrase, runtime/memory, and failure-taxonomy results**.
-10. If the acceptance bar is not met, reposition the project as a reproducibility and diagnostic evaluation paper rather than a method paper.
+- **SOTA chasers** - Methods are modest (+0.22%), not state-of-the-art
+- **Calibration developers** - Calibration line is frozen (signals uninformative)
+- **Dense-scorer enhancers** - Strengthening line is frozen (foundation weak)
+- **Multi-seed validators** - Single-seed results only
 
 ---
 
@@ -142,24 +111,32 @@ The project should only be positioned as a AAAI method paper if all of the follo
 
 ```
 relation-aware-3d-grounding/
-├── src/rag3d/               # Main Python package
-│   ├── datasets/            # Nr3D/ScanNet loading, schemas, builders
-│   ├── encoders/            # Object, point, and fusion encoders
-│   ├── models/              # ReferIt3DNet, SAT, relation-aware variants
-│   ├── parsers/             # Heuristic, structured, VLM parser adapters
-│   ├── relation_reasoner/   # Relation scoring, reranking, anchors
-│   ├── evaluation/          # Metrics, stratified eval, paraphrase eval
-│   ├── diagnostics/         # Failure taxonomy, confidence, case analysis
-│   └ visualization/         # Scene visualization, qualitative panels
-│   └── training/            # Training runner, checkpoint handling
-├── configs/                 # Dataset, training, evaluation configs
-├── scripts/                 # Data prep, training, evaluation entrypoints
-├── repro/                   # Baseline reproduction code
-│   ├── referit3d_baseline/  # ReferIt3DNet reproduction
-│   └ sat_baseline/          # SAT reproduction
-├── reports/                 # Experiment reports, audits, analyses
-├── data/                    # Local data (git-ignored)
-└── tests/                   # Unit and smoke tests
+├── README.md                          # This file
+├── .claude/                           # Project status documentation
+│   ├── CURRENT_STATUS.md              # Current phase: diagnostic paper
+│   ├── NEXT_TASK.md                   # Next priorities
+│   └── METHOD_PHASE_FREEZE.md         # Frozen method boundaries
+├── src/rag3d/                         # Core Python package
+│   ├── models/
+│   │   ├── cover3d_model.py           # COVER-3D wrapper (retained)
+│   │   ├── cover3d_dense_relation.py  # DenseRelationModule (retained)
+│   │   └── cover3d_calibration.py     # Calibration module (archived)
+│   └── ...
+├── scripts/
+│   ├── train_cover3d_round1.py        # Training script (retained)
+│   ├── analyze_dense_fundamentals.py  # Diagnostic analysis (retained)
+│   └── ...                            # Other scripts (archived/debug)
+├── configs/
+│   ├── cover3d_round1/                # Round-1 configs (retained)
+│   └── ...                            # Other configs (archived)
+├── reports/
+│   ├── final_diagnostic_master_summary.md    # Master summary
+│   ├── dense_fundamentals_summary.md         # Fundamentals debug
+│   └── ...                                   # Other reports
+├── repro/
+│   ├── referit3d_baseline/            # ReferIt3DNet reproduction
+│   └── sat_baseline/                  # SAT reproduction
+└── docs/                              # Additional documentation
 ```
 
 ---
@@ -177,33 +154,6 @@ make check-env
 make test
 ```
 
-### Data Preparation
-
-```bash
-# Fetch Nr3D annotations from HuggingFace
-python scripts/fetch_nr3d_hf.py
-
-# Fetch ScanNet aggregation assets
-python scripts/fetch_scannet_aggregations.py --artifact aggregation-json
-
-# Build scene-disjoint splits
-python scripts/prepare_data.py \
-  --mode build-nr3d-official-scene-disjoint \
-  --config configs/dataset/referit3d_scene_disjoint.yaml
-
-# Validate split integrity
-python scripts/validate_scene_disjoint_splits.py \
-  --manifest-dir data/processed/scene_disjoint/official_scene_disjoint
-
-# Prepare text features
-python scripts/prepare_bert_features.py \
-  --manifest-dir data/processed/scene_disjoint/official_scene_disjoint
-
-# Prepare object features
-python scripts/compute_object_features.py \
-  --config configs/dataset/expanded_nr3d.yaml
-```
-
 ### Baseline Reproduction
 
 ReferIt3DNet:
@@ -218,88 +168,67 @@ python repro/referit3d_baseline/scripts/evaluate.py \
   --device cuda
 ```
 
-SAT:
+### Run Dense-no-cal-v1
 
 ```bash
-python repro/sat_baseline/scripts/train_sat.py \
-  --config configs/sat_baseline.yaml \
+python scripts/train_cover3d_round1.py \
+  --variant dense-no-cal \
+  --epochs 10 \
   --device cuda
 ```
 
-### Relation-Aware Methods
+### Run Diagnostics
 
 ```bash
-# Smoke test
-python scripts/smoke_test_implicit_v3.py
-
-# Training
-python scripts/train_implicit_relation_v3.py \
-  --config configs/implicit_relation_v3.yaml \
-  --device cuda
-
-# Evaluation
-python scripts/evaluate_implicit_relation_v3.py \
-  --config configs/implicit_relation_v3.yaml \
-  --device cuda
+python scripts/analyze_dense_fundamentals.py
 ```
 
 ---
 
-## Reports and Artifacts
-
-Detailed experiment reports are stored in [reports/](reports/):
+## Key Reports
 
 | Report | Description |
 |--------|-------------|
-| [final_method_status.md](reports/final_method_status.md) | Method comparison and verdicts |
-| [scene_disjoint_split_recovery_results.md](reports/scene_disjoint_split_recovery_results.md) | Split repair and integrity validation |
-| [implicit_relation_v3_archive.md](reports/implicit_relation_v3_archive.md) | v3 findings, crash context, continuation path |
-| [next_phase_research_plan.md](reports/next_phase_research_plan.md) | Phase transition and research roadmap |
+| [final_diagnostic_master_summary.md](reports/final_diagnostic_master_summary.md) | **Start here** - Complete results and analysis |
+| [final_diagnostic_master_table.csv](reports/final_diagnostic_master_table.csv) | Machine-readable results table |
+| [dense_fundamentals_summary.md](reports/dense_fundamentals_summary.md) | Why dense scorer methods failed |
+| [calibration_failure_analysis.md](reports/calibration_failure_analysis.md) | Why calibration failed |
+| [dense_strengthening_results.md](reports/dense_strengthening_results.md) | Strengthening variant failures |
+| [diagnostic_paper_positioning_freeze.md](reports/diagnostic_paper_positioning_freeze.md) | Paper framing and target venues |
 
 ---
 
-## Current Recommended Usage
+## Method Status Summary
 
-- **Use ReferIt3DNet baseline** as the official comparison anchor (30.79% test Acc@1)
-- **Use Implicit v3** only as evidence that chunked dense relation computation is feasible; do not claim superiority
-- **Use COVER-3D** as the planned final method direction: model-agnostic dense relational reranking with calibrated fusion
-- **Do not use Parser v1/v2 or Implicit v2** — these methods are discarded with clear evidence
+| Method | Acc@1 | Status | Decision |
+|--------|-------|--------|----------|
+| Base (clean) | 30.83% | Retained | Reference anchor |
+| Dense-no-cal-v1 | 31.05% | Retained | Lightweight method contribution |
+| Dense-calibrated-v1 | 30.60% | Frozen | Gate collapse |
+| Dense-calibrated-v2 | 30.55% | Frozen | Signals uninformative |
+| Dense-v2-AttPool | 25.24% | Frozen | Too complex |
+| Dense-v3-Geo | 24.32% | Frozen | No geometry data |
+| Dense-v4-HardNeg | 24.47% | Frozen | Focal hurts |
 
----
-
-## Hardware Limitations Encountered
-
-The development machine exhibited GPU driver instability during v3 training:
-
-- Multiple system crashes with NVIDIA driver hangs
-- Short diagnostic runs completed successfully
-- Resume runs crashed regardless of mitigation attempts
-- This is a hardware issue, not a code or model problem
-
-**Implication**: Final v3 validation requires stable hardware. The current result is promising but unconfirmed.
+See [reports/method_freeze_and_release_policy.md](reports/method_freeze_and_release_policy.md) for freeze rationale.
 
 ---
 
-## Future Roadmap
+## Project Positioning
 
-### Immediate Priority
+**Paper Type**: Diagnostic / Benchmark / Reproducibility + Limited Method Signal
 
-1. Align README, `.claude`, and reports around the AAAI upgrade path
-2. Implement relation coverage diagnostics and hard-case tagging
-3. Define the model-agnostic backbone adapter contract
-4. Implement calibrated COVER-3D reranking as the final method path
+**NOT**: Strong Method Paper
 
-### Medium Priority
+### Core Claim
 
-5. Run CPU/unit/smoke validation locally
-6. Move formal 3-seed training to stable GPU hardware
-7. Complete ablations: sparse vs dense, calibrated vs uncalibrated, hard negatives, paraphrase consistency, oracle anchor, noisy parser stress
+> This project establishes a trustworthy, scene-disjoint evaluation and diagnostic framework for 3D referring-expression grounding, identifies concentrated failure modes in hard relational subsets, provides direct evidence of coverage failure under sparse candidate-anchor selection, and shows that a simple dense reranker yields only limited gains while more complex extensions do not justify further investment.
 
-### Long-Term
+### Target Venues
 
-8. Cross-backbone validation beyond ReferIt3DNet
-9. Multi-view geometry integration
-10. Real 3D spatial reasoning beyond bounding-box features
+- **Primary**: TACL, ACL Findings, EMNLP Findings, Scientific Data
+- **Secondary**: CVPR/ICCV/ECCV Workshop, 3DV, BMVC
+- **NOT**: AAAI/NeurIPS/ICML/CVPR/ICCV main track (method signal insufficient)
 
 ---
 
@@ -311,6 +240,7 @@ The development machine exhibited GPU driver instability during v3 training:
 - Treat parser outputs as noisy weak signals, not oracle structure
 - Keep generated data, checkpoints, and feature caches out of git
 - Any paper claim requires run artifacts, ablations, and failure analysis
+- **Honest framing over overselling** - Reviewers forgive modest claims, not inflated ones
 
 ---
 

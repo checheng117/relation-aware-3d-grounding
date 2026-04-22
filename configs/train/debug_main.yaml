@@ -1,7 +1,0 @@
-extends: main
-mode: debug
-epochs: 2
-batch_size: 8
-debug_max_batches: 16
-run_name: relation_aware_debug
-metrics_file: outputs/metrics/train_relation_aware_debug_metrics.jsonl

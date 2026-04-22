@@ -95,6 +95,10 @@ def build_model(config: Dict[str, Any]) -> ReferIt3DNet:
         dropout=model_config.get("dropout", 0.1),
         encoder_type=model_config.get("encoder_type", "simple_point"),
         pointnetpp_num_points=model_config.get("pointnetpp_num_points", 1024),
+        # Learned class embedding parameters
+        use_learned_class_embedding=model_config.get("use_learned_class_embedding", False),
+        num_object_classes=model_config.get("num_classes", 516),
+        class_embed_dim=model_config.get("class_embed_dim", 64),
     )
 
 # Geometry directory for raw points
@@ -132,6 +136,34 @@ def load_scene_points(scene_id: str, geometry_dir: Path = GEOMETRY_DIR) -> dict:
     return result
 
 
+# No caching - load fresh each time to avoid memory issues
+def load_scene_geometry(scene_id: str, geometry_dir: Path = GEOMETRY_DIR) -> Optional[dict]:
+    """Load center/size geometry from file for a scene (no cache).
+
+    Returns dict mapping object_id -> {center, size}, or None if not available.
+    """
+    geom_path = geometry_dir / f"{scene_id}_geometry.npz"
+    if not geom_path.exists():
+        return None
+
+    try:
+        data = np.load(geom_path, allow_pickle=True)
+        object_ids = data["object_ids"]
+        centers = data["centers"]
+        sizes = data["sizes"]
+
+        result = {}
+        for i, oid in enumerate(object_ids):
+            result[int(oid)] = {
+                "center": centers[i].tolist(),  # Convert to list for stability
+                "size": sizes[i].tolist(),
+            }
+        data.close()  # Explicitly close
+        return result
+    except Exception as e:
+        return None
+
+
 def sample_points(points: np.ndarray, num_points: int = 1024) -> np.ndarray:
     """Sample fixed number of points from point cloud.
 
@@ -157,11 +189,17 @@ def collate_fn(
     batch: List[tuple],  # List of (index, sample) tuples from IndexedDataset
     feat_dim: int = 256,
     text_features: Optional[np.ndarray] = None,
+    class_to_idx: Optional[Dict[str, int]] = None,  # For learned class embedding
 ) -> Dict[str, Any]:
     """Collate samples into batch tensors (SimplePointEncoder mode).
 
     Uses real BERT features and geometry features (center/size + class hash).
     The class hash provides semantic signal for distinguishing object types.
+
+    If class_to_idx is provided, also outputs class_indices for learned embedding.
+
+    NOTE: Real geometry integration attempted but caused memory issues.
+    Current: uses manifest center/size (which are fallback values).
     """
     B = len(batch)
     max_n = max(len(s.objects) for idx, s in batch)
@@ -173,24 +211,33 @@ def collate_fn(
     texts = []
     sample_indices = []
 
+    # For learned class embedding
+    class_indices = None
+    if class_to_idx is not None:
+        class_indices = torch.zeros(B, max_n, dtype=torch.long)
+
     for i, (idx, sample) in enumerate(batch):
         texts.append(sample.utterance)
         sample_indices.append(idx)  # Direct index for BERT lookup
 
         for j, obj in enumerate(sample.objects):
             # Use geometry features: center + size + class hash
-            # Channels 0-2: center (tanh-normalized)
-            # Channels 3-5: size (tanh-normalized)
+            # Channels 0-2: center (normalized)
+            # Channels 3-5: size (normalized)
             # Channels 6+: class name hash (one-hot semantic signal)
             if obj.center:
-                object_features[i, j, 0:3] = torch.tensor(obj.center) / 5.0  # Normalize
+                object_features[i, j, 0:3] = torch.tensor(obj.center).float() / 5.0  # Normalize
             if obj.size:
-                object_features[i, j, 3:6] = torch.tensor(obj.size) / 2.0  # Normalize
+                object_features[i, j, 3:6] = torch.tensor(obj.size).float() / 2.0  # Normalize
             # Class name hash as semantic feature - use deterministic hash
             import hashlib
             class_hash = int(hashlib.md5(obj.class_name.encode()).hexdigest()[:8], 16)
             feat_hash = class_hash % (feat_dim - 6)
             object_features[i, j, 6 + feat_hash] = 1.0
+
+            # Learned class embedding index
+            if class_to_idx is not None:
+                class_indices[i, j] = class_to_idx.get(obj.class_name, 0)
 
             object_mask[i, j] = True
 
@@ -203,6 +250,10 @@ def collate_fn(
         "texts": texts,
         "samples_ref": [s for idx, s in batch],
     }
+
+    # Add class indices for learned embedding
+    if class_indices is not None:
+        result["class_indices"] = class_indices
 
     # Add real BERT features - always use index alignment since manifest/features aligned
     if text_features is not None:
@@ -220,20 +271,25 @@ def collate_fn_pointnetpp(
     batch: List[tuple],
     num_points: int = 1024,
     text_features: Optional[np.ndarray] = None,
+    include_class_semantics: bool = True,
 ) -> Dict[str, Any]:
     """Collate samples into batch tensors with RAW POINTS (PointNet++ mode).
 
     Loads raw XYZ points from geometry files, normalizes to object bbox,
     and samples fixed number of points per object.
 
+    Now includes class semantics (class hash) to match SimplePointEncoder.
+
     Returns:
         object_points: [B, N, P, 3] raw normalized point coordinates
+        class_features: [B, N, 250] class hash features (channels 6-255 style)
     """
     B = len(batch)
     max_n = max(len(s.objects) for idx, s in batch)
 
     # Initialize tensors
     object_points = torch.zeros(B, max_n, num_points, 3)
+    class_features = torch.zeros(B, max_n, 250)  # Match SimplePointEncoder class hash dim
     object_mask = torch.zeros(B, max_n, dtype=torch.bool)
     target_index = torch.zeros(B, dtype=torch.long)
     texts = []
@@ -264,12 +320,20 @@ def collate_fn_pointnetpp(
                 # Fallback: use zeros (will be masked)
                 object_points[i, j] = torch.zeros(num_points, 3)
 
+            # Add class semantics (class hash) - same as SimplePointEncoder
+            if include_class_semantics:
+                import hashlib
+                class_hash = int(hashlib.md5(obj.class_name.encode()).hexdigest()[:8], 16)
+                feat_hash = class_hash % 250  # Match 250 channels (was 256-6)
+                class_features[i, j, feat_hash] = 1.0
+
             object_mask[i, j] = True
 
         target_index[i] = sample.target_index
 
     result = {
         "object_points": object_points,  # [B, N, P, 3] for PointNet++
+        "class_features": class_features,  # [B, N, 250] class semantics
         "object_mask": object_mask,
         "target_index": target_index,
         "texts": texts,
@@ -353,6 +417,28 @@ class IndexedDataset(torch.utils.data.Dataset):
         return (idx, sample)
 
 
+def build_class_vocabulary(manifest_paths: List[Path]) -> tuple:
+    """Build class vocabulary from manifest files.
+
+    Returns:
+        class_to_idx: Dict mapping class name to index
+        idx_to_class: List mapping index to class name
+    """
+    class_names = set()
+    for manifest_path in manifest_paths:
+        if not manifest_path.exists():
+            continue
+        with open(manifest_path) as f:
+            for line in f:
+                sample = json.loads(line)
+                for obj in sample.get("objects", []):
+                    class_names.add(obj["class_name"])
+
+    sorted_classes = sorted(list(class_names))
+    class_to_idx = {name: idx for idx, name in enumerate(sorted_classes)}
+    return class_to_idx, sorted_classes
+
+
 def train_epoch(
     model: nn.Module,
     loader: DataLoader,
@@ -383,8 +469,12 @@ def train_epoch(
         target_index = batch["target_index"].to(device)
 
         # PointNet++ uses raw points, SimplePointEncoder uses features
+        class_features = None
         if encoder_type == "pointnetpp" and "object_points" in batch:
             points_input = batch["object_points"].to(device)  # [B, N, P, 3]
+            # Get class features if available
+            if "class_features" in batch:
+                class_features = batch["class_features"].to(device)  # [B, N, 250]
         else:
             points_input = batch["object_features"].to(device)  # [B, N, feat_dim]
 
@@ -396,10 +486,17 @@ def train_epoch(
             batch_size = points_input.shape[0]
             text_features = torch.randn(batch_size, 768, device=device)
 
+        # Get class indices for learned embedding
+        class_indices = None
+        if "class_indices" in batch:
+            class_indices = batch["class_indices"].to(device)
+
         outputs = model(
             points=points_input,
             object_mask=object_mask,
             text_features=text_features,
+            class_features=class_features,
+            class_indices=class_indices,
         )
         logits = outputs["logits"]
 
@@ -456,8 +553,12 @@ def evaluate(
         target_index = batch["target_index"].to(device)
 
         # PointNet++ uses raw points, SimplePointEncoder uses features
+        class_features = None
         if encoder_type == "pointnetpp" and "object_points" in batch:
             points_input = batch["object_points"].to(device)  # [B, N, P, 3]
+            # Get class features if available
+            if "class_features" in batch:
+                class_features = batch["class_features"].to(device)  # [B, N, 250]
         else:
             points_input = batch["object_features"].to(device)  # [B, N, feat_dim]
 
@@ -468,10 +569,17 @@ def evaluate(
             batch_size = points_input.shape[0]
             text_features = torch.randn(batch_size, 768, device=device)
 
+        # Get class indices for learned embedding
+        class_indices = None
+        if "class_indices" in batch:
+            class_indices = batch["class_indices"].to(device)
+
         outputs = model(
             points=points_input,
             object_mask=object_mask,
             text_features=text_features,
+            class_features=class_features,
+            class_indices=class_indices,
         )
         logits = outputs["logits"]
 
@@ -500,7 +608,11 @@ def evaluate(
     }
 
 
-def train(config_path: Path, device_str: str = "cuda"):
+def train(
+    config_path: Path,
+    device_str: str = "cuda",
+    resume_checkpoint: Optional[Path] = None,
+):
     """Main training loop."""
     setup_logging()
     config = load_yaml_config(config_path, base_dir=ROOT)
@@ -528,6 +640,7 @@ def train(config_path: Path, device_str: str = "cuda"):
 
     train_manifest = manifest_dir / dataset_config.get("train_manifest", "train_manifest.jsonl")
     val_manifest = manifest_dir / dataset_config.get("val_manifest", "val_manifest.jsonl")
+    test_manifest = manifest_dir / dataset_config.get("test_manifest", "test_manifest.jsonl")  # For full vocabulary
 
     train_dataset = IndexedDataset(ReferIt3DManifestDataset(train_manifest))
     val_dataset = IndexedDataset(ReferIt3DManifestDataset(val_manifest))
@@ -567,37 +680,59 @@ def train(config_path: Path, device_str: str = "cuda"):
         log.warning("Val BERT features not found, using random features")
         use_bert = False
 
+    # Build class vocabulary for learned class embedding
+    use_learned_class_embedding = model_config.get("use_learned_class_embedding", False)
+    class_to_idx = None
+    class_vocab = None
+    if use_learned_class_embedding:
+        log.info("Building class vocabulary for learned class embedding...")
+        # Use all splits for full vocabulary coverage (516 classes)
+        class_to_idx, class_vocab = build_class_vocabulary([train_manifest, val_manifest, test_manifest])
+        log.info(f"Class vocabulary size: {len(class_vocab)}")
+        configured_num_classes = int(model_config.get("num_classes", len(class_vocab)))
+        if len(class_vocab) > configured_num_classes:
+            raise ValueError(
+                "Learned class vocabulary is larger than model embedding table: "
+                f"vocab={len(class_vocab)} configured_num_classes={configured_num_classes}. "
+                "Use a sorted-vocabulary config with num_classes >= vocab size."
+            )
+
     # Select collate function based on encoder type
     if encoder_type == "pointnetpp":
         log.info(f"Using PointNet++ collate with {num_points} points per object")
+        # Check if class semantics should be used
+        use_class_semantics = model_config.get("use_class_semantics", True)
+        log.info(f"Class semantics enabled: {use_class_semantics}")
         train_loader = DataLoader(
             train_dataset,
             batch_size=batch_size,
             shuffle=True,
-            collate_fn=lambda b: collate_fn_pointnetpp(b, num_points, train_bert_features),
+            collate_fn=lambda b: collate_fn_pointnetpp(b, num_points, train_bert_features, use_class_semantics),
             num_workers=0,
         )
         val_loader = DataLoader(
             val_dataset,
             batch_size=config.get("evaluation", {}).get("batch_size", batch_size * 2),
             shuffle=False,
-            collate_fn=lambda b: collate_fn_pointnetpp(b, num_points, val_bert_features),
+            collate_fn=lambda b: collate_fn_pointnetpp(b, num_points, val_bert_features, use_class_semantics),
             num_workers=0,
         )
     else:
         log.info(f"Using SimplePointEncoder collate with {feat_dim} feature dim")
+        if use_learned_class_embedding:
+            log.info("Using learned class embedding in collate")
         train_loader = DataLoader(
             train_dataset,
             batch_size=batch_size,
             shuffle=True,
-            collate_fn=lambda b: collate_fn(b, feat_dim, train_bert_features),
+            collate_fn=lambda b: collate_fn(b, feat_dim, train_bert_features, class_to_idx),
             num_workers=0,
         )
         val_loader = DataLoader(
             val_dataset,
             batch_size=config.get("evaluation", {}).get("batch_size", batch_size * 2),
             shuffle=False,
-            collate_fn=lambda b: collate_fn(b, feat_dim, val_bert_features),
+            collate_fn=lambda b: collate_fn(b, feat_dim, val_bert_features, class_to_idx),
             num_workers=0,
         )
 
@@ -663,13 +798,53 @@ def train(config_path: Path, device_str: str = "cuda"):
     checkpoint_dir = ROOT / config.get("checkpoint", {}).get("dir", "outputs/repro/referit3d_baseline")
     checkpoint_dir.mkdir(parents=True, exist_ok=True)
 
-    best_val_acc = 0.0
+    best_val_acc = -1.0
     history = []
     epochs_without_improvement = 0
+    start_epoch = 0
 
     debug_max_batches = config.get("debug", {}).get("max_batches")
 
-    for epoch in range(epochs):
+    if resume_checkpoint is not None:
+        if not resume_checkpoint.exists():
+            raise FileNotFoundError(f"Resume checkpoint not found: {resume_checkpoint}")
+        resume = torch.load(resume_checkpoint, map_location=device)
+        if "model_state_dict" not in resume:
+            raise ValueError(f"Resume checkpoint lacks model_state_dict: {resume_checkpoint}")
+        model.load_state_dict(resume["model_state_dict"])
+        if "optimizer_state_dict" in resume:
+            optimizer.load_state_dict(resume["optimizer_state_dict"])
+        start_epoch = int(resume.get("epoch", -1)) + 1
+        best_val_acc = float(resume.get("val_acc", 0.0))
+        history_path = checkpoint_dir / "training_history.json"
+        if history_path.exists():
+            try:
+                history = json.loads(history_path.read_text())
+            except json.JSONDecodeError:
+                log.warning("Could not parse existing training history; starting a new history list")
+        log.info(
+            "Resumed from %s at next epoch %d with best val acc %.4f",
+            resume_checkpoint,
+            start_epoch + 1,
+            best_val_acc,
+        )
+
+    if class_vocab is not None:
+        vocab_path = checkpoint_dir / "class_vocabulary.json"
+        with vocab_path.open("w") as f:
+            json.dump(
+                {
+                    "class_vocabulary": class_vocab,
+                    "class_to_idx": class_to_idx,
+                    "source_manifests": [str(train_manifest), str(val_manifest), str(test_manifest)],
+                    "ordering": "sorted(class_name)",
+                },
+                f,
+                indent=2,
+            )
+        log.info(f"Saved class vocabulary to {vocab_path}")
+
+    for epoch in range(start_epoch, epochs):
         log.info(f"Epoch {epoch + 1}/{epochs}")
 
         # Train
@@ -720,6 +895,9 @@ def train(config_path: Path, device_str: str = "cuda"):
                 "optimizer_state_dict": optimizer.state_dict(),
                 "val_acc": best_val_acc,
                 "config": config,
+                "class_vocabulary": class_vocab,
+                "class_to_idx": class_to_idx,
+                "class_vocabulary_ordering": "sorted(class_name)" if class_vocab is not None else None,
             }, checkpoint_dir / "best_model.pt")
             log.info(f"Saved best model with val acc: {best_val_acc:.4f}")
         else:
@@ -749,9 +927,10 @@ def main():
         default=ROOT / "repro/referit3d_baseline/configs/official_baseline.yaml",
     )
     parser.add_argument("--device", type=str, default="cuda")
+    parser.add_argument("--resume-checkpoint", type=Path, default=None)
     args = parser.parse_args()
 
-    train(args.config, args.device)
+    train(args.config, args.device, args.resume_checkpoint)
 
 
 if __name__ == "__main__":

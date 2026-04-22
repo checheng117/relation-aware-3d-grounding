@@ -1,0 +1,5 @@
+Variant,Acc1,Acc5,Harmed,Recovered,Net,Easy,MultiAnchor,RelativePos,GateMean,GateStd,Conclusion
+Base,30.83,91.87,-,-,0,31.72,23.04,29.86,1.0 (fixed),0.0,Reference
+Dense-no-cal,31.05,92.01,393,402,+9,31.35,28.34,30.68,0.5 (fixed),0.0,Best lightweight improvement
+Dense-calibrated (v1),30.60,91.89,444,434,-10,30.80,28.80,30.37,0.9 (collapsed),~0.0,Failed (gate collapse)
+Dense-calibrated-v2,30.55,91.80,471,459,-12,30.49,31.11,29.86,0.687,0.066,Gate OK but performance worse

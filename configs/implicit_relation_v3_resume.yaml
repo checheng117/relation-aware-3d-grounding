@@ -1,0 +1,61 @@
+# Implicit Relation v3 Resume Configuration
+#
+# Purpose: Resume from checkpoint_epoch_15.pt and complete epochs 16-20
+# Conservative: Only 5 additional epochs, checkpoint every epoch
+
+dataset:
+  manifest_dir: data/processed/scene_disjoint/official_scene_disjoint
+  train_manifest: train_manifest.jsonl
+  val_manifest: val_manifest.jsonl
+  test_manifest: test_manifest.jsonl
+  bert_dir: data/text_features/full_official_nr3d
+
+model:
+  name: relation_aware_implicit_v3
+  encoder_type: simple_point
+  point_input_dim: 256
+  point_hidden_dim: 128
+  point_output_dim: 256
+  lang_input_dim: 768
+  lang_hidden_dim: 256
+  lang_output_dim: 256
+  fusion_dim: 512
+  dropout: 0.1
+  use_learned_class_embedding: true
+  num_classes: 516
+  class_embed_dim: 64
+  relation_hidden_dim: 256
+  relation_mlp_layers: 2
+  relation_dropout: 0.1
+  use_residual: true
+  use_gate: false
+  relation_temperature: 1.0
+  chunk_size: 4
+  relation_enabled: true
+
+training:
+  epochs: 20  # Will resume from epoch 16, complete through epoch 20
+  batch_size: 4
+  lr: 1e-4
+  weight_decay: 1e-4
+  grad_clip: 1.0
+  seed: 42
+  scheduler_type: cosine
+  warmup_epochs: 0
+  gradient_accumulation_steps: 4
+
+evaluation:
+  batch_size: 16
+  compute_acc_at_5: true
+
+checkpoint:
+  dir: outputs/implicit_relation_v3_resume
+
+device: cuda
+
+debug:
+  max_batches: null
+
+experiment:
+  phase: implicit_relation_v3_resume
+  purpose: complete_epochs_16_to_20_from_checkpoint

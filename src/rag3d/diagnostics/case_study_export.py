@@ -138,8 +138,8 @@ def export_case_studies(
     all_predictions: Dict[str, List[Dict[str, Any]]],
     all_targets: List[Dict[str, Any]],
     all_parses: Dict[str, List[Dict[str, Any]]],
-    all_fallback_decisions: Optional[List[Dict[str, Any]]] = None,
     output_dir: Path,
+    all_fallback_decisions: Optional[List[Dict[str, Any]]] = None,
     max_per_category: int = 10,
 ) -> Dict[str, int]:
     """

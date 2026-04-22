@@ -1,8 +1,0 @@
-name: relation_aware
-object_dim: 256
-language_dim: 256
-hidden_dim: 256
-relation_dim: 128
-anchor_temperature: 1.0
-use_structured_parse: true
-dropout: 0.1

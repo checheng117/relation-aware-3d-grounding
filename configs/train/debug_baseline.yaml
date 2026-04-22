@@ -1,7 +1,0 @@
-extends: baseline
-mode: debug
-epochs: 2
-batch_size: 8
-debug_max_batches: 16
-run_name: baseline_debug
-metrics_file: outputs/metrics/train_baseline_debug_metrics.jsonl

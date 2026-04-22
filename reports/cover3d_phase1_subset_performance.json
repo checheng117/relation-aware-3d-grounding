@@ -1,0 +1,165 @@
+{
+  "aggregate": {
+    "total_samples": 4255,
+    "overall_acc_at_1": 31.05,
+    "overall_acc_at_5": 92.67,
+    "n_objects_mean": 38.56,
+    "n_objects_median": 41,
+    "n_objects_min": 10,
+    "n_objects_max": 90,
+    "same_class_count_mean": 3.1,
+    "same_class_count_median": 3,
+    "anchor_count_mean": 0.17,
+    "samples_with_anchor_pct": 11.47,
+    "relation_type_distribution": {
+      "between": 129,
+      "relative": 967,
+      "directional": 1384,
+      "other": 1080,
+      "attribute": 600,
+      "support": 87,
+      "container": 8
+    },
+    "clutter_distribution": {
+      "3-4": 1676,
+      "2": 1882,
+      "5-6": 697
+    },
+    "scene_size_distribution": {
+      "40-49": 1508,
+      "<20": 506,
+      "30-39": 940,
+      "20-29": 549,
+      "50-59": 561,
+      "60+": 191
+    }
+  },
+  "subsets": [
+    {
+      "subset": "no_anchor",
+      "count": 3767,
+      "acc_at_1": 32.28,
+      "acc_at_5": 93.23,
+      "pct_of_total": 88.53
+    },
+    {
+      "subset": "hard_combined",
+      "count": 3579,
+      "acc_at_1": 29.2,
+      "acc_at_5": 91.98,
+      "pct_of_total": 84.11
+    },
+    {
+      "subset": "incorrect",
+      "count": 2934,
+      "acc_at_1": 0.0,
+      "acc_at_5": 89.37,
+      "pct_of_total": 68.95
+    },
+    {
+      "subset": "relational",
+      "count": 2575,
+      "acc_at_1": 31.26,
+      "acc_at_5": 93.36,
+      "pct_of_total": 60.52
+    },
+    {
+      "subset": "same_class_clutter",
+      "count": 2373,
+      "acc_at_1": 21.96,
+      "acc_at_5": 90.18,
+      "pct_of_total": 55.77
+    },
+    {
+      "subset": "directional",
+      "count": 1397,
+      "acc_at_1": 30.71,
+      "acc_at_5": 93.2,
+      "pct_of_total": 32.83
+    },
+    {
+      "subset": "correct",
+      "count": 1321,
+      "acc_at_1": 100.0,
+      "acc_at_5": 100.0,
+      "pct_of_total": 31.05
+    },
+    {
+      "subset": "relative",
+      "count": 1305,
+      "acc_at_1": 28.2,
+      "acc_at_5": 92.8,
+      "pct_of_total": 30.67
+    },
+    {
+      "subset": "color_relational",
+      "count": 1047,
+      "acc_at_1": 29.04,
+      "acc_at_5": 92.65,
+      "pct_of_total": 24.61
+    },
+    {
+      "subset": "dense_scene",
+      "count": 752,
+      "acc_at_1": 29.39,
+      "acc_at_5": 89.49,
+      "pct_of_total": 17.67
+    },
+    {
+      "subset": "same_class_high_clutter",
+      "count": 697,
+      "acc_at_1": 16.07,
+      "acc_at_5": 86.8,
+      "pct_of_total": 16.38
+    },
+    {
+      "subset": "attribute_only",
+      "count": 600,
+      "acc_at_1": 30.67,
+      "acc_at_5": 93.67,
+      "pct_of_total": 14.1
+    },
+    {
+      "subset": "sparse_scene",
+      "count": 506,
+      "acc_at_1": 27.87,
+      "acc_at_5": 95.85,
+      "pct_of_total": 11.89
+    },
+    {
+      "subset": "size_relational",
+      "count": 452,
+      "acc_at_1": 31.19,
+      "acc_at_5": 93.36,
+      "pct_of_total": 10.62
+    },
+    {
+      "subset": "single_anchor",
+      "count": 320,
+      "acc_at_1": 26.56,
+      "acc_at_5": 90.0,
+      "pct_of_total": 7.52
+    },
+    {
+      "subset": "support",
+      "count": 197,
+      "acc_at_1": 35.53,
+      "acc_at_5": 94.92,
+      "pct_of_total": 4.63
+    },
+    {
+      "subset": "multi_anchor",
+      "count": 168,
+      "acc_at_1": 11.9,
+      "acc_at_5": 85.12,
+      "pct_of_total": 3.95
+    },
+    {
+      "subset": "between",
+      "count": 129,
+      "acc_at_1": 45.74,
+      "acc_at_5": 95.35,
+      "pct_of_total": 3.03
+    }
+  ]
+}

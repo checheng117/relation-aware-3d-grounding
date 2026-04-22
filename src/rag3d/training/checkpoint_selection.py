@@ -25,7 +25,7 @@ class CoarsePipelineSelectionConfig:
     enabled: bool = False
     reference_rerank_checkpoint: Path | None = None
     reference_label: str | None = None
-    model_config: Path | None = None  # e.g. configs/model/relation_aware.yaml
+    model_config: Path | None = None
     parser_mode: str = "structured"
     parser_cache_dir: Path | None = None
     rerank_k: int = 10
@@ -73,7 +73,7 @@ def evaluate_coarse_with_fixed_rerank(
         return {}
     mcfg_path = sel.model_config
     if mcfg_path is None:
-        mcfg_path = base_dir / "configs/model/relation_aware.yaml"
+        return {}
     elif not mcfg_path.is_absolute():
         mcfg_path = base_dir / mcfg_path
     mcfg = load_yaml_config(mcfg_path, base_dir=base_dir)

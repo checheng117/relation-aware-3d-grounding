@@ -1,0 +1,12 @@
+metric,value
+score_gap,-0.9515
+margin_mean,0.3598
+correct_target_score_mean,-2.5290
+wrong_target_score_mean,-1.5774
+hit_at_1,0.0700
+hit_at_3,0.2000
+recovered_count,57
+harmed_count,54
+net,3
+multi_anchor_recovered,15
+multi_anchor_harmed,8
