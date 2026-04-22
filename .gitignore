@@ -34,6 +34,16 @@ data/hard_cases/*
 outputs/
 !outputs/**/.gitkeep
 
+# Local generated feature caches
+data/text_features/*
+!data/text_features/.gitkeep
+
+# Local agent/session locks
+.claude/*.lock
+
+# Claude Code project state (local development)
+.claude/
+
 # OS / editor
 .DS_Store
 *.swp
