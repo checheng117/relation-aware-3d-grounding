@@ -1,37 +1,29 @@
+# SESSION_STATE
 
-SESSION_STATE
-Last Working Session
-
+## Last Working Session
 UNKNOWN
 
-What Was Completed Last Time
-
+## What Was Completed Last Time
 UNKNOWN
 
-Current Branch
-
+## Current Branch
 UNKNOWN
 
-Latest Plan
-
+## Latest Plan
 UNKNOWN
 
-Latest Execution Report
-
+## Latest Execution Report
 UNKNOWN
 
-Latest Verification Report
-
+## Latest Verification Report
 UNKNOWN
 
-Current Open Diff
-
+## Current Open Diff
 UNKNOWN
 
-Blocking Issues
-
+## Blocking Issues
 UNKNOWN
 
-Notes for Next Session
-Run ./scripts/resume_agent.sh.
-Read .agent/00_state/NEXT_ACTION.md.
+## Notes for Next Session
+- Run ./scripts/resume_agent.sh
+- Read .agent/00_state/NEXT_ACTION.md

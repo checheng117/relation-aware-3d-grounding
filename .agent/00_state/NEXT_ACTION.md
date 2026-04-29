@@ -1,22 +1,41 @@
+# NEXT_ACTION
 
-NEXT_ACTION
-Next Recommended Action
+## Next Recommended Action
 
-Run bootstrap/resume scan if this file has not been updated recently.
+Run:
 
-Command
-./scripts/resume_agent.sh
-If You Are Using Claude CLI
-/bootstrap-existing-project "resume this half-finished research project, update SESSION_STATE and NEXT_ACTION, and recommend the next concrete plan. Do not modify source code or paper text."
-If You Are Using Antigravity
+    ./scripts/resume_agent.sh
 
-Ask it to read:
+Then inspect whether there are uncommitted changes.
 
-.agent/START_HERE.md
-.agent/00_state/PROJECT_STATE.md
-.agent/00_state/SESSION_STATE.md
-.agent/00_state/NEXT_ACTION.md
-latest .agent/20_exec/*.md
-latest .agent/30_verify/*.md
+## If There Are Uncommitted Changes
 
-Then ask it to recommend the next plan.
+1. Inspect:
+   git status --short
+
+2. If tracked files were accidentally deleted, restore them:
+   git restore -- $(git diff --name-only --diff-filter=D)
+
+3. Generate verifier packet:
+   ./scripts/make_verify_packet.sh
+
+4. Ask Antigravity, Gemini, or Codex to verify the packet.
+
+## If There Is No Plan
+
+Run in Claude CLI:
+
+    /bootstrap-existing-project "scan this project, update state files, and recommend the first plan"
+
+## If There Is A Plan
+
+Run in Claude CLI:
+
+    /execute-plan .agent/10_plans/<plan>.md
+
+## Do Not
+
+- Do not run git add . blindly.
+- Do not commit accidental deletions.
+- Do not let agents invent experimental numbers.
+- Do not launch long GPU jobs unless a plan explicitly allows it.
