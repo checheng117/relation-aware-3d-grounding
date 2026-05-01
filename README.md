@@ -1,246 +1,174 @@
-# Relation-Aware 3D Grounding: Benchmark and Diagnostics
+# Latent Conditioned Relation Scoring for 3D Visual Grounding
 
-A reproducible research codebase for 3D referring-expression grounding on the Nr3D/ReferIt3D benchmark. This project establishes a **trustworthy evaluation foundation** through dataset recovery, scene-disjoint splitting, and baseline reproduction, then provides **diagnostic analysis** of failure modes and a simple dense reranker with modest gains.
+A reproducible CSC6133 final project on relation-aware 3D visual grounding, combining scene-disjoint evaluation, hard-subset and anchor-coverage diagnostics, and controlled conditioned relation-scoring ablations.
 
-**Project Status**: Diagnostic paper + open-source release. Method exploration is complete.
+![Project pipeline](assets/figures/figure1_pipeline.png)
+
+This repository is framed as a diagnostic and controlled-ablation project. It does not claim state-of-the-art performance, does not validate explicit viewpoint supervision as the causal mechanism, and does not treat multi-anchor grounding as solved.
 
 ---
 
-## Why This Project Matters
+## CSC6133 Final Project Report
 
-Most public 3D grounding repositories suffer from reproducibility problems:
+This repository accompanies the final project report:
+**Latent Conditioned Relation Scoring for 3D Visual Grounding**.
 
-- **Partial datasets**: Released code assumes proprietary or incomplete data
-- **Split leakage**: Train/val/test scenes overlap, inflating metrics
-- **Unclear protocols**: Metric definitions vary across papers
-- **Weak traceability**: No run artifacts, no ablations, no failure analysis
+Course: CSC6133 Deep Learning for Computer Vision.
 
-This makes apples-to-apples comparison impossible and published numbers unreliable. This project fixes that by building a fully transparent evaluation pipeline and honestly reporting what works and what doesn't.
+The project contributes:
+
+1. a verified scene-disjoint Nr3D/ReferIt3D-style evaluation pipeline,
+2. hard-subset and anchor-coverage diagnostics,
+3. controlled conditioned relation-scoring ablations.
+
+Report PDF: [course-line/report/report.pdf](course-line/report/report.pdf)
+
+Report source: [course-line/report/main.tex](course-line/report/main.tex), with section files under [course-line/report/sections/](course-line/report/sections/).
+
+Reproducibility note: [repro/COURSE_REPORT_REPRODUCIBILITY.md](repro/COURSE_REPORT_REPRODUCIBILITY.md)
 
 ---
 
 ## Quick Results Summary
 
+These numbers come from different protocols and should not be collapsed into a single leaderboard.
+
+### Scene-Disjoint Reproduced Baseline
+
+| Metric | Value |
+|--------|-------|
+| Test samples | 4,255 |
+| Acc@1 | 30.83% |
+| Acc@5 | 91.87% |
+
+### Hard-Subset Diagnostics
+
+| Subset | Acc@1 |
+|--------|-------|
+| Same-class clutter | 21.96% |
+| High clutter | 16.07% |
+| Multi-anchor | 11.90% |
+
+### Controlled Phase 4 Trained Ablations
+
+| ID | Configuration | Acc@1 |
+|----|---------------|-------|
+| E0 | Dense relation baseline | 28.61 ± 0.01 |
+| E2 | Near parameter-matched dense control | 28.87 ± 0.09 |
+| E1 | Conditioned + viewpoint supervision | 30.50 ± 0.05 |
+| E3 | Conditioned, no viewpoint supervision | 30.45 ± 0.12 |
+
+The safest interpretation is that conditioned relation computation improves over the controlled dense relation baseline. The E1/E3 tie and random/shuffled viewpoint controls argue against attributing the gain to explicit semantic viewpoint supervision.
+
+---
+
+## What This Project Claims / Does Not Claim
+
+### Claims
+
+- Scene-disjoint evaluation and diagnostics are reliable project artifacts.
+- Sparse anchor selection creates a measurable coverage bottleneck.
+- Conditioned relation computation improves over the controlled dense relation baseline in Phase 4.
+
+### Does Not Claim
+
+- No state-of-the-art claim.
+- No validated explicit viewpoint-supervision mechanism.
+- No solved multi-anchor reasoning.
+- No single unified leaderboard across frozen-logit diagnostics, Phase 4 training, and Phase 5/6 pilots.
+
+---
+
+## Project Components
+
+### Evaluation Foundation
+
+- Recovered scene-disjoint Nr3D/ReferIt3D-style evaluation setting.
+- Reproduced object-centric baseline evaluation with Acc@1 and Acc@5.
+- Preserved split and claim-boundary documentation under [course-line/](course-line/).
+
+### Diagnostic Suite
+
+- Hard-subset tagging for same-class clutter, high clutter, relative-position, dense-scene, and multi-anchor cases.
+- Anchor-coverage diagnostics under [reports/cover3d_coverage_diagnostics/](reports/cover3d_coverage_diagnostics/).
+- Main diagnostic summary at [reports/final_diagnostic_master_summary.md](reports/final_diagnostic_master_summary.md).
+
+### Dense Relation Diagnostic Line
+
+The frozen-logit dense reranking line is retained as diagnostic evidence, not as the main method claim.
+
 | Method | Test Acc@1 | Test Acc@5 | Net | Status |
 |--------|------------|------------|-----|--------|
-| **Base (clean)** | **30.83%** | **91.87%** | - | **Reference** |
-| **Dense-no-cal-v1** | **31.05%** | **92.01%** | +9 | **Retained** |
+| Clean base | 30.83% | 91.87% | -- | Reference |
+| Dense-no-cal-v1 | 31.05% | 92.01% | +9 | Retained |
+| Dense-calibrated-v2 | 30.55% | 91.80% | -12 | Frozen |
+| Dense-v2-AttPool | 25.24% | 79.95% | -238 | Frozen |
+| Dense-v3-Geo | 24.32% | 79.06% | -277 | Frozen |
+| Dense-v4-HardNeg | 24.47% | 79.41% | -271 | Frozen |
 
-**Other methods explored** (calibration, dense strengthening) **did not improve results** and are frozen. See [reports/final_diagnostic_master_summary.md](reports/final_diagnostic_master_summary.md) for complete analysis.
+### Controlled Conditioned Architecture Study
 
----
+The strongest method evidence is the controlled Phase 4 rerun. E1 and E3 improve over E0 by about 1.9 points, while E3 removes viewpoint supervision and matches E1. The method claim is therefore conditional architecture, not explicit viewpoint learning.
 
-## Core Contributions
+### Pilot Components
 
-### 1. Trustworthy Evaluation Foundation
+Phase 5 counterfactual training and Phase 6 latent-mode runs are pilot evidence only. They are implementation checks and future-work paths, not final claims.
 
-- **Recovered full Nr3D dataset**: 41,503 samples across 641 ScanNet scenes
-- **Scene-disjoint splits**: Train/val/test share zero scenes (verified)
-- **Zero duplicates**: All samples validated as unique
-- **Unified metrics**: Acc@1 and Acc@5 computed consistently
+### Negative Findings
 
-### 2. Reproduced Baselines
-
-| Baseline | Test Acc@1 | Test Acc@5 | Notes |
-|----------|------------|------------|-------|
-| ReferIt3DNet (reproduced) | 30.79% | 91.75% | Primary trusted baseline |
-| SAT (reproduced) | 28.27% | 87.64% | Secondary baseline |
-
-Both baselines reproduced from original papers with scene-disjoint evaluation.
-
-### 3. Diagnostic Framework
-
-- **Hard-subset tagging**: same-class clutter, multi-anchor, relative-position
-- **Coverage analysis**: anchor reachability, coverage@k, long-range evidence
-- **Harm/recovered taxonomy**: identifies where methods help vs hurt
-- **Case study export**: qualitative analysis with relation score diagnostics
-
-### 4. Limited Method Signal
-
-**Dense-no-cal-v1** - A simple dense relation reranker:
-
-| Metric | Value | Delta vs Base |
-|--------|-------|---------------|
-| Acc@1 | 31.05% | +0.22% |
-| Acc@5 | 92.01% | +0.14% |
-| Net | +9 | 402 recovered, 393 harmed |
-| Multi-Anchor | 28.34% | +5.3% |
-| Parameters | 398K | Lightweight |
-
-**What it is**: Modest but real gain, simple weighted aggregation, no calibration overhead.
-
-**What it is NOT**: SOTA-challenging, scalable foundation, or strong method contribution.
-
-### 5. Negative Findings (With Evidence)
-
-| Method | Acc@1 | Net | Why It Failed |
-|--------|-------|-----|---------------|
-| Dense-calibrated-v2 | 30.55% | -12 | Calibration signals uninformative |
-| Dense-v2-AttPool | 25.24% | -238 | Attention too complex for weak foundation |
-| Dense-v3-Geo | 24.32% | -277 | No geometry data available |
-| Dense-v4-HardNeg | 24.47% | -271 | Focal weighting hurts initial training |
-
-**Fundamentals debug revealed**:
-- Relation scores are mostly noisy (score gap = -0.95, correct targets score LOWER)
-- Pair ranking is weak (Hit@1 = 7%)
-- Adding complexity amplifies noise, not signal
-
-See [reports/dense_fundamentals_summary.md](reports/dense_fundamentals_summary.md) for detailed analysis.
-
----
-
-## Who Should Use This Repository
-
-### Good Fit For
-
-- **Benchmark users** - Need trustworthy scene-disjoint evaluation
-- **Diagnostics researchers** - Study failure modes, hard subsets, coverage
-- **Reproducibility researchers** - Want clean baseline reproduction
-- **Method researchers** - Need clean starting point for new ideas
-
-### Not For
-
-- **SOTA chasers** - Methods are modest (+0.22%), not state-of-the-art
-- **Calibration developers** - Calibration line is frozen (signals uninformative)
-- **Dense-scorer enhancers** - Strengthening line is frozen (foundation weak)
-- **Multi-seed validators** - Single-seed results only
+- More complex dense relation variants amplified weak relation signals.
+- Sparse anchor selection can miss useful relation anchors.
+- The embeddings-only pipeline limits geometry-aware controls because it does not preserve full per-object metadata.
+- Multi-anchor reasoning remains unresolved.
 
 ---
 
 ## Repository Structure
 
-```
+```text
 relation-aware-3d-grounding/
-├── README.md                          # This file
-├── .claude/                           # Project status documentation
-│   ├── CURRENT_STATUS.md              # Current phase: diagnostic paper
-│   ├── NEXT_TASK.md                   # Next priorities
-│   └── METHOD_PHASE_FREEZE.md         # Frozen method boundaries
-├── src/rag3d/                         # Core Python package
-│   ├── models/
-│   │   ├── cover3d_model.py           # COVER-3D wrapper (retained)
-│   │   ├── cover3d_dense_relation.py  # DenseRelationModule (retained)
-│   │   └── cover3d_calibration.py     # Calibration module (archived)
-│   └── ...
-├── scripts/
-│   ├── train_cover3d_round1.py        # Training script (retained)
-│   ├── analyze_dense_fundamentals.py  # Diagnostic analysis (retained)
-│   └── ...                            # Other scripts (archived/debug)
-├── configs/
-│   ├── cover3d_round1/                # Round-1 configs (retained)
-│   └── ...                            # Other configs (archived)
-├── reports/
-│   ├── final_diagnostic_master_summary.md    # Master summary
-│   ├── dense_fundamentals_summary.md         # Fundamentals debug
-│   └── ...                                   # Other reports
-├── repro/
-│   ├── referit3d_baseline/            # ReferIt3DNet reproduction
-│   └── sat_baseline/                  # SAT reproduction
-└── docs/                              # Additional documentation
+├── assets/figures/                    # README/report-ready pipeline figure assets
+├── course-line/                       # Course-facing claim boundary, evidence map, report notes
+│   └── report/                        # LaTeX report source and compiled report.pdf
+├── docs/                              # Additional project documentation and index notes
+├── reports/                           # Diagnostic summaries, tables, and coverage artifacts
+│   └── cover3d_coverage_diagnostics/  # Anchor coverage diagnostics
+├── repro/                             # External/baseline reproduction work and report reproducibility note
+├── scripts/                           # Analysis, export, and experiment scripts
+├── src/rag3d/                         # Core package code
+├── update/reports/                    # Phase 4 aggregate JSON records and related audits
+└── writing/                           # Older draft material; not the current course-report source
 ```
 
 ---
 
-## How To Reproduce
+## Reproducibility Navigation
 
-### Setup
+Start with [repro/COURSE_REPORT_REPRODUCIBILITY.md](repro/COURSE_REPORT_REPRODUCIBILITY.md). It separates frozen-logit diagnostics, dense relation diagnostic results, controlled Phase 4 trained ablations, and Phase 5/6 pilots.
 
-```bash
-conda env create -f environment.yml
-conda activate rag3d
-pip install -e ".[dev,viz]"
+Key local artifacts:
 
-make check-env
-make test
-```
-
-### Baseline Reproduction
-
-ReferIt3DNet:
-
-```bash
-python repro/referit3d_baseline/scripts/train.py \
-  --config repro/referit3d_baseline/configs/learned_class_embedding.yaml \
-  --device cuda
-
-python repro/referit3d_baseline/scripts/evaluate.py \
-  --config repro/referit3d_baseline/configs/learned_class_embedding.yaml \
-  --device cuda
-```
-
-### Run Dense-no-cal-v1
-
-```bash
-python scripts/train_cover3d_round1.py \
-  --variant dense-no-cal \
-  --epochs 10 \
-  --device cuda
-```
-
-### Run Diagnostics
-
-```bash
-python scripts/analyze_dense_fundamentals.py
-```
-
----
-
-## Key Reports
-
-| Report | Description |
-|--------|-------------|
-| [final_diagnostic_master_summary.md](reports/final_diagnostic_master_summary.md) | **Start here** - Complete results and analysis |
-| [final_diagnostic_master_table.csv](reports/final_diagnostic_master_table.csv) | Machine-readable results table |
-| [dense_fundamentals_summary.md](reports/dense_fundamentals_summary.md) | Why dense scorer methods failed |
-| [calibration_failure_analysis.md](reports/calibration_failure_analysis.md) | Why calibration failed |
-| [dense_strengthening_results.md](reports/dense_strengthening_results.md) | Strengthening variant failures |
-| [diagnostic_paper_positioning_freeze.md](reports/diagnostic_paper_positioning_freeze.md) | Paper framing and target venues |
-
----
-
-## Method Status Summary
-
-| Method | Acc@1 | Status | Decision |
-|--------|-------|--------|----------|
-| Base (clean) | 30.83% | Retained | Reference anchor |
-| Dense-no-cal-v1 | 31.05% | Retained | Lightweight method contribution |
-| Dense-calibrated-v1 | 30.60% | Frozen | Gate collapse |
-| Dense-calibrated-v2 | 30.55% | Frozen | Signals uninformative |
-| Dense-v2-AttPool | 25.24% | Frozen | Too complex |
-| Dense-v3-Geo | 24.32% | Frozen | No geometry data |
-| Dense-v4-HardNeg | 24.47% | Frozen | Focal hurts |
-
-See [reports/method_freeze_and_release_policy.md](reports/method_freeze_and_release_policy.md) for freeze rationale.
-
----
-
-## Project Positioning
-
-**Paper Type**: Diagnostic / Benchmark / Reproducibility + Limited Method Signal
-
-**NOT**: Strong Method Paper
-
-### Core Claim
-
-> This project establishes a trustworthy, scene-disjoint evaluation and diagnostic framework for 3D referring-expression grounding, identifies concentrated failure modes in hard relational subsets, provides direct evidence of coverage failure under sparse candidate-anchor selection, and shows that a simple dense reranker yields only limited gains while more complex extensions do not justify further investment.
-
-### Target Venues
-
-- **Primary**: TACL, ACL Findings, EMNLP Findings, Scientific Data
-- **Secondary**: CVPR/ICCV/ECCV Workshop, 3DV, BMVC
-- **NOT**: AAAI/NeurIPS/ICML/CVPR/ICCV main track (method signal insufficient)
+| Artifact | Path |
+|----------|------|
+| Final report PDF | [course-line/report/report.pdf](course-line/report/report.pdf) |
+| Report source | [course-line/report/main.tex](course-line/report/main.tex) |
+| Figure 1 PNG | [assets/figures/figure1_pipeline.png](assets/figures/figure1_pipeline.png) |
+| Evidence map | [course-line/FINAL_PROJECT_EVIDENCE_MAP.md](course-line/FINAL_PROJECT_EVIDENCE_MAP.md) |
+| Claim boundary | [course-line/CLAIM_BOUNDARY.md](course-line/CLAIM_BOUNDARY.md) |
+| Main diagnostic summary | [reports/final_diagnostic_master_summary.md](reports/final_diagnostic_master_summary.md) |
+| Coverage diagnostics | [reports/cover3d_coverage_diagnostics/coverage_diagnostics_report.md](reports/cover3d_coverage_diagnostics/coverage_diagnostics_report.md) |
+| Phase 4 aggregates | [update/reports/](update/reports/) |
 
 ---
 
 ## Development Principles
 
-- Preserve the trusted evaluation base before making method claims
-- Do not report unconfirmed results as final improvements
-- Prefer stratified and diagnostic evaluation over single-number accuracy
-- Treat parser outputs as noisy weak signals, not oracle structure
-- Keep generated data, checkpoints, and feature caches out of git
-- Any paper claim requires run artifacts, ablations, and failure analysis
-- **Honest framing over overselling** - Reviewers forgive modest claims, not inflated ones
+- Preserve the trusted evaluation base before making method claims.
+- Keep frozen-logit diagnostics, trained ablations, and pilots separate.
+- Report negative findings when controls contradict the initial hypothesis.
+- Treat parser outputs and inferred anchors as noisy weak signals.
+- Keep generated data, checkpoints, and feature caches out of git.
+- Prefer honest, evidence-grounded framing over inflated method claims.
 
 ---
 

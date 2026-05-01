@@ -1,0 +1,25 @@
+\section{Reproducibility Notes}
+
+Table~\ref{tab:sources} maps the main reported numbers to local artifacts in the repository. These paths are included so that each result can be audited without relying on the prose alone.
+
+\begin{table}[h]
+\centering
+\scriptsize
+\caption{Local evidence sources used in this report.}
+\label{tab:sources}
+\begin{tabular}{L{0.25\linewidth}L{0.66\linewidth}}
+\toprule
+Result & Source artifact \\
+\midrule
+Scene-disjoint baseline & \path{outputs/20260420_clean_sorted_vocab_baseline/formal_logits/eval_test_results.json} \\
+Hard subsets & \path{reports/cover3d_phase1_baseline_subset_results.md} \\
+Coverage diagnostics & \path{reports/cover3d_coverage_diagnostics/coverage_diagnostics_report.md} \\
+Dense relation line & \path{reports/final_diagnostic_master_summary.md} and \path{outputs/cover3d_round1/*_results.json} \\
+Phase 4 rerun & \path{outputs/phase4_rerun_aaai/R001_*/*_results.json} \\
+Parameter-matched control & \path{outputs/phase4_param_matched_control/R004_*/*_results.json} \\
+Viewpoint controls & \path{update/reports/R002_aggregate_results.json} \\
+Counterfactual pilot & \path{update/PHASE5_CONCLUSION_AND_PAPER_NOTES.md} \\
+Latent-mode pilots & \path{update/PHASE6_PILOT_E0_K1_SAFE_RUN.md} and \path{update/PHASE6_PILOT_E1_K4_SAFE_RUN.md} \\
+\bottomrule
+\end{tabular}
+\end{table}

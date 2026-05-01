@@ -1,0 +1,29 @@
+\begin{tikzpicture}
+\begin{axis}[
+  width=0.95\linewidth,
+  height=5.2cm,
+  ybar,
+  bar width=13pt,
+  ymin=0,
+  ymax=36,
+  ylabel={\acc{} (\%)},
+  symbolic x coords={Overall,SameClass,HighClutter,MultiAnchor,Relative,DenseScene},
+  xtick=data,
+  xticklabels={Overall,Same-class,High clutter,Multi-anchor,Relative,Dense scene},
+  x tick label style={rotate=28, anchor=east, font=\small},
+  ymajorgrids=true,
+  grid style={draw=black!10},
+  nodes near coords,
+  nodes near coords style={font=\scriptsize, /pgf/number format/fixed, /pgf/number format/precision=1},
+  every axis plot/.append style={fill=ragblue!65, draw=ragblue}
+]
+\addplot coordinates {
+  (Overall,31.05)
+  (SameClass,21.96)
+  (HighClutter,16.07)
+  (MultiAnchor,11.90)
+  (Relative,28.20)
+  (DenseScene,29.39)
+};
+\end{axis}
+\end{tikzpicture}

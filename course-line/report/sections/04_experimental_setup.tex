@@ -1,0 +1,16 @@
+\section{Experimental Setup}
+
+\paragraph{Data and splits.}
+The trusted evaluation setting is the recovered scene-disjoint Nr3D/ReferIt3D-style split. The recovered dataset contains 41,503 samples over 641 scenes, and the main test split contains 4,255 samples. The split recovery is treated as a core artifact because scene overlap can overstate generalization in 3D grounding.
+
+\paragraph{Metrics.}
+The primary metrics are \acc{} and \acctopfive{}. \acc{} measures whether the top-ranked object is the ground-truth target, and \acctopfive{} measures whether the target is in the top five. Diagnostic tables also report subset counts, subset proportions, and percentage-point gaps relative to overall accuracy.
+
+\paragraph{Evidence levels.}
+The report distinguishes four evidence levels. Final evidence includes the scene-disjoint split recovery, baseline reproduction, hard-subset diagnostics, and coverage diagnostics. Controlled evidence includes Phase 4 architecture ablations and dense reranking comparisons. Pilot evidence includes one-epoch counterfactual and latent-mode runs. Pending evidence includes full 80-epoch latent-mode training, stronger random hard-negative controls, and multi-seed validation for pilot components.
+
+\paragraph{Protocol boundary.}
+The repository contains results from several protocols: frozen baseline logits, trained Phase 4 relation modules, and embedding-based Phase 5/6 pilots. These values should not be collapsed into a single leaderboard. The results section keeps them separated and labels protocol differences explicitly.
+
+\paragraph{Reproducibility artifacts.}
+The main split, evidence, and claim-boundary notes are documented under \path{course-line/}. Baseline, hard-subset, and coverage summaries are under \path{reports/}, including the coverage-diagnostics subdirectory. The controlled Phase 4 rerun uses seeds 42, 123, and 2026; its R001, R002, and R004 aggregate JSON records are under \path{update/reports/}. These artifacts keep frozen-logit diagnostics, trained Phase 4 ablations, and Phase 5/6 pilots separated rather than merged into a single leaderboard.

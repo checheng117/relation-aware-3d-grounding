@@ -1,0 +1,406 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage{microtype}
+
+\hypersetup{
+  colorlinks=true,
+  linkcolor=blue!55!black,
+  citecolor=blue!55!black,
+  urlcolor=blue!55!black
+}
+
+\newcommand{\acc}{Acc@1}
+\newcommand{\acctopfive}{Acc@5}
+\newcommand{\pp}{pp}
+\newcommand{\method}{latent conditioned relation scoring}
+
+\title{\textbf{Diagnostic Evidence for Latent Conditioned Relation Scoring in 3D Visual Grounding}\\
+\large CSC6133 Deep Learning for Computer Vision Course Report}
+
+\author{
+Che CHENG\\
+Student ID: 225015050
+}
+
+\date{April 30, 2026}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This report summarizes the current state of a 3D visual grounding project for CSC6133 Deep Learning for Computer Vision. The original goal was to push toward state-of-the-art external benchmarks, but the project has been reframed as a diagnostic study because the strongest external baselines considered in the repository, such as BUTD-DETR and EDA-style pipelines, require full ScanNet point-cloud inputs, while the current system operates mainly on pre-extracted object and language features. Under this constraint, direct leaderboard comparison is not methodologically valid. The report therefore focuses on internally controlled evidence. On a scene-disjoint internal test protocol, the reproduced reference baseline reaches 30.83\% \acc{} and 91.87\% \acctopfive{} over 4,255 samples. The main controlled experiment group shows that a conditioned relation scorer improves over its internal E0 baseline by 1.89 \pp{} across three seeds: E1 obtains $30.50\pm0.05$\% \acc{} versus E0 at $28.61\pm0.01$\%. However, negative controls show that randomized and shuffled viewpoint signals perform almost the same as E1, so explicit viewpoint semantics are not the source of the gain. A true parameter-matched control, E2\_matched, reaches only $28.87\pm0.08$\%, leaving a 1.63 \pp{} gap to E1 and suggesting that the gain is not explained by parameter count alone. The resulting claim is intentionally narrow: the current evidence supports an architectural benefit from conditional relation scoring, not a state-of-the-art claim and not a claim that explicit viewpoint supervision is necessary.
+\end{abstract}
+
+\section{Introduction}
+
+3D visual grounding asks a model to identify an object in a 3D scene from a natural-language referring expression. A typical expression may specify category, attributes, spatial relations, and sometimes a speaker-dependent frame of reference, such as ``the chair to the left of the table'' or ``the lamp between the two beds.'' This makes the task different from ordinary object classification: the correct object often cannot be determined from category or appearance alone.
+
+This project studies relation-aware 3D grounding in an object-centric setting. Earlier project phases explored dense candidate-anchor coverage, hard subset diagnostics, viewpoint-conditioned scoring, counterfactual relation learning, and latent relation-mode modeling. The current frozen direction is a \textbf{diagnostic paper route}: rather than over-claiming state-of-the-art performance, the report presents a carefully bounded set of controlled findings about what the current evidence does and does not support.
+
+The central question is:
+\begin{quote}
+Can conditional relation scoring improve internal 3D grounding performance, and if so, is the gain caused by viewpoint semantics, extra parameters, or the conditioned architecture itself?
+\end{quote}
+
+The current answer is nuanced. The conditioned architecture is beneficial in controlled experiments, but the viewpoint semantic signal is not necessary. This moves the interpretation from ``viewpoint supervision improves grounding'' to ``conditional relation scoring gives a useful architectural bias.''
+
+\section{Project Reframing}
+
+\subsection{From SOTA push to diagnostic route}
+
+The original research target was to compare against strong external 3D visual grounding baselines. During the SOTA\_PUSH phase, this route became impractical for the current repository state. Several external baselines require full ScanNet point clouds and detector/backbone pipelines, while this project mainly uses pre-extracted object features, language features, and baseline logits. Reproducing those external methods would require a substantially different data interface and approximately terabyte-scale ScanNet assets. Therefore, direct numerical comparison to those methods would mix incompatible input assumptions.
+
+The project now uses the following reporting rule:
+\begin{itemize}
+  \item Use the internal 30.83\% baseline as the main reference point.
+  \item Present R001, R002, R003, and R004 as controlled diagnostic evidence.
+  \item Acknowledge the external benchmark incompatibility in limitations.
+  \item Do not claim state-of-the-art performance.
+  \item Do not claim that explicit viewpoint labels are necessary.
+\end{itemize}
+
+\subsection{Contribution statement}
+
+The defensible contribution is not a new leaderboard result. Instead, the contribution is an evidence-bounded diagnostic study of relation-scoring mechanisms:
+\begin{enumerate}
+  \item A scene-disjoint internal grounding pipeline with a reproduced reference baseline.
+  \item Hard-subset and coverage diagnostics showing where relation-aware grounding fails.
+  \item Controlled ablations showing a robust gain from a conditioned scorer.
+  \item Negative controls showing that explicit viewpoint semantics are not required.
+  \item Parameter-matched evidence showing that the gain is not explained by parameter count alone.
+\end{enumerate}
+
+\section{Task and Method}
+
+\subsection{3D grounding setup}
+
+Each example contains a scene, a referring utterance, a set of candidate objects, and a target object index. The model ranks all candidate objects. Let $o_i$ be the feature for candidate object $i$, $x$ be the language feature, and $b_i$ be the base grounding logit. A relation module computes a relation-aware correction score $r_i$. The final score is:
+\begin{equation}
+  \ell_i = b_i + \lambda r_i .
+\end{equation}
+The primary metric is \acc{}, the percentage of examples in which the target object is ranked first. \acctopfive{} is also reported for the baseline reference.
+
+\subsection{Baseline relation scorer}
+
+The E0 controlled baseline uses a dense relation scoring module without the conditioned architecture. It scores candidate-anchor pairs using object and language features, aggregates relation evidence, and fuses it with the base logits. In the R001 controlled setting, E0 has 398,401 trainable parameters.
+
+\subsection{Conditioned relation scorer}
+
+The E1 scorer augments relation scoring with a conditioning pathway. In earlier project language this was framed as viewpoint-conditioned scoring, because spatial relations such as left/right can depend on the observer frame. The controlled results now show that this explicit viewpoint interpretation is too strong. The E1/E3 architecture should be understood as a conditioned relation scorer:
+\begin{equation}
+  s(i,j \mid x,z) = f_{\theta}([o_i; o_j; x; z]),
+\end{equation}
+where $j$ indexes potential anchors and $z$ is a conditioning signal. E1 uses viewpoint supervision, while E3 removes the viewpoint supervision loss but keeps the same architecture.
+
+\subsection{Latent conditioned interpretation}
+
+The strongest interpretation is latent conditional computation. The architecture may help because it gives the relation scorer multiple modes of computation or a richer gating pathway. This aligns with the later latent relation-mode formulation:
+\begin{equation}
+  s(i,j \mid x) = \sum_{k=1}^{K} \pi_k(x) f_k(i,j,x),
+\end{equation}
+where $\pi_k(x)$ is a language-conditioned gate and $f_k$ is the $k$-th relation expert. The current completed evidence is strongest for the conditioned architecture family, while the full K-mode mixture version remains a future-work direction.
+
+\section{Data, Protocol, and Evidence Levels}
+
+\subsection{Internal baseline}
+
+The internal reference baseline is a reproduced ReferIt3DNet-style baseline on a scene-disjoint test split:
+\begin{itemize}
+  \item Test samples: 4,255.
+  \item Baseline \acc{}: 30.83\%.
+  \item Baseline \acctopfive{}: 91.87\%.
+  \item Source artifact: \texttt{outputs/20260420\_clean\_sorted\_vocab\_baseline/formal\_logits/eval\_test\_results.json}.
+\end{itemize}
+
+This baseline is used as the internal course-report reference. It is not treated as directly comparable to external benchmark papers using different inputs or full ScanNet point clouds.
+
+\subsection{Hard subset diagnostics}
+
+The baseline diagnostics identify systematic hard cases. The most important results are shown in Table~\ref{tab:hard_subsets}.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Internal hard-subset diagnostics for the reference baseline.}
+\label{tab:hard_subsets}
+\begin{tabular}{lrrr}
+\toprule
+Subset & Count & Share of Test & \acc{} \\
+\midrule
+Overall & 4,255 & 100.00\% & 30.83--31.05\% \\
+Same-class clutter, $\geq 3$ & 2,373 & 55.77\% & 21.96\% \\
+High clutter, $\geq 5$ & 697 & 16.38\% & 16.07\% \\
+Multi-anchor & 168 & 3.95\% & 11.90\% \\
+Single-anchor & 320 & 7.52\% & 26.56\% \\
+Relative position & 1,305 & 30.67\% & 28.20\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The key diagnostic result is that same-class clutter is both common and difficult. Multi-anchor expressions are smaller in count but show the largest accuracy drop.
+
+\subsection{Coverage diagnostics}
+
+Coverage diagnostics test whether sparse anchor selection misses annotated anchors. Under a nearest-neighbor sparse proxy, top-5 selection covers at least one annotated anchor in 67.87\% of geometry-evaluable anchor samples and all annotated anchors in 54.20\%. Among baseline-wrong anchor-evaluable samples, sparse top-5 misses every annotated anchor in 110 of 324 cases, or 33.95\%. This motivates dense candidate-anchor coverage, but it does not by itself prove that a learned reranker will improve final accuracy.
+
+\begin{table}[t]
+\centering
+\small
+\caption{Anchor coverage under sparse top-$k$ selection.}
+\label{tab:coverage}
+\begin{tabular}{rcc}
+\toprule
+$k$ & Any Anchor Covered & All Anchors Covered \\
+\midrule
+1 & 29.50\% & 18.94\% \\
+3 & 46.04\% & 35.97\% \\
+5 & 67.87\% & 54.20\% \\
+10 & 83.69\% & 73.62\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Completed Experiments}
+
+\subsection{R001: three-seed controlled rerun}
+
+R001 reruns E0, E1, and E3 across three seeds. The key result is that E1 outperforms E0 by 1.89 \pp{}, while E1 and E3 are almost tied. This supports an architectural gain, but not a viewpoint-supervision gain.
+
+\begin{table}[t]
+\centering
+\small
+\caption{R001 three-seed controlled results.}
+\label{tab:r001}
+\begin{tabular}{llccc}
+\toprule
+Variant & Description & Params & \acc{} Mean & Std. \\
+\midrule
+E0 & Baseline relation scorer & 398,401 & 28.61\% & 0.01 \\
+E1 & Conditioned scorer with viewpoint supervision & 622,918 & 30.50\% & 0.05 \\
+E3 & Same architecture without viewpoint supervision & 622,918 & 30.45\% & 0.12 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The main R001 differences are:
+\begin{align}
+  \text{E1} - \text{E0} &= +1.89 \text{ \pp{}},\\
+  \text{E1} - \text{E3} &= +0.05 \text{ \pp{}}.
+\end{align}
+The second difference is too small to support a claim that explicit viewpoint supervision improves grounding.
+
+\subsection{R002: random and shuffled condition controls}
+
+R002 tests whether the semantic correctness of the viewpoint signal matters. The controls are:
+\begin{itemize}
+  \item E1-rand: a randomized/frozen viewpoint predictor control.
+  \item E1-shuf: shuffled viewpoint labels.
+\end{itemize}
+Both controls remain at approximately E1 performance, as shown in Table~\ref{tab:r002}.
+
+\begin{table}[t]
+\centering
+\small
+\caption{R002 negative controls for viewpoint semantics.}
+\label{tab:r002}
+\begin{tabular}{lccc}
+\toprule
+Variant & \acc{} Mean & Std. & Interpretation \\
+\midrule
+E1 & 30.50\% & 0.05 & Reference conditioned scorer \\
+E1-rand & 30.61\% & 0.08 & Randomized signal $\approx$ E1 \\
+E1-shuf & 30.53\% & 0.04 & Shuffled labels $\approx$ E1 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+This is a negative finding, but it is scientifically important. It rules out the stronger claim that viewpoint labels themselves are necessary. The more defensible explanation is that the conditioned computation pathway improves relation scoring.
+
+\subsection{R003: parameter count audit}
+
+R003 audits trainable parameter counts. The initial concern was that E1/E3 have many more parameters than E0, so the gain might be caused by capacity rather than architecture. Table~\ref{tab:r003} summarizes the audit.
+
+\begin{table}[t]
+\centering
+\small
+\caption{R003 parameter count audit.}
+\label{tab:r003}
+\begin{tabular}{lrrr}
+\toprule
+Variant & Total Params & Trainable Params & Ratio vs. E0 \\
+\midrule
+E0 & 398,401 & 398,401 & 1.00$\times$ \\
+E1 & 622,918 & 622,918 & 1.56$\times$ \\
+E3 & 622,918 & 622,918 & 1.56$\times$ \\
+Original E2 & 472,321 & 472,321 & 1.19$\times$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The audit shows that E1/E3 have 56.35\% more trainable parameters than E0. Therefore, a true parameter-matched control is required before making a strong architecture claim.
+
+\subsection{R004: true parameter-matched control}
+
+R004 adds the missing control. E2\_matched expands the dense baseline to approximately match E1's parameter count, reaching 622,471 parameters. Despite this, its performance is much closer to E0 than to E1.
+
+\begin{table}[t]
+\centering
+\small
+\caption{R004 true parameter-matched control.}
+\label{tab:r004}
+\begin{tabular}{lccc}
+\toprule
+Variant & Params & \acc{} Mean & Std. \\
+\midrule
+E1 & 622,918 & 30.50\% & 0.05 \\
+E2\_matched & 622,471 & 28.87\% & 0.08 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The key comparison is:
+\begin{equation}
+  \text{E1} - \text{E2\_matched} = +1.63 \text{ \pp{}}.
+\end{equation}
+This resolves the main parameter-count attack: simply giving the dense baseline comparable capacity does not reproduce the conditioned scorer's gain.
+
+\section{Claim Ledger v2}
+
+The current claim ledger is deliberately conservative. Table~\ref{tab:claims} lists what the report can and cannot claim.
+
+\begin{table}[t]
+\centering
+\small
+\caption{CLAIM\_FREEZE-v2 summary.}
+\label{tab:claims}
+\begin{tabular}{p{0.40\linewidth}p{0.22\linewidth}p{0.25\linewidth}}
+\toprule
+Claim & Status & Report Treatment \\
+\midrule
+C-001: Conditioned architecture improves internal controlled grounding & Supported, reframed & Main result; architecture gain, not semantic viewpoint gain \\
+C-002: Explicit viewpoint supervision/semantic labels are not necessary & Established negative finding & Main result \\
+C-003/C-004/C-005: Baseline, hard subset, and coverage diagnostics & Established & Main diagnostic evidence \\
+C-006: Counterfactual loss gives +0.12 \pp{} pilot gain & Weak pilot & Appendix/future work only \\
+C-007: MoE K=4 $>$ K=1 & Weak pilot & Future work only \\
+C-008/C-009/C-010: stronger SOTA/viewpoint/multi-anchor claims & Do not claim & Excluded \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Discussion}
+
+\subsection{What the evidence supports}
+
+The completed experiments support three findings.
+
+First, the conditioned scorer gives a reliable controlled gain over E0. R001 shows E1 at $30.50\pm0.05$\% versus E0 at $28.61\pm0.01$\%. The 1.89 \pp{} improvement is much larger than the observed seed variation.
+
+Second, the gain is not caused by explicit viewpoint semantics. E3, which removes viewpoint supervision, obtains $30.45\pm0.12$\%, essentially matching E1. R002 reinforces this result: randomized and shuffled controls also match E1.
+
+Third, the gain is not explained by parameter count alone. E1 has 1.56$\times$ E0's parameters, but R004 shows that a true parameter-matched dense control remains at $28.87\pm0.08$\%, 1.63 \pp{} below E1.
+
+\subsection{What the evidence rejects}
+
+The current evidence rejects several tempting but unsupported claims:
+\begin{itemize}
+  \item It does not support a claim that viewpoint labels improve 3D grounding.
+  \item It does not support a claim that the method solves multi-anchor grounding.
+  \item It does not support a claim that counterfactual negatives are better than random hard negatives.
+  \item It does not support a state-of-the-art claim against external full-point-cloud systems.
+\end{itemize}
+
+These negative findings are part of the value of the project. They convert an initially broad method story into a more precise diagnostic conclusion.
+
+\subsection{Why the result is still useful}
+
+The result is useful because it identifies a repeatable architectural effect and narrows the mechanism. The conditioned scorer is not merely bigger, and it is not relying on correct viewpoint labels. This points toward latent conditional computation as a promising future direction: the model may benefit from relation scoring modes even when the explicit condition label is not semantically meaningful.
+
+\section{Limitations}
+
+\subsection{External benchmark incompatibility}
+
+The largest limitation is that direct comparison to external SOTA baselines is not currently valid. Strong external systems often require full ScanNet point clouds, detector proposals, multi-view features, or end-to-end backbone pipelines. This project uses pre-extracted features and logits. The two settings do not expose the same input information, so a single accuracy table would be misleading.
+
+\subsection{Pre-extracted feature constraints}
+
+The current embeddings omit some object-level metadata needed for stronger controls, such as full object dictionaries, centers, bounding boxes, and geometry-aware hard negatives. This blocks the intended random-hard-negative control for the counterfactual branch and limits the ability to perform some spatial analyses.
+
+\subsection{Protocol fragmentation}
+
+The repository contains results from several protocols: clean baseline logits, Phase 4 controlled training, Phase 5 counterfactual pilots, and Phase 6 latent-mode pilots. These should not be mixed into a single leaderboard. This report uses R001/R002/R004 as the main controlled evidence and treats pilot results separately.
+
+\subsection{Remaining validation gaps}
+
+The following gaps remain:
+\begin{itemize}
+  \item Full held-out latent-mode training is not complete.
+  \item Multi-seed validation is complete for R001/R002/R004 but not for all pilot ideas.
+  \item Counterfactual loss has only weak pilot evidence.
+  \item External full-point-cloud benchmark comparison is unresolved.
+\end{itemize}
+
+\section{Reproducibility Notes}
+
+The main evidence maps to the following repository artifacts:
+
+\begin{table}[t]
+\centering
+\small
+\caption{Source artifacts for the report.}
+\label{tab:sources}
+\begin{tabular}{p{0.25\linewidth}p{0.62\linewidth}}
+\toprule
+Evidence & Source \\
+\midrule
+Internal baseline 30.83\% & \texttt{outputs/20260420\_clean\_sorted\_vocab\_baseline/formal\_logits/eval\_test\_results.json} \\
+Hard subsets & \texttt{reports/cover3d\_phase1\_baseline\_subset\_results.md} \\
+Coverage diagnostics & \texttt{reports/cover3d\_coverage\_diagnostics/coverage\_diagnostics\_report.md} \\
+R001 aggregate & \texttt{update/reports/R001\_aggregate\_results.json} and seed result files under \texttt{outputs/phase4\_rerun\_aaai/} \\
+R002 controls & \texttt{update/reports/R002\_aggregate\_results.json} \\
+R003 parameter audit & \texttt{update/reports/R003\_parameter\_count\_audit.md} and \texttt{.json} \\
+R004 matched control & \texttt{update/reports/R004\_aggregate\_results.json} and \texttt{outputs/phase4\_param\_matched\_control/} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The R001 E0 mean is reported from the seed-level result files and the current frozen experiment summary because the aggregate JSON contains an inconsistent copied mean field for E0. The three seed values are 28.6016, 28.6251, and 28.6016, which give $28.61\pm0.01$\%.
+
+\section{Conclusion}
+
+This project is best presented as a diagnostic study of relation-aware 3D grounding rather than as a state-of-the-art benchmark paper. The current evidence supports a clear but bounded conclusion: conditional relation scoring improves internal controlled grounding performance, the improvement is not due to explicit viewpoint semantic labels, and a true parameter-matched dense control does not reproduce the gain. The resulting research direction is latent conditioned relation scoring, with future work focused on full benchmark-compatible data, stronger metadata-preserving pipelines, full latent-mode training, and validated counterfactual controls.
+
+\begin{thebibliography}{9}
+
+\bibitem{referit3d}
+Panos Achlioptas, Ahmed Abdelreheem, Fei Xia, Mohamed Elhoseiny, and Leonidas Guibas.
+\newblock ReferIt3D: Neural listeners for fine-grained 3D object identification in real-world scenes.
+\newblock In \emph{European Conference on Computer Vision}, 2020.
+
+\bibitem{scanrefer}
+Dave Zhenyu Chen, Angel X. Chang, and Matthias Niessner.
+\newblock ScanRefer: 3D object localization in RGB-D scans using natural language.
+\newblock In \emph{European Conference on Computer Vision}, 2020.
+
+\bibitem{moe}
+Robert A. Jacobs, Michael I. Jordan, Steven J. Nowlan, and Geoffrey E. Hinton.
+\newblock Adaptive mixtures of local experts.
+\newblock \emph{Neural Computation}, 3(1):79--87, 1991.
+
+\bibitem{vse}
+Fartash Faghri, David J. Fleet, Jamie Ryan Kiros, and Sanja Fidler.
+\newblock VSE++: Improving visual-semantic embeddings with hard negatives.
+\newblock In \emph{British Machine Vision Conference}, 2018.
+
+\end{thebibliography}
+
+\end{document}

@@ -3,6 +3,13 @@
 .env.local
 .env.*.local
 
+# Local agent / assistant state — never commit
+.agent/
+.claude/
+.codex
+AGENT*.md
+CLAUDE.md
+
 # Python
 __pycache__/
 *.py[cod]
@@ -20,6 +27,17 @@ htmlcov/
 venv/
 .venv/
 
+# LaTeX build intermediates
+*.aux
+*.bbl
+*.blg
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+*.toc
+
 # Data & artifacts (large / local)
 data/raw/*
 !data/raw/.gitkeep
@@ -29,20 +47,58 @@ data/parser_cache/*
 !data/parser_cache/.gitkeep
 data/hard_cases/*
 !data/hard_cases/.gitkeep
+data/butd_detr_precomputed/
 
 # Generated runs (keep only placeholder files if needed)
 outputs/
 !outputs/**/.gitkeep
+checkpoints/
 
 # Local generated feature caches
 data/text_features/*
 !data/text_features/.gitkeep
 
-# Local agent/session locks
-.claude/*.lock
+# Research scratch / external working copies not part of the course report source
+writing/
+method/
+prompts/
+update/
+repro/butd_detr_external/
+docs/PAPER_LINE_GUIDE.md
 
-# Claude Code project state (local development)
-.claude/
+# Local research experiment scripts not part of the course-facing release
+scripts/aggregate_phase7_latent_results.py
+scripts/analyze_mode_specialization.py
+scripts/analyze_viewpoint_distribution.py
+scripts/audit_counterfactual_coverage.py
+scripts/audit_current_embeddings_schema.py
+scripts/audit_viewpoint_realdata.py
+scripts/check_cf_oob.py
+scripts/download_butd_detr_precomputed.sh
+scripts/evaluate_viewpoint_conditioned_scorer.py
+scripts/export_unified_predictions.py
+scripts/extract_anchor_chains.py
+scripts/inspect_metadata_pipeline.py
+scripts/migrate_embeddings_with_metadata.py
+scripts/monitor_downloads.sh
+scripts/phase4_5_mechanism_diagnosis.py
+scripts/run_phase7_full.sh
+scripts/sanity_check_latent_mode_training.py
+scripts/sanity_check_latent_relation_modes.py
+scripts/train_cover3d_counterfactual.py
+scripts/train_cover3d_latent_modes.py
+scripts/train_cover3d_viewpoint.py
+scripts/train_viewpoint_predictor.py
+scripts/wait_and_train.sh
+
+# Local research model additions not part of the course-facing release
+src/rag3d/models/viewpoint_predictor.py
+src/rag3d/relation_reasoner/anchor_chain_constructor.py
+src/rag3d/relation_reasoner/counterfactual_generator.py
+src/rag3d/relation_reasoner/counterfactual_loss.py
+src/rag3d/relation_reasoner/latent_relation_mode_scorer.py
+src/rag3d/relation_reasoner/viewpoint_conditioned_scorer.py
+src/rag3d/relation_reasoner/viewpoint_label_generator.py
 
 # OS / editor
 .DS_Store

@@ -1,0 +1,123 @@
+\section{Results and Analysis}
+
+\subsection{Baseline Failure Patterns}
+
+The reproduced ReferIt3DNet baseline achieves 30.83\% \acc{} and 91.87\% \acctopfive{} on the scene-disjoint test split. The hard-subset diagnostics show that this average hides large failure concentrations. The subset script reports a slightly different computed overall value, 31.05\%, so Table~\ref{tab:hard-subsets} uses that diagnostic reference when computing gaps.
+
+\begin{figure}[!htbp]
+  \centering
+  \input{figures/hard_subset_bar}
+  \caption{Hard-subset accuracy chart. Same-class clutter, high clutter, and multi-anchor samples are substantially harder than the overall test set.}
+  \label{fig:hard-subsets}
+\end{figure}
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Scene-disjoint hard-subset diagnostics for the reproduced baseline.}
+\label{tab:hard-subsets}
+\begin{tabular}{lrrrr}
+\toprule
+Subset & Count & Share & \acc{} & Gap \\
+\midrule
+Overall & 4,255 & 100.00\% & 31.05\% & -- \\
+Same-class clutter, $\geq 3$ & 2,373 & 55.77\% & 21.96\% & -9.09 \\
+High clutter, $\geq 5$ & 697 & 16.38\% & 16.07\% & -14.98 \\
+Multi-anchor & 168 & 3.95\% & 11.90\% & -19.15 \\
+Single-anchor & 320 & 7.52\% & 26.56\% & -4.49 \\
+Relative-position & 1,305 & 30.67\% & 28.20\% & -2.85 \\
+Dense scene, $\geq 50$ objects & 752 & 17.67\% & 29.39\% & -1.66 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+Same-class clutter is the most important failure mode by prevalence: it covers 55.77\% of the test set and loses about nine points relative to the overall score. Multi-anchor samples are smaller but more severe, dropping to 11.90\% \acc{}.
+
+\subsection{Anchor Coverage Diagnostics}
+
+Coverage analysis tests whether sparse anchor selection can even expose useful relational evidence. Under a target-centric nearest-neighbor sparse proxy, top-5 selection covers at least one annotated anchor in 67.87\% of geometry-evaluable anchor samples, but covers all annotated anchors in only 54.20\%.
+
+\begin{figure}[!htbp]
+  \centering
+  \input{figures/coverage_curve}
+  \caption{Coverage curve from the coverage diagnostics. The gap between any-anchor and all-anchor coverage shows why multi-anchor expressions are especially fragile under sparse selection.}
+  \label{fig:coverage}
+\end{figure}
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Coverage@k over geometry-evaluable anchor samples.}
+\label{tab:coverage}
+\begin{tabular}{rrr}
+\toprule
+$k$ & Any anchor covered & All anchors covered \\
+\midrule
+1 & 29.50\% & 18.94\% \\
+3 & 46.04\% & 35.97\% \\
+5 & 67.87\% & 54.20\% \\
+10 & 83.69\% & 73.62\% \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The more direct error-coupled result is that sparse top-5 misses every annotated anchor in 110 of 324 baseline-wrong, anchor-evaluable samples, or 33.95\%. It misses at least one annotated anchor in 157 of 324 such samples, or 48.46\%. Dense all-pair candidate-anchor coverage recovers those anchors at the candidate-set level. This does not prove that a learned reranker will rank correctly, but it establishes that sparse coverage is a genuine bottleneck.
+
+\subsection{Dense Relation Diagnostic Line}
+
+The dense relation line produced one small retained gain and several negative results. Table~\ref{tab:dense} summarizes the outcome. The useful conclusion is not that dense scoring is solved, but that relation evidence is fragile: simple dense reranking can help slightly, while more complex calibration, attention, geometry, and hard-negative variants can amplify noise.
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Dense relation diagnostic results under the frozen-logit diagnostic line.}
+\label{tab:dense}
+\begin{tabular}{lrrrl}
+\toprule
+Method & Test \acc{} & Test \acctopfive{} & Net & Status \\
+\midrule
+Clean base & 30.83\% & 91.87\% & -- & Reference \\
+Dense-no-cal-v1 & 31.05\% & 92.01\% & +9 & Retained \\
+Dense-calibrated-v2 & 30.55\% & 91.80\% & -12 & Frozen \\
+Dense-v2-AttPool & 25.24\% & 79.95\% & -238 & Frozen \\
+Dense-v3-Geo & 24.32\% & 79.06\% & -277 & Frozen \\
+Dense-v4-HardNeg & 24.47\% & 79.41\% & -271 & Frozen \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Controlled Conditioned Architecture Result}
+
+The strongest method evidence is the Phase 4 rerun. The current report uses the raw three-seed result files rather than relying on one inconsistent aggregate field in the R001 JSON summary. The main comparison is clear: E1 and E3 are about 1.9 points above E0, while E1 and E3 are nearly identical.
+
+\begin{figure}[!htbp]
+  \centering
+  \input{figures/phase4_ablation}
+  \caption{Phase 4 ablation chart. Error bars show sample standard deviation across three seeds. The conditioned variants improve over E0, but supervision and no-supervision variants are effectively tied.}
+  \label{fig:phase4}
+\end{figure}
+
+\begin{table}[!htbp]
+\centering
+\small
+\caption{Controlled Phase 4 rerun. Values are mean $\pm$ sample standard deviation across seeds 42, 123, and 2026.}
+\label{tab:phase4}
+\begin{tabular}{llrrr}
+\toprule
+ID & Configuration & Params & \acc{} & \acctopfive{} \\
+\midrule
+E0 & Dense relation baseline & 398K & $28.61 \pm 0.01$ & $88.13 \pm 0.05$ \\
+E2 & Near parameter-matched dense control & 622K & $28.87 \pm 0.09$ & $88.97 \pm 0.05$ \\
+E1 & Conditioned + viewpoint supervision & 623K & $30.50 \pm 0.05$ & $91.09 \pm 0.06$ \\
+E3 & Conditioned, no viewpoint supervision & 623K & $30.45 \pm 0.12$ & $91.04 \pm 0.05$ \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+The E1--E0 gap is +1.89 points, and E1--E3 is only +0.05 points. This rules out the simple claim that explicit viewpoint supervision drives the gain. The near parameter-matched E2 control has almost the same parameter count as E1 but remains 1.63 points below E1, so the gain is not explained by parameter count alone. However, newer negative controls also matter: the frozen-random and shuffled-viewpoint controls report 30.61\% and 30.53\% \acc{}, respectively, which are essentially tied with E1. The safest interpretation is therefore that the architecture benefits from conditional computation, not that it learns a semantically meaningful viewpoint signal.
+
+\subsection{Pilot Components}
+
+Phase 5 and Phase 6 validate additional training paths but do not yet establish main claims. The counterfactual objective gives a +0.12 point one-epoch validation gain over its matched baseline, with active counterfactual loss. The random hard-negative control is inconclusive because it never activates under the current embeddings-only data format. The latent-mode pilot gives a small +0.09 point one-epoch signal for $K=4$ over $K=1$, but $K=4$ also uses many more parameters and requires full training before any claim can be made.
+
+\FloatBarrier
