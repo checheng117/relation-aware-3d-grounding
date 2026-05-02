@@ -1,0 +1,63 @@
+# Protocol Alignment - Optimizer Configuration
+# Changes: Adam optimizer (no weight decay), LR=5e-4
+
+# Dataset
+dataset:
+  manifest_dir: data/processed
+  train_manifest: train_manifest.jsonl
+  val_manifest: val_manifest.jsonl
+  test_manifest: test_manifest.jsonl
+  raw_root: data/raw/referit3d
+
+# Model
+model:
+  name: referit3dnet
+  encoder_type: simple_point  # Using SimplePointEncoder for controlled comparison
+  point_input_dim: 256
+  point_hidden_dim: 128
+  point_output_dim: 256
+  lang_output_dim: 256
+  fusion_dim: 512
+  dropout: 0.1
+
+# Training - PROTOCOL CHANGES
+training:
+  epochs: 30
+  batch_size: 16
+  lr: 0.0005  # CHANGED: 5e-4 (higher than baseline 1e-4)
+  weight_decay: 0.0  # CHANGED: No weight decay (match official Adam default)
+  grad_clip: 1.0
+  seed: 42
+  # NEW: Separate encoder learning rate
+  encoder_lr_factor: 0.1  # Encoder uses 0.1x base LR
+  use_separate_encoder_lr: true
+
+# Evaluation
+evaluation:
+  batch_size: 32
+  compute_acc_at_5: true
+  compute_sub_metrics: false
+
+# Checkpointing
+checkpoint:
+  dir: outputs/protocol_fidelity/optimizer_aligned
+  save_best_only: true
+  monitor: val_acc
+
+# Logging
+logging:
+  log_dir: outputs/protocol_fidelity/optimizer_aligned/logs
+  log_every_n_steps: 50
+
+# Device
+device: cuda
+
+# Protocol experiment metadata
+protocol_experiment:
+  phase: training_protocol_fidelity
+  experiment_group: optimizer
+  changes:
+    - optimizer: AdamW -> Adam
+    - lr: 1e-4 -> 5e-4
+    - weight_decay: 1e-4 -> 0
+    - separate_encoder_lr: false -> true

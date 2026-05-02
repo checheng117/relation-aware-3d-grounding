@@ -1,0 +1,27 @@
+\begin{tikzpicture}
+\begin{axis}[
+  width=0.92\linewidth,
+  height=5.2cm,
+  ybar,
+  bar width=18pt,
+  ymin=27.8,
+  ymax=31.1,
+  ylabel={\acc{} (\%)},
+  symbolic x coords={E0,E2,E1,E3},
+  xtick=data,
+  ymajorgrids=true,
+  grid style={draw=black!10},
+  nodes near coords,
+  nodes near coords style={font=\scriptsize, /pgf/number format/fixed, /pgf/number format/precision=2},
+  error bars/y dir=both,
+  error bars/y explicit,
+  every axis plot/.append style={draw=ragblue, fill=ragblue!62}
+]
+\addplot coordinates {
+  (E0,28.61) +- (0,0.01)
+  (E2,28.87) +- (0,0.09)
+  (E1,30.50) +- (0,0.05)
+  (E3,30.45) +- (0,0.12)
+};
+\end{axis}
+\end{tikzpicture}

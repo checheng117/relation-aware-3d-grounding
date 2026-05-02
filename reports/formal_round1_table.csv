@@ -1,0 +1,5 @@
+Variant,Acc1,Acc5,Harmed,Recovered,Net,Easy,Hard,Clutter3,Clutter5,MultiAnchor,RelativePos,GateMean,GateStd
+Base,30.83,91.87,0,0,0,31.72,N/A,N/A,N/A,23.04,29.86,1.0 (fixed),0.0
+Dense-no-cal,31.05,92.01,393,402,9,31.35,N/A,N/A,N/A,28.34,30.68,0.5 (fixed),0.0
+Dense-calibrated,30.60,91.89,444,434,-10,30.80,N/A,N/A,N/A,28.80,30.37,0.9 (collapsed),~0.0
+Dense-calibrated-v2,30.55,91.80,471,459,-12,30.49,N/A,N/A,N/A,31.11,29.86,0.687,0.066

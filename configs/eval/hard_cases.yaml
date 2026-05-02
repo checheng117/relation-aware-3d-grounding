@@ -1,0 +1,6 @@
+extends: default
+enable_stratified: true
+subsets:
+  - same_class_clutter
+  - occlusion_heavy
+  - anchor_confusion

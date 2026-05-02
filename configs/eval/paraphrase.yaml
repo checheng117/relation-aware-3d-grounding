@@ -1,0 +1,3 @@
+extends: default
+paraphrase_consistency: true
+anchor_drift_metric: true

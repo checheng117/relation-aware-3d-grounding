@@ -1,0 +1,35 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "relation-aware-3d-grounding"
+version = "0.1.0"
+description = "Relation-aware 3D grounding as a structured perception bridge for embodied systems."
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.10,<3.11"
+authors = [{ name = "Che Cheng" }]
+dependencies = [
+  "numpy>=1.24",
+  "torch>=2.0",
+  "pyyaml>=6.0",
+  "pydantic>=2.5",
+  "python-dotenv>=1.0",
+  "tqdm>=4.66",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "ruff>=0.1"]
+hf = ["huggingface_hub>=0.20"]
+viz = ["matplotlib>=3.8"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[project.scripts]
+rag3d = "rag3d.main:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

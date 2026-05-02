@@ -1,0 +1,8 @@
+variant,acc_at_1,acc_at_5,net,multi_anchor,relative_pos,status,decision,notes
+base,30.83,91.87,-,23.04,29.86,retained,keep,Reference anchor - clean baseline
+dense-no-cal-v1,31.05,92.01,+9,28.34,30.68,retained,keep,Lightweight method contribution (+0.22% Acc@1)
+dense-calibrated-v1,30.60,91.89,-10,~,~,frozen,discard,Gate collapse to 0.9
+dense-calibrated-v2,30.55,91.80,-12,~,~,frozen,discard,Signals uninformative
+dense-v2-attpool,25.24,79.95,-238,~,~,frozen,discard,Attention too complex for weak foundation
+dense-v3-geo,24.32,79.06,-277,~,~,frozen,discard,No geometry data available (zeros fallback)
+dense-v4-hardneg,24.47,79.41,-271,~,~,frozen,discard,Focal weighting hurts initial training

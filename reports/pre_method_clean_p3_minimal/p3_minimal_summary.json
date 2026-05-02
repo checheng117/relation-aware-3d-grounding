@@ -1,0 +1,302 @@
+{
+  "inputs": {
+    "manifest": "data/processed/scene_disjoint/official_scene_disjoint/test_manifest.jsonl",
+    "coverage": "reports/pre_method_clean_coverage_diagnostics/per_sample_coverage.jsonl",
+    "geometry_dir": "data/geometry"
+  },
+  "strict_limitations": [
+    "This is not a learned dense relation scorer.",
+    "This uses oracle annotated anchors and recovered geometry.",
+    "The trusted baseline prediction file lacks logits, so base margin is approximated by a top-5 rank proxy.",
+    "A fresh logits export attempt did not reproduce the trusted 30.79% baseline and is excluded from this report."
+  ],
+  "definitions": {
+    "base_rank_proxy": "stored trusted top-5 receives fixed descending weights; all other objects receive zero base rank score",
+    "sparse_relation_proxy": "relation proxy using only annotated anchors present in sparse top-5 nearest-neighbor coverage",
+    "dense_relation_proxy": "relation proxy using all geometry-recovered annotated anchors",
+    "simple_gate": "deterministic lambda from predicted-class ambiguity, anchor-count uncertainty, and relation-score margin"
+  },
+  "total_samples": 4255,
+  "overall": {
+    "base": {
+      "count": 4255,
+      "acc_at_1": 30.83,
+      "acc_at_5": 91.87
+    },
+    "sparse_no_cal": {
+      "count": 4255,
+      "acc_at_1": 32.48,
+      "acc_at_5": 91.84
+    },
+    "dense_no_cal": {
+      "count": 4255,
+      "acc_at_1": 32.76,
+      "acc_at_5": 91.3
+    },
+    "dense_simple_gate": {
+      "count": 4255,
+      "acc_at_1": 31.77,
+      "acc_at_5": 91.82
+    }
+  },
+  "transitions": {
+    "sparse_no_cal": {
+      "base_wrong_count": 2943,
+      "base_correct_count": 1312,
+      "recovered_from_base_wrong": 70,
+      "recovered_pct_of_base_wrong": 2.38,
+      "harmed_from_base_correct": 0,
+      "harmed_pct_of_base_correct": 0.0,
+      "net_correct_delta": 70
+    },
+    "dense_no_cal": {
+      "base_wrong_count": 2943,
+      "base_correct_count": 1312,
+      "recovered_from_base_wrong": 91,
+      "recovered_pct_of_base_wrong": 3.09,
+      "harmed_from_base_correct": 9,
+      "harmed_pct_of_base_correct": 0.69,
+      "net_correct_delta": 82
+    },
+    "dense_simple_gate": {
+      "base_wrong_count": 2943,
+      "base_correct_count": 1312,
+      "recovered_from_base_wrong": 40,
+      "recovered_pct_of_base_wrong": 1.36,
+      "harmed_from_base_correct": 0,
+      "harmed_pct_of_base_correct": 0.0,
+      "net_correct_delta": 40
+    }
+  },
+  "subsets": {
+    "same_class_clutter": {
+      "base": {
+        "count": 2373,
+        "acc_at_1": 21.74,
+        "acc_at_5": 89.55
+      },
+      "sparse_no_cal": {
+        "count": 2373,
+        "acc_at_1": 23.22,
+        "acc_at_5": 89.55
+      },
+      "dense_no_cal": {
+        "count": 2373,
+        "acc_at_1": 23.68,
+        "acc_at_5": 88.79
+      },
+      "dense_simple_gate": {
+        "count": 2373,
+        "acc_at_1": 22.5,
+        "acc_at_5": 89.46
+      }
+    },
+    "same_class_high_clutter": {
+      "base": {
+        "count": 697,
+        "acc_at_1": 16.07,
+        "acc_at_5": 84.07
+      },
+      "sparse_no_cal": {
+        "count": 697,
+        "acc_at_1": 18.94,
+        "acc_at_5": 84.22
+      },
+      "dense_no_cal": {
+        "count": 697,
+        "acc_at_1": 18.94,
+        "acc_at_5": 81.49
+      },
+      "dense_simple_gate": {
+        "count": 697,
+        "acc_at_1": 16.93,
+        "acc_at_5": 83.36
+      }
+    },
+    "multi_anchor": {
+      "base": {
+        "count": 93,
+        "acc_at_1": 19.35,
+        "acc_at_5": 88.17
+      },
+      "sparse_no_cal": {
+        "count": 93,
+        "acc_at_1": 27.96,
+        "acc_at_5": 84.95
+      },
+      "dense_no_cal": {
+        "count": 93,
+        "acc_at_1": 37.63,
+        "acc_at_5": 84.95
+      },
+      "dense_simple_gate": {
+        "count": 93,
+        "acc_at_1": 21.51,
+        "acc_at_5": 91.4
+      }
+    },
+    "relative_position": {
+      "base": {
+        "count": 968,
+        "acc_at_1": 29.86,
+        "acc_at_5": 93.18
+      },
+      "sparse_no_cal": {
+        "count": 968,
+        "acc_at_1": 32.02,
+        "acc_at_5": 94.01
+      },
+      "dense_no_cal": {
+        "count": 968,
+        "acc_at_1": 32.64,
+        "acc_at_5": 93.6
+      },
+      "dense_simple_gate": {
+        "count": 968,
+        "acc_at_1": 30.37,
+        "acc_at_5": 93.8
+      }
+    },
+    "relational": {
+      "base": {
+        "count": 2577,
+        "acc_at_1": 30.73,
+        "acc_at_5": 92.63
+      },
+      "sparse_no_cal": {
+        "count": 2577,
+        "acc_at_1": 32.4,
+        "acc_at_5": 92.39
+      },
+      "dense_no_cal": {
+        "count": 2577,
+        "acc_at_1": 32.79,
+        "acc_at_5": 91.7
+      },
+      "dense_simple_gate": {
+        "count": 2577,
+        "acc_at_1": 31.32,
+        "acc_at_5": 92.51
+      }
+    },
+    "dense_scene": {
+      "base": {
+        "count": 752,
+        "acc_at_1": 29.79,
+        "acc_at_5": 89.63
+      },
+      "sparse_no_cal": {
+        "count": 752,
+        "acc_at_1": 32.18,
+        "acc_at_5": 90.03
+      },
+      "dense_no_cal": {
+        "count": 752,
+        "acc_at_1": 32.18,
+        "acc_at_5": 88.83
+      },
+      "dense_simple_gate": {
+        "count": 752,
+        "acc_at_1": 30.45,
+        "acc_at_5": 89.49
+      }
+    },
+    "baseline_wrong": {
+      "base": {
+        "count": 2943,
+        "acc_at_1": 0.0,
+        "acc_at_5": 88.24
+      },
+      "sparse_no_cal": {
+        "count": 2943,
+        "acc_at_1": 2.38,
+        "acc_at_5": 88.21
+      },
+      "dense_no_cal": {
+        "count": 2943,
+        "acc_at_1": 3.09,
+        "acc_at_5": 87.43
+      },
+      "dense_simple_gate": {
+        "count": 2943,
+        "acc_at_1": 1.36,
+        "acc_at_5": 88.18
+      }
+    },
+    "baseline_correct": {
+      "base": {
+        "count": 1312,
+        "acc_at_1": 100.0,
+        "acc_at_5": 100.0
+      },
+      "sparse_no_cal": {
+        "count": 1312,
+        "acc_at_1": 100.0,
+        "acc_at_5": 100.0
+      },
+      "dense_no_cal": {
+        "count": 1312,
+        "acc_at_1": 99.31,
+        "acc_at_5": 100.0
+      },
+      "dense_simple_gate": {
+        "count": 1312,
+        "acc_at_1": 100.0,
+        "acc_at_5": 100.0
+      }
+    },
+    "sparse_any_missed_at_5": {
+      "base": {
+        "count": 134,
+        "acc_at_1": 17.91,
+        "acc_at_5": 93.28
+      },
+      "sparse_no_cal": {
+        "count": 134,
+        "acc_at_1": 17.91,
+        "acc_at_5": 93.28
+      },
+      "dense_no_cal": {
+        "count": 134,
+        "acc_at_1": 27.61,
+        "acc_at_5": 76.12
+      },
+      "dense_simple_gate": {
+        "count": 134,
+        "acc_at_1": 29.85,
+        "acc_at_5": 87.31
+      }
+    },
+    "sparse_all_incomplete_at_5": {
+      "base": {
+        "count": 191,
+        "acc_at_1": 18.32,
+        "acc_at_5": 92.15
+      },
+      "sparse_no_cal": {
+        "count": 191,
+        "acc_at_1": 21.47,
+        "acc_at_5": 88.48
+      },
+      "dense_no_cal": {
+        "count": 191,
+        "acc_at_1": 27.75,
+        "acc_at_5": 76.44
+      },
+      "dense_simple_gate": {
+        "count": 191,
+        "acc_at_1": 27.23,
+        "acc_at_5": 87.96
+      }
+    }
+  },
+  "gate_behavior": {
+    "mean_gate_lambda": 0.145061,
+    "median_gate_lambda": 0.140161,
+    "mean_relation_margin": 0.188977,
+    "dense_harms_prevented_by_gate": 9,
+    "dense_recoveries_lost_by_gate": 64,
+    "dense_no_cal_harm_count": 9,
+    "dense_gate_harm_count": 0
+  }
+}

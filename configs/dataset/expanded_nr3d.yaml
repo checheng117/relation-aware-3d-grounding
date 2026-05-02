@@ -1,0 +1,17 @@
+# Expanded scene-disjoint split configuration for full Nr3D recovery.
+# All 641 scenes now have aggregation files.
+name: expanded_nr3d_scene_disjoint
+raw_root: data/raw/referit3d
+processed_dir: data/processed/scene_disjoint/expanded_nr3d
+scans_subdir: scans
+annotations_subdir: annotations
+variant: nr3d_official_scene_disjoint
+split_method: scene_disjoint
+note: "Expanded scene-disjoint splits - all 641 scenes with aggregation files."
+nr3d_official:
+  csv_file: nr3d_official.csv
+max_objects_per_scene: 64
+point_sample_size: 1024
+debug:
+  max_build_samples: null
+  max_build_scenes: null

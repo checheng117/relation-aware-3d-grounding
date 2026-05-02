@@ -1,0 +1,58 @@
+# Smoke/resume config for the clean sorted-vocabulary baseline route.
+# This validates the train/evaluate/export chain without claiming method evidence.
+
+dataset:
+  manifest_dir: data/processed/scene_disjoint/official_scene_disjoint
+  train_manifest: train_manifest.jsonl
+  val_manifest: val_manifest.jsonl
+  test_manifest: test_manifest.jsonl
+  raw_root: data/raw/referit3d
+  bert_dir: data/text_features/full_official_nr3d
+
+model:
+  name: referit3dnet
+  encoder_type: simple_point
+  point_input_dim: 256
+  point_hidden_dim: 128
+  point_output_dim: 256
+  lang_input_dim: 768
+  lang_hidden_dim: 256
+  lang_output_dim: 256
+  fusion_dim: 512
+  dropout: 0.1
+  use_learned_class_embedding: true
+  num_classes: 516
+  class_embed_dim: 64
+
+training:
+  epochs: 2
+  batch_size: 16
+  lr: 0.0001
+  weight_decay: 0.0001
+  grad_clip: 1.0
+  seed: 42
+
+evaluation:
+  batch_size: 32
+  compute_acc_at_5: true
+  compute_sub_metrics: false
+
+checkpoint:
+  dir: outputs/20260420_clean_sorted_vocab_baseline/smoke
+  save_best_only: true
+  monitor: val_acc
+
+logging:
+  log_dir: outputs/20260420_clean_sorted_vocab_baseline/smoke/logs
+  log_every_n_steps: 10
+
+device: cuda
+
+debug:
+  max_batches: 2
+  overfit_one_batch: false
+
+experiment:
+  phase: pre_method_clean_baseline_smoke
+  split: official_scene_disjoint
+  vocabulary_ordering: sorted_class_name

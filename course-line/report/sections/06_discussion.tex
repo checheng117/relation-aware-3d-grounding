@@ -1,0 +1,16 @@
+\section{Discussion and Limitations}
+
+\paragraph{The main contribution is partly diagnostic.}
+The most trustworthy evidence in the repository is the scene-disjoint evaluation and the diagnostic analysis around it. This is appropriate for the course project because it demonstrates a complete empirical workflow: dataset recovery, baseline reproduction, hard-subset analysis, coverage diagnosis, method implementation, ablation, and negative-result reporting.
+
+\paragraph{Viewpoint supervision should not be overclaimed.}
+The original idea emphasized viewpoint labels. The current ablations do not support that framing. E1 and E3 have the same architecture, but E3 removes viewpoint supervision and matches E1. The random and shuffled controls further weaken any claim that a learned semantic viewpoint signal is responsible. The report therefore uses the more conservative \method{} framing.
+
+\paragraph{Multi-anchor reasoning remains unsolved.}
+Diagnostics show that multi-anchor expressions are difficult, and coverage analysis explains why sparse anchor selection is risky. However, the conditioned scorer does not yet improve multi-anchor accuracy in the controlled ablation. Anchor-chain reasoning remains an important future direction rather than a completed result.
+
+\paragraph{The embeddings-only pipeline limits controls.}
+The efficient embedding format stores object embeddings, language features, base logits, and class indices, but not full per-object metadata such as class names and 3D centers. This makes some geometry-aware controls impossible, especially random hard negatives based on spatial proximity. A metadata-preserving extraction path is needed for stronger counterfactual ablations.
+
+\paragraph{Some evidence remains pilot-level.}
+The Phase 5 counterfactual and Phase 6 latent-mode runs are one-epoch pilots on the validation split. They are useful implementation checks, but they should not be treated as final claims. Full 80-epoch latent-mode training with multiple seeds is planned but not yet complete in the current repository state.

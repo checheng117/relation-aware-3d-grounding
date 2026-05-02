@@ -1,0 +1,24 @@
+\section{Reproducibility Notes}
+
+Table~\ref{tab:sources} maps the main reported numbers to local artifacts in the repository. These paths are included so that each result can be audited without relying on the prose alone.
+
+\begin{table}[h]
+\centering
+\scriptsize
+\caption{Local evidence sources used in this report.}
+\label{tab:sources}
+\begin{tabular}{L{0.25\linewidth}L{0.66\linewidth}}
+\toprule
+Result & Source artifact \\
+\midrule
+Scene-disjoint baseline & \path{reports/final_diagnostic_master_summary.md} \\
+Hard subsets & \path{reports/cover3d_phase1_baseline_subset_results.md} \\
+Coverage diagnostics & \path{reports/cover3d_coverage_diagnostics/coverage_diagnostics_report.md} \\
+Dense relation line & \path{reports/final_diagnostic_master_summary.md} \\
+Phase 4 rerun & \path{reports/phase4_aggregates/R001_aggregate_results.json} \\
+Parameter-matched control & \path{reports/phase4_aggregates/R004_aggregate_results.json} \\
+Viewpoint controls & \path{reports/phase4_aggregates/R002_aggregate_results.json} \\
+Counterfactual and latent-mode pilots & Report discussion only; raw pilot outputs are not part of the public release \\
+\bottomrule
+\end{tabular}
+\end{table}

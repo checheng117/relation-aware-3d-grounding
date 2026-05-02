@@ -1,0 +1,65 @@
+# ReferIt3D Recovered 23K PointNet++ Encoder Configuration
+# For encoder comparison on recovered scene-disjoint dataset
+
+# Dataset
+dataset:
+  manifest_dir: data/processed/scene_disjoint/official_scene_disjoint
+  train_manifest: train_manifest.jsonl
+  val_manifest: val_manifest.jsonl
+  test_manifest: test_manifest.jsonl
+  raw_root: data/raw/referit3d
+  bert_dir: data/text_features/recovered_23k
+
+# Model
+model:
+  name: referit3dnet
+  encoder_type: pointnetpp  # KEY: use PointNet++ instead of simple_point
+  # PointNet++ specific parameters
+  pointnetpp_num_points: 1024  # Points sampled per object
+  # Output dimensions (same as baseline)
+  point_output_dim: 256
+  lang_output_dim: 256
+  fusion_dim: 512
+  dropout: 0.1
+
+# Training
+training:
+  epochs: 30
+  batch_size: 8  # Reduced from 16 due to memory constraints
+  lr: 0.0001
+  weight_decay: 0.0001
+  grad_clip: 1.0
+  seed: 42
+
+# Evaluation
+evaluation:
+  batch_size: 32
+  compute_acc_at_5: true
+  compute_sub_metrics: false
+
+# Checkpointing
+checkpoint:
+  dir: outputs/20260408_recovered_23k_rerun/pointnetpp_encoder
+  save_best_only: true
+  monitor: val_acc
+
+# Logging
+logging:
+  log_dir: outputs/20260408_recovered_23k_rerun/pointnetpp_encoder/logs
+  log_every_n_steps: 50
+
+# Device
+device: cuda
+
+# Debug
+debug:
+  max_batches: null
+  overfit_one_batch: false
+
+# Experiment metadata
+experiment:
+  phase: recovered_23k_rerun
+  split: official_scene_disjoint
+  dataset_samples: 23186
+  encoder_type: pointnetpp
+  baseline_comparison: true

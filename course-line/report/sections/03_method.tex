@@ -1,0 +1,52 @@
+\section{Method}
+
+\subsection{Problem Setup}
+
+Each sample contains a scene, a referring expression, a set of candidate objects, and a target object index. In the embedding-based training path, object embeddings have dimension 320 and language features have dimension 256. Let $o_i$ be the embedding of candidate object $i$, let $x$ be the utterance feature, and let $b_i$ be a base grounding logit. The relation module computes an additional score $r_i$, and the final logit is
+\begin{equation}
+  \ell_i = b_i + \lambda r_i .
+  \label{eq:fusion}
+\end{equation}
+The training objective is cross-entropy over candidates unless an auxiliary loss is enabled.
+
+\subsection{Pairwise Relation Scoring}
+
+The basic relation module scores candidate-anchor pairs. For candidate $i$ and possible anchor $j$, a pair feature is formed from candidate, anchor, and language embeddings:
+\begin{equation}
+  h_{ij} = [o_i; o_j; x].
+\end{equation}
+A relation MLP produces a pair score $s_{ij}$. Candidate-level relation evidence is aggregated over anchors with a softmax temperature $\tau$:
+\begin{equation}
+  \alpha_{ij} = \mathrm{softmax}_{j}(s_{ij}/\tau),
+  \qquad
+  r_i = \sum_j \alpha_{ij}s_{ij}.
+  \label{eq:anchor-aggregation}
+\end{equation}
+This design exposes a key practical issue: if useful anchors are not included in the anchor pool, no downstream scorer can recover the correct relational evidence. That is why the project includes explicit coverage diagnostics.
+
+\subsection{Latent Conditioned Relation Scoring}
+
+The current primary method generalizes the pairwise scorer into a language-conditioned mixture:
+\begin{equation}
+  s(i,j\mid x) = \sum_{k=1}^{K}\pi_k(x) f_k(o_i,o_j,x),
+  \label{eq:latent-score}
+\end{equation}
+where $f_k$ is the $k$-th relation expert and $\pi_k(x)$ is a language-conditioned gate:
+\begin{equation}
+  \pi(x)=\mathrm{softmax}(W_g\,\mathrm{GELU}(U_gx+b_g)+c_g).
+\end{equation}
+When $K=1$, the model is a single relation expert. When $K>1$, the module can represent multiple latent relation modes. Earlier Phase 4 code used viewpoint-conditioned scoring, but the current interpretation is broader: viewpoint is one possible conditioning signal, not the validated source of improvement.
+
+\subsection{Optional Counterfactual Loss}
+
+The counterfactual objective is implemented as an auxiliary margin loss. Given target logit $\ell_y$ and a set of counterfactual negative logits $\ell_c$, the loss is
+\begin{equation}
+  \mathcal{L}_{\cf} =
+  \frac{1}{|\mathcal{C}|}
+  \sum_{c\in\mathcal{C}}\max(0, m+\ell_c-\ell_y).
+\end{equation}
+The total loss is
+\begin{equation}
+  \mathcal{L} = \mathcal{L}_{\ce} + \lambda_{\cf}\mathcal{L}_{\cf}.
+\end{equation}
+The pilot configuration uses margin $m=0.2$ and $\lambda_{\cf}=0.3$. Because the current pre-extracted embeddings store class IDs and feature vectors but not full 3D object metadata, the intended random hard-negative control cannot yet be activated reliably.

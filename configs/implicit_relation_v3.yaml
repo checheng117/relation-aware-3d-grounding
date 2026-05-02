@@ -1,0 +1,104 @@
+# Implicit Relation Modeling v3 Configuration
+#
+# This configuration extends the trusted ReferIt3DNet baseline (30.79% Test Acc@1)
+# with a CHUNKED dense pairwise relation module.
+#
+# Key design choices:
+# 1. Same architecture as v1 (no parser dependency)
+# 2. Chunked computation preserves dense semantics (all N² pairs)
+# 3. Memory-safe: chunk_size=8 reduces peak memory ~3x
+# 4. Same training protocol as baseline for fair comparison
+#
+# Goal: Recover v1's +0.47% improvement with stable training.
+
+# Dataset configuration (same as baseline)
+dataset:
+  manifest_dir: data/processed/scene_disjoint/official_scene_disjoint
+  train_manifest: train_manifest.jsonl
+  val_manifest: val_manifest.jsonl
+  test_manifest: test_manifest.jsonl
+  bert_dir: data/text_features/full_official_nr3d
+
+# Model configuration
+model:
+  name: relation_aware_implicit_v3
+  encoder_type: simple_point
+
+  # Base model architecture (same as baseline)
+  point_input_dim: 256
+  point_hidden_dim: 128
+  point_output_dim: 256
+  lang_input_dim: 768
+  lang_hidden_dim: 256
+  lang_output_dim: 256
+  fusion_dim: 512
+  dropout: 0.1
+
+  # Learned class embedding (same as baseline)
+  use_learned_class_embedding: true
+  num_classes: 516  # Nr3D class vocabulary size
+  class_embed_dim: 64
+
+  # Relation module configuration (same as v1)
+  relation_hidden_dim: 256
+  relation_mlp_layers: 2
+  relation_dropout: 0.1
+  use_residual: true  # CRITICAL: preserve baseline stability
+  use_gate: false  # No gate, use simple residual addition
+  gate_init: 0.1  # If gate enabled, start low
+  relation_temperature: 1.0
+
+  # Chunking configuration (NEW for v3)
+  chunk_size: 8  # Number of j neighbors per chunk
+  # Memory savings: N/chunk_size = 26/8 ≈ 3.25x reduction
+
+  relation_enabled: true  # Enable relation module
+
+  # Pre-trained baseline checkpoint (optional - can train from scratch)
+  # If provided, load baseline weights for encoder
+  base_checkpoint: outputs/20260409_learned_class_embedding/formal/best_model.pt
+
+# Training configuration (same as baseline)
+training:
+  epochs: 30
+  batch_size: 16  # Same as baseline (v3 should handle this)
+
+  # Learning rate (same as baseline)
+  lr: 1e-4
+
+  weight_decay: 1e-4
+  grad_clip: 1.0
+  seed: 42
+
+  scheduler_type: cosine
+  warmup_epochs: 0
+
+  gradient_accumulation_steps: 1
+
+# Evaluation configuration
+evaluation:
+  batch_size: 32
+  compute_acc_at_5: true
+
+# Checkpoint configuration
+checkpoint:
+  dir: outputs/implicit_relation_v3
+
+# Device configuration
+device: cuda
+
+# Debug configuration (null for full training)
+debug:
+  max_batches: null
+
+# Experiment metadata
+experiment:
+  phase: implicit_relation_v3
+  baseline: referit3dnet
+  baseline_test_acc: 30.79
+  method: chunked_dense_pairwise_relation
+  parser: none  # No parser
+  fusion: residual_addition
+  v1_result: 31.26  # Dense v1 (crashed)
+  v2_result: 28.55  # Sparse v2 (stable but degraded)
+  target: 31.26  # Match or exceed v1

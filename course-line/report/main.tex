@@ -1,0 +1,76 @@
+\documentclass{article}
+
+\PassOptionsToPackage{numbers,sort&compress}{natbib}
+\usepackage[preprint]{Styles/neurips_2025}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{microtype}
+\usepackage{placeins}
+\usepackage{xcolor}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usepackage{pgfplots}
+
+\hypersetup{hidelinks}
+
+\usetikzlibrary{arrows.meta,positioning,fit,calc,shapes.geometric}
+\pgfplotsset{compat=1.17}
+
+\makeatletter
+\renewcommand{\@noticestring}{CSC6133 Deep Learning for Computer Vision Final Project Report}
+\makeatother
+
+\definecolor{ragblue}{HTML}{2F5597}
+\definecolor{raggreen}{HTML}{3A7D44}
+\definecolor{ragorange}{HTML}{C55A11}
+\definecolor{ragred}{HTML}{A23B3B}
+\definecolor{raggray}{HTML}{666666}
+\urlstyle{tt}
+
+\newcommand{\method}{Latent Conditioned Relation Scoring}
+\newcommand{\acc}{Acc@1}
+\newcommand{\acctopfive}{Acc@5}
+\newcommand{\cf}{\mathrm{CF}}
+\newcommand{\ce}{\mathrm{CE}}
+\newcommand{\pp}{\,\mathrm{pp}}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\title{Latent Conditioned Relation Scoring for 3D Visual Grounding}
+
+\author{%
+  Che CHENG\\
+  Student ID: 225015050\\
+  CSC6133 Deep Learning for Computer Vision\\
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+This report summarizes the current state of a course project on relation-aware 3D visual grounding. The task is to identify a target object in a 3D scene from a natural-language expression, where many difficult examples require spatial relations such as ``near'', ``left of'', ``on'', or ``between''. The repository now contains a verified scene-disjoint Nr3D/ReferIt3D-style evaluation pipeline, a reproduced ReferIt3DNet baseline, hard-subset and coverage diagnostics, dense relation reranking experiments, and conditioned relation-scoring variants. The most reliable evidence is diagnostic: the reproduced baseline obtains 30.83\% \acc{} on 4,255 scene-disjoint test samples, while same-class clutter, high clutter, and multi-anchor subsets drop to 21.96\%, 16.07\%, and 11.90\%. Coverage analysis further shows that sparse top-5 anchor selection misses every annotated anchor in 33.95\% of baseline-wrong, anchor-evaluable cases. Method evidence is more qualified. A controlled three-seed Phase 4 rerun shows a conditioned relation architecture improves from 28.61\% to 30.50\% \acc{}, and removing viewpoint supervision gives a statistically similar 30.45\%. A near parameter-matched control remains much lower at 28.87\%, but random and shuffled viewpoint controls indicate that the gain should be framed as conditional architecture rather than explicit viewpoint learning. Counterfactual and latent-mode experiments pass pilot checks, but full training remains future work.
+\end{abstract}
+
+\input{sections/01_introduction}
+\input{sections/02_related_work}
+\input{sections/03_method}
+\input{sections/04_experimental_setup}
+\input{sections/05_results}
+\input{sections/06_discussion}
+\input{sections/07_conclusion}
+
+\FloatBarrier
+\begingroup
+\small
+\setlength{\bibsep}{0pt plus 0.3ex}
+\bibliographystyle{plainnat}
+\bibliography{references}
+\endgroup
+
+\end{document}

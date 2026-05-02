@@ -1,0 +1,11 @@
+# Pip-only fallback (CI or advanced use). Canonical workflow: conda + environment.yml
+# See README.md — environment name: rag3d, Python 3.10.
+numpy>=1.24
+torch>=2.0
+pyyaml>=6.0
+pydantic>=2.5
+python-dotenv>=1.0
+tqdm>=4.66
+matplotlib>=3.8
+pytest>=7.4
+ruff>=0.1

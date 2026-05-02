@@ -1,0 +1,28 @@
+\begin{tikzpicture}[
+  node distance=0.78cm and 0.82cm,
+  inputbox/.style={draw=ragblue, rounded corners=2pt, very thick, align=center, minimum height=0.82cm, text width=2.2cm, fill=ragblue!6, font=\small},
+  processbox/.style={draw=raggreen, rounded corners=2pt, very thick, align=center, minimum height=0.82cm, text width=2.3cm, fill=raggreen!7, font=\small},
+  outputbox/.style={draw=ragorange, rounded corners=2pt, very thick, align=center, minimum height=0.82cm, text width=2.2cm, fill=ragorange!8, font=\small},
+  arrow/.style={-{Latex[length=2mm]}, thick, draw=raggray}
+]
+  \node[inputbox] (scene) {3D scene\\objects};
+  \node[inputbox, right=of scene] (text) {Language\\expression};
+  \coordinate (midtop) at ($(scene)!0.5!(text)$);
+  \node[processbox, below=of midtop] (features) {Object/text\\features};
+  \node[processbox, right=of features] (pairs) {Candidate-anchor\\relation scores};
+  \node[processbox, right=of pairs] (condition) {Conditioned\\relation modes};
+  \node[outputbox, right=of condition] (fusion) {Logit fusion\\and ranking};
+  \node[outputbox, right=of fusion] (output) {Prediction\\and diagnostics};
+  \node[processbox, below=of pairs, text width=2.45cm] (diagnostics) {Hard-subset and\\coverage analysis};
+
+  \draw[arrow] (scene) -- (features);
+  \draw[arrow] (text) -- (features);
+  \draw[arrow] (features) -- (pairs);
+  \draw[arrow] (pairs) -- (condition);
+  \draw[arrow] (condition) -- (fusion);
+  \draw[arrow] (fusion) -- (output);
+  \draw[arrow] (features) -- (diagnostics);
+  \draw[arrow] (diagnostics) -- (pairs);
+
+  \node[draw=raggray!45, rounded corners=3pt, fit=(pairs)(condition), inner sep=0.18cm, label={[raggray,font=\small]above:relation-scoring module}] {};
+\end{tikzpicture}

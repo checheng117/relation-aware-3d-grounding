@@ -1,0 +1,7 @@
+variant,acc_at_1,acc_at_5,recovered,harmed,net,delta_acc1
+base,30.83,91.87,0,0,0,-0.22
+dense-no-cal,31.05,92.01,402,393,9,0.00
+dense-calibrated-v2,30.55,91.80,459,471,-12,-0.50
+dense-v2-attpool,25.24,79.95,514,752,-238,-5.81
+dense-v3-geo,24.32,79.06,506,783,-277,-6.73
+dense-v4-hardneg,24.47,79.41,506,777,-271,-6.58

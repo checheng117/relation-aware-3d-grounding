@@ -1,0 +1,31 @@
+{
+  "E2_matched": {
+    "mean_acc_at_1": 28.87,
+    "std_acc_at_1": 0.08717797887081365,
+    "params": 622471,
+    "seeds": [
+      28.93,
+      28.77,
+      28.91
+    ],
+    "seed_ids": [42, 123, 2026],
+    "extra_hidden_dim": 450
+  },
+  "comparison": {
+    "E2_matched_minus_E1": -1.63,
+    "E2_matched_minus_E0": 0.26,
+    "interpretation": "E2_matched < E1 by more than 1 pp, suggesting the E1 gain is not explained by parameter count alone."
+  },
+  "R001_reference": {
+    "E1_mean": 30.50,
+    "E0_mean": 28.61,
+    "E3_mean": 30.45
+  },
+  "claim_impact": {
+    "C001": "SUPPORTED WITH CAVEAT - parameter-count confound is reduced",
+    "C002": "NOT CONFIRMED - explicit viewpoint mechanism remains unsupported",
+    "A8_attack": "PARTIALLY ADDRESSED - gain is not explained by capacity alone"
+  },
+  "run_date": "2026-04-30",
+  "run_id": "R004"
+}

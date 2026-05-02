@@ -1,0 +1,66 @@
+# SAT (2D Semantics Assisted Training) Baseline Configuration
+# Phase 1: Pure 3D inference (no 2D training assistance)
+# Target: Establish transformer-fusion baseline
+
+name: sat_baseline_phase1
+description: "SAT model reproduction - Phase 1 pure 3D"
+
+# Model configuration
+model:
+  type: sat
+  # Feature dimensions (input)
+  point_output_dim: 256  # Pre-computed object features
+  lang_input_dim: 768    # BERT hidden size
+  # MMT configuration (from SAT paper)
+  mmt_hidden_size: 192
+  mmt_num_layers: 4
+  mmt_num_heads: 12
+  # Regularization
+  dropout: 0.1
+
+# Dataset configuration
+dataset:
+  manifest_dir: data/processed/scene_disjoint/official_scene_disjoint
+  bert_dir: data/text_features/full_official_nr3d
+  train_manifest: train_manifest.jsonl
+  val_manifest: val_manifest.jsonl
+  test_manifest: test_manifest.jsonl
+  # Scene-disjoint split verified
+  split_method: scene_disjoint
+
+# Training configuration
+training:
+  epochs: 30
+  batch_size: 16
+  lr: 1e-4
+  weight_decay: 1e-4
+  grad_clip: 1.0
+  seed: 42
+  # Scheduler
+  scheduler_type: cosine
+  # Early stopping
+  early_stopping_patience: null  # No early stopping for first run
+  # Gradient accumulation (if needed for memory)
+  gradient_accumulation_steps: 1
+
+# Evaluation configuration
+evaluation:
+  batch_size: 32
+  metrics:
+    - acc_at_1    # Target is top prediction
+    - acc_at_5    # Target in top-5
+    - acc_at_0_5  # Target in top-50% (SAT paper metric)
+
+# Checkpoint configuration
+checkpoint:
+  dir: outputs/sat_baseline
+
+# Debug options
+debug:
+  max_batches: null  # Set to small number for smoke run
+
+# Expected outcomes (for comparison)
+target:
+  baseline_acc_at_1: 0.3079  # Our ReferIt3DNet baseline
+  sat_paper_acc_at_0_5: 0.492  # Official SAT (with 2D training)
+  phase1_expected_acc_at_0_5: 0.40  # Our estimate (no 2D)

@@ -1,0 +1,56 @@
+# ReferIt3D Recovered 23K Smoke Test Configuration
+# Quick 2-epoch test to verify pipeline
+
+# Dataset
+dataset:
+  manifest_dir: data/processed/scene_disjoint/official_scene_disjoint
+  train_manifest: train_manifest.jsonl
+  val_manifest: val_manifest.jsonl
+  test_manifest: test_manifest.jsonl
+  raw_root: data/raw/referit3d
+  bert_dir: data/text_features/recovered_23k
+
+# Model
+model:
+  name: referit3dnet
+  encoder_type: simple_point
+  point_input_dim: 256
+  point_hidden_dim: 128
+  point_output_dim: 256
+  lang_output_dim: 256
+  fusion_dim: 512
+  dropout: 0.1
+
+# Training - SMOKE TEST (2 epochs only)
+training:
+  epochs: 2
+  batch_size: 16
+  lr: 0.0001
+  weight_decay: 0.0001
+  grad_clip: 1.0
+  seed: 42
+
+# Evaluation
+evaluation:
+  batch_size: 32
+  compute_acc_at_5: true
+
+# Checkpointing
+checkpoint:
+  dir: outputs/20260408_recovered_23k_rerun/smoke_test
+  save_best_only: true
+  monitor: val_acc
+
+# Logging
+logging:
+  log_dir: outputs/20260408_recovered_23k_rerun/smoke_test/logs
+  log_every_n_steps: 50
+
+# Device
+device: cuda
+
+# Experiment metadata
+experiment:
+  phase: recovered_23k_smoke_test
+  split: official_scene_disjoint
+  note: "Smoke test for pipeline verification"

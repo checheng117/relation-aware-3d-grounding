@@ -1,0 +1,144 @@
+# COVER-3D ReferIt3DNet Wrapper Configuration
+#
+# Configuration for COVER-3D wrapping the clean sorted-vocabulary ReferIt3DNet baseline.
+# This is the integration target for Phase 2/3.
+#
+# Date: 2026-04-19
+# Benchmark anchor: Apr9 ReferIt3DNet predictions (Test Acc@1 = 30.79%)
+# Method infrastructure base: clean sorted-vocabulary run (Test Acc@1 = 30.83%)
+
+# Base model configuration
+base_model:
+  name: "referit3dnet"
+  checkpoint: "outputs/20260420_clean_sorted_vocab_baseline/formal/best_model.pt"
+  class_vocabulary: "outputs/20260420_clean_sorted_vocab_baseline/formal/class_vocabulary.json"
+  logits_predictions: "outputs/20260420_clean_sorted_vocab_baseline/formal_logits/eval_test_predictions.json"
+  logits_results: "outputs/20260420_clean_sorted_vocab_baseline/formal_logits/eval_test_results.json"
+
+  # Dimensions (from ReferIt3DNet)
+  point_input_dim: 256
+  point_hidden_dim: 128
+  point_output_dim: 256
+  lang_input_dim: 768  # BERT features
+  lang_hidden_dim: 256
+  lang_output_dim: 256
+  fusion_dim: 512
+
+  # Encoder
+  encoder_type: "simple_point"
+  use_class_semantics: true
+  use_learned_class_embedding: true
+  num_object_classes: 516
+  class_embed_dim: 64
+
+  # Object feature dimension (computed)
+  # object_dim = point_output_dim + class_embed_dim = 256 + 64 = 320
+  object_dim: 320
+
+# COVER-3D reranker configuration
+cover3d:
+  name: "cover3d"
+  type: "Cover3DModel"
+
+  # Dimensions (matching base model)
+  object_dim: 320  # Matches ReferIt3DNet output
+  language_dim: 256  # Matches ReferIt3DNet lang_output_dim
+  geometry_dim: 6  # 3 center + 3 size (if available)
+  class_dim: 64  # Matches class_embed_dim
+
+  # Dense Relation Module
+  relation:
+    hidden_dim: 256
+    mlp_layers: 2
+    dropout: 0.1
+    chunk_size: 16  # Memory-safe for scenes up to 100 objects
+    temperature: 1.0
+    use_geometry: true
+    use_residual: true
+    residual_scale: 0.1
+
+  # Soft Anchor Posterior
+  anchor:
+    hidden_dim: 128
+    temperature: 1.0
+    min_entropy_threshold: 0.5
+    prior_weight: 0.2  # Parser priors are weak signals
+    use_class_features: true
+    dropout: 0.1
+
+  # Calibrated Fusion Gate
+  fusion:
+    signal_dim: 4
+    hidden_dim: 32
+    min_gate: 0.1  # Prevent base-only collapse
+    max_gate: 0.9  # Prevent relation-only collapse
+    init_bias: 0.3  # Slight base preference
+    dropout: 0.1
+
+  # General
+  dropout: 0.1
+  emit_diagnostics: true
+
+# Integration notes
+integration:
+  # Where base logits come from
+  base_logits_source: "ReferIt3DNet.classification_head"
+
+  # Where object embeddings come from
+  object_embeddings_source: "ReferIt3DNet.fusion_features"  # Before classification
+
+  # Geometry source (may be limited)
+  geometry_source: "fallback"  # Note: geometry may be placeholder
+  geometry_fallback: "embedding_distance"  # Use embedding as proxy if geometry unavailable
+
+  # Language features
+  utterance_features_source: "ReferIt3DNet.lang_encoder.output"
+
+  # Limitations acknowledged
+  geometry_limitation: "Geometry may be fallback (centers=[0,0,0])"
+  fallback_handling: "Module will use embedding similarity as proxy"
+
+# Training parameters (for Phase 3, not Phase 2)
+training:
+  enabled: false  # Phase 2 is implementation + smoke only
+
+  # Future training params (Phase 3)
+  epochs: 20
+  batch_size: 32
+  learning_rate: 1e-4
+  weight_decay: 1e-5
+
+  # Fine-tuning strategy
+  freeze_base: true  # Freeze base model weights
+  train_cover3d_only: true  # Only train COVER-3D modules
+
+  # Loss
+  loss_type: "cross_entropy"
+  use_hard_negative_sampling: true
+
+  # Hard negatives
+  hard_negatives:
+    same_class_clutter: true
+    multi_anchor: true
+    dense_scene: true
+
+# Evaluation
+evaluation:
+  split: "test"
+  metrics:
+    - "acc_at_1"
+    - "acc_at_5"
+
+  # Hard subset metrics (Phase 1 targets)
+  subsets:
+    - "same_class_clutter"
+    - "high_clutter"
+    - "multi_anchor"
+    - "dense_scene"
+    - "relative"
+
+# Output
+output:
+  checkpoint_dir: "outputs/cover3d_phase3/"
+  log_level: "INFO"
+  save_diagnostics: true

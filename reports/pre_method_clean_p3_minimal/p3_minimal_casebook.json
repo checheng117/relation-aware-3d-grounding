@@ -1,0 +1,942 @@
+[
+  {
+    "scene_id": "scene0340_00",
+    "utterance": "'The lamp sitting on the floor next to the curtains.'",
+    "target_index": 31,
+    "target_id": "31",
+    "anchor_ids": [
+      "2",
+      "3"
+    ],
+    "relation_type": "relative",
+    "subsets": "same_class_clutter,multi_anchor,relative_position,relational,baseline_wrong,sparse_all_incomplete_at_5",
+    "base_pred": 28,
+    "sparse_no_cal_pred": 31,
+    "dense_no_cal_pred": 31,
+    "dense_gate_pred": 28,
+    "gate_lambda": 0.116835,
+    "relation_margin": 0.089201,
+    "pred_class_count": 3,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0340_00",
+    "utterance": "Its the lamp that's on and is located to the right of a hung up picture frame.",
+    "target_index": 39,
+    "target_id": "39",
+    "anchor_ids": [
+      "3"
+    ],
+    "relation_type": "directional",
+    "subsets": "same_class_clutter,single_anchor,directional,relational,baseline_wrong,sparse_any_missed_at_5,sparse_all_incomplete_at_5",
+    "base_pred": 28,
+    "sparse_no_cal_pred": 28,
+    "dense_no_cal_pred": 39,
+    "dense_gate_pred": 28,
+    "gate_lambda": 0.144616,
+    "relation_margin": 0.076952,
+    "pred_class_count": 3,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0340_00",
+    "utterance": "This lamp is right next to a window",
+    "target_index": 31,
+    "target_id": "31",
+    "anchor_ids": [
+      "2",
+      "3"
+    ],
+    "relation_type": "relative",
+    "subsets": "same_class_clutter,multi_anchor,relative_position,relational,baseline_wrong,sparse_all_incomplete_at_5",
+    "base_pred": 28,
+    "sparse_no_cal_pred": 31,
+    "dense_no_cal_pred": 31,
+    "dense_gate_pred": 28,
+    "gate_lambda": 0.116835,
+    "relation_margin": 0.089201,
+    "pred_class_count": 3,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0058_00",
+    "utterance": "The desk that is on the side of the room where there are not chairs against the wall.",
+    "target_index": 28,
+    "target_id": "28",
+    "anchor_ids": [
+      "6"
+    ],
+    "relation_type": "relative",
+    "subsets": "single_anchor,relative_position,relational,baseline_wrong",
+    "base_pred": 10,
+    "sparse_no_cal_pred": 28,
+    "dense_no_cal_pred": 28,
+    "dense_gate_pred": 10,
+    "gate_lambda": 0.124881,
+    "relation_margin": 0.018819,
+    "pred_class_count": 2,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0058_00",
+    "utterance": "NOT the desk with two blue chairs, including a non-swivel chair.",
+    "target_index": 28,
+    "target_id": "28",
+    "anchor_ids": [
+      "6"
+    ],
+    "relation_type": "attribute",
+    "subsets": "single_anchor,baseline_wrong",
+    "base_pred": 10,
+    "sparse_no_cal_pred": 28,
+    "dense_no_cal_pred": 28,
+    "dense_gate_pred": 10,
+    "gate_lambda": 0.124881,
+    "relation_margin": 0.018819,
+    "pred_class_count": 2,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0058_00",
+    "utterance": "pick the smaller desk that has only one chair.",
+    "target_index": 28,
+    "target_id": "28",
+    "anchor_ids": [
+      "6"
+    ],
+    "relation_type": "attribute",
+    "subsets": "single_anchor,baseline_wrong",
+    "base_pred": 10,
+    "sparse_no_cal_pred": 28,
+    "dense_no_cal_pred": 28,
+    "dense_gate_pred": 10,
+    "gate_lambda": 0.124881,
+    "relation_margin": 0.018819,
+    "pred_class_count": 2,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0058_00",
+    "utterance": "The desk far away from the blue door",
+    "target_index": 28,
+    "target_id": "28",
+    "anchor_ids": [
+      "6"
+    ],
+    "relation_type": "attribute",
+    "subsets": "single_anchor,baseline_wrong",
+    "base_pred": 10,
+    "sparse_no_cal_pred": 28,
+    "dense_no_cal_pred": 28,
+    "dense_gate_pred": 10,
+    "gate_lambda": 0.124881,
+    "relation_margin": 0.018819,
+    "pred_class_count": 2,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0330_00",
+    "utterance": "the pillow is the zebra stripe one on the left of the bed",
+    "target_index": 12,
+    "target_id": "12",
+    "anchor_ids": [
+      "2"
+    ],
+    "relation_type": "directional",
+    "subsets": "same_class_clutter,same_class_high_clutter,single_anchor,directional,relational,baseline_wrong",
+    "base_pred": 10,
+    "sparse_no_cal_pred": 12,
+    "dense_no_cal_pred": 12,
+    "dense_gate_pred": 10,
+    "gate_lambda": 0.184052,
+    "relation_margin": 0.376681,
+    "pred_class_count": 5,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0330_00",
+    "utterance": "Facing striped pillows on couch, it's the lefthand striped pillow.",
+    "target_index": 12,
+    "target_id": "12",
+    "anchor_ids": [
+      "2"
+    ],
+    "relation_type": "relative",
+    "subsets": "same_class_clutter,same_class_high_clutter,single_anchor,relative_position,relational,baseline_wrong",
+    "base_pred": 10,
+    "sparse_no_cal_pred": 12,
+    "dense_no_cal_pred": 12,
+    "dense_gate_pred": 10,
+    "gate_lambda": 0.165751,
+    "relation_margin": 0.003834,
+    "pred_class_count": 5,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0330_00",
+    "utterance": "Facing the couch or bed, it's the largest one on the right.",
+    "target_index": 15,
+    "target_id": "15",
+    "anchor_ids": [
+      "2"
+    ],
+    "relation_type": "relative",
+    "subsets": "same_class_clutter,same_class_high_clutter,single_anchor,relative_position,relational,baseline_wrong",
+    "base_pred": 2,
+    "sparse_no_cal_pred": 15,
+    "dense_no_cal_pred": 15,
+    "dense_gate_pred": 9,
+    "gate_lambda": 0.141517,
+    "relation_margin": 0.003834,
+    "pred_class_count": 3,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0330_00",
+    "utterance": "facing the 4 pillows, the striped pillow on your left",
+    "target_index": 12,
+    "target_id": "12",
+    "anchor_ids": [
+      "2"
+    ],
+    "relation_type": "relative",
+    "subsets": "same_class_clutter,same_class_high_clutter,single_anchor,relative_position,relational,baseline_wrong",
+    "base_pred": 10,
+    "sparse_no_cal_pred": 12,
+    "dense_no_cal_pred": 12,
+    "dense_gate_pred": 10,
+    "gate_lambda": 0.165751,
+    "relation_margin": 0.003834,
+    "pred_class_count": 5,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0640_00",
+    "utterance": "'The lamp over the desk.'",
+    "target_index": 2,
+    "target_id": "2",
+    "anchor_ids": [
+      "36"
+    ],
+    "relation_type": "other",
+    "subsets": "single_anchor,dense_scene,baseline_wrong",
+    "base_pred": 1,
+    "sparse_no_cal_pred": 2,
+    "dense_no_cal_pred": 2,
+    "dense_gate_pred": 1,
+    "gate_lambda": 0.125485,
+    "relation_margin": 0.035023,
+    "pred_class_count": 2,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0640_00",
+    "utterance": "The lamp at the foot of the bed.",
+    "target_index": 2,
+    "target_id": "2",
+    "anchor_ids": [
+      "36"
+    ],
+    "relation_type": "other",
+    "subsets": "single_anchor,dense_scene,baseline_wrong",
+    "base_pred": 1,
+    "sparse_no_cal_pred": 2,
+    "dense_no_cal_pred": 2,
+    "dense_gate_pred": 1,
+    "gate_lambda": 0.125485,
+    "relation_margin": 0.035023,
+    "pred_class_count": 2,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0640_00",
+    "utterance": "It is a lamp on a desk that has a computer chair underneath it.",
+    "target_index": 2,
+    "target_id": "2",
+    "anchor_ids": [
+      "36"
+    ],
+    "relation_type": "other",
+    "subsets": "single_anchor,dense_scene,baseline_wrong",
+    "base_pred": 1,
+    "sparse_no_cal_pred": 2,
+    "dense_no_cal_pred": 2,
+    "dense_gate_pred": 1,
+    "gate_lambda": 0.125485,
+    "relation_margin": 0.035023,
+    "pred_class_count": 2,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0640_00",
+    "utterance": "The lamp on the same side as the grey couch",
+    "target_index": 2,
+    "target_id": "2",
+    "anchor_ids": [
+      "36"
+    ],
+    "relation_type": "attribute",
+    "subsets": "single_anchor,dense_scene,baseline_wrong",
+    "base_pred": 1,
+    "sparse_no_cal_pred": 2,
+    "dense_no_cal_pred": 2,
+    "dense_gate_pred": 1,
+    "gate_lambda": 0.125485,
+    "relation_margin": 0.035023,
+    "pred_class_count": 2,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0640_00",
+    "utterance": "the lamp above the desk next to the sofa.",
+    "target_index": 2,
+    "target_id": "2",
+    "anchor_ids": [
+      "36"
+    ],
+    "relation_type": "relative",
+    "subsets": "single_anchor,relative_position,relational,dense_scene,baseline_wrong",
+    "base_pred": 1,
+    "sparse_no_cal_pred": 2,
+    "dense_no_cal_pred": 2,
+    "dense_gate_pred": 1,
+    "gate_lambda": 0.125485,
+    "relation_margin": 0.035023,
+    "pred_class_count": 2,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0640_00",
+    "utterance": "facing the windows, the left lamp",
+    "target_index": 2,
+    "target_id": "2",
+    "anchor_ids": [
+      "36"
+    ],
+    "relation_type": "relative",
+    "subsets": "single_anchor,relative_position,relational,dense_scene,baseline_wrong",
+    "base_pred": 1,
+    "sparse_no_cal_pred": 2,
+    "dense_no_cal_pred": 2,
+    "dense_gate_pred": 1,
+    "gate_lambda": 0.125485,
+    "relation_margin": 0.035023,
+    "pred_class_count": 2,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0640_00",
+    "utterance": "lamp on the computer desk",
+    "target_index": 2,
+    "target_id": "2",
+    "anchor_ids": [
+      "36"
+    ],
+    "relation_type": "other",
+    "subsets": "single_anchor,dense_scene,baseline_wrong",
+    "base_pred": 1,
+    "sparse_no_cal_pred": 2,
+    "dense_no_cal_pred": 2,
+    "dense_gate_pred": 1,
+    "gate_lambda": 0.125485,
+    "relation_margin": 0.035023,
+    "pred_class_count": 2,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0166_00",
+    "utterance": "The top bag closest to the bookshelf.",
+    "target_index": 36,
+    "target_id": "36",
+    "anchor_ids": [
+      "19"
+    ],
+    "relation_type": "directional",
+    "subsets": "same_class_clutter,same_class_high_clutter,single_anchor,directional,relational,dense_scene,baseline_wrong",
+    "base_pred": 16,
+    "sparse_no_cal_pred": 36,
+    "dense_no_cal_pred": 36,
+    "dense_gate_pred": 16,
+    "gate_lambda": 0.175845,
+    "relation_margin": 0.207799,
+    "pred_class_count": 5,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0166_00",
+    "utterance": "It's the bag closes to the book shelf on the top, a black purse.",
+    "target_index": 36,
+    "target_id": "36",
+    "anchor_ids": [
+      "19"
+    ],
+    "relation_type": "attribute",
+    "subsets": "same_class_clutter,same_class_high_clutter,single_anchor,dense_scene,baseline_wrong",
+    "base_pred": 16,
+    "sparse_no_cal_pred": 36,
+    "dense_no_cal_pred": 36,
+    "dense_gate_pred": 16,
+    "gate_lambda": 0.175845,
+    "relation_margin": 0.207799,
+    "pred_class_count": 5,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0166_00",
+    "utterance": "The highest bag closest to the white bookshelf.",
+    "target_index": 36,
+    "target_id": "36",
+    "anchor_ids": [
+      "19"
+    ],
+    "relation_type": "directional",
+    "subsets": "same_class_clutter,same_class_high_clutter,single_anchor,directional,relational,dense_scene,baseline_wrong",
+    "base_pred": 2,
+    "sparse_no_cal_pred": 36,
+    "dense_no_cal_pred": 36,
+    "dense_gate_pred": 2,
+    "gate_lambda": 0.131894,
+    "relation_margin": 0.207799,
+    "pred_class_count": 2,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0166_00",
+    "utterance": "pick the bag next to the shelf and is above the other bags.",
+    "target_index": 36,
+    "target_id": "36",
+    "anchor_ids": [
+      "19"
+    ],
+    "relation_type": "relative",
+    "subsets": "same_class_clutter,same_class_high_clutter,single_anchor,relative_position,relational,dense_scene,baseline_wrong",
+    "base_pred": 16,
+    "sparse_no_cal_pred": 36,
+    "dense_no_cal_pred": 36,
+    "dense_gate_pred": 16,
+    "gate_lambda": 0.175845,
+    "relation_margin": 0.207799,
+    "pred_class_count": 5,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0166_00",
+    "utterance": "The bag that is under another bag and nearest the computer monitor",
+    "target_index": 37,
+    "target_id": "37",
+    "anchor_ids": [
+      "14",
+      "15",
+      "36"
+    ],
+    "relation_type": "directional",
+    "subsets": "same_class_clutter,same_class_high_clutter,multi_anchor,directional,relational,dense_scene,baseline_wrong,sparse_all_incomplete_at_5",
+    "base_pred": 41,
+    "sparse_no_cal_pred": 37,
+    "dense_no_cal_pred": 37,
+    "dense_gate_pred": 41,
+    "gate_lambda": 0.067518,
+    "relation_margin": 0.043438,
+    "pred_class_count": 1,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0098_00",
+    "utterance": "Box under another box.",
+    "target_index": 27,
+    "target_id": "27",
+    "anchor_ids": [
+      "1"
+    ],
+    "relation_type": "other",
+    "subsets": "same_class_clutter,single_anchor,baseline_wrong",
+    "base_pred": 1,
+    "sparse_no_cal_pred": 27,
+    "dense_no_cal_pred": 27,
+    "dense_gate_pred": 27,
+    "gate_lambda": 0.158937,
+    "relation_margin": 0.420713,
+    "pred_class_count": 3,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0098_00",
+    "utterance": "The box by the door and under another box",
+    "target_index": 27,
+    "target_id": "27",
+    "anchor_ids": [
+      "18",
+      "1"
+    ],
+    "relation_type": "relative",
+    "subsets": "same_class_clutter,multi_anchor,relative_position,relational,baseline_wrong",
+    "base_pred": 1,
+    "sparse_no_cal_pred": 27,
+    "dense_no_cal_pred": 27,
+    "dense_gate_pred": 36,
+    "gate_lambda": 0.119323,
+    "relation_margin": 0.162377,
+    "pred_class_count": 3,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0098_00",
+    "utterance": "The box under the whiteboard",
+    "target_index": 36,
+    "target_id": "36",
+    "anchor_ids": [
+      "17"
+    ],
+    "relation_type": "attribute",
+    "subsets": "same_class_clutter,single_anchor,baseline_wrong,sparse_any_missed_at_5,sparse_all_incomplete_at_5",
+    "base_pred": 1,
+    "sparse_no_cal_pred": 1,
+    "dense_no_cal_pred": 36,
+    "dense_gate_pred": 36,
+    "gate_lambda": 0.176678,
+    "relation_margin": 0.886872,
+    "pred_class_count": 3,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0098_00",
+    "utterance": "the box is under the white board",
+    "target_index": 36,
+    "target_id": "36",
+    "anchor_ids": [
+      "17"
+    ],
+    "relation_type": "attribute",
+    "subsets": "same_class_clutter,single_anchor,baseline_wrong,sparse_any_missed_at_5,sparse_all_incomplete_at_5",
+    "base_pred": 1,
+    "sparse_no_cal_pred": 1,
+    "dense_no_cal_pred": 36,
+    "dense_gate_pred": 36,
+    "gate_lambda": 0.176678,
+    "relation_margin": 0.886872,
+    "pred_class_count": 3,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0098_00",
+    "utterance": "Facing the whiteboards, it's the black box on the double shelf closest to the orange can.",
+    "target_index": 36,
+    "target_id": "36",
+    "anchor_ids": [
+      "32",
+      "35"
+    ],
+    "relation_type": "directional",
+    "subsets": "same_class_clutter,multi_anchor,directional,relational,baseline_wrong,sparse_all_incomplete_at_5",
+    "base_pred": 1,
+    "sparse_no_cal_pred": 36,
+    "dense_no_cal_pred": 36,
+    "dense_gate_pred": 1,
+    "gate_lambda": 0.115503,
+    "relation_margin": 0.050117,
+    "pred_class_count": 3,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0098_00",
+    "utterance": "pick the black box on the table",
+    "target_index": 36,
+    "target_id": "36",
+    "anchor_ids": [
+      "32"
+    ],
+    "relation_type": "support",
+    "subsets": "same_class_clutter,single_anchor,relational,baseline_wrong",
+    "base_pred": 1,
+    "sparse_no_cal_pred": 36,
+    "dense_no_cal_pred": 36,
+    "dense_gate_pred": 1,
+    "gate_lambda": 0.14385,
+    "relation_margin": 0.058851,
+    "pred_class_count": 3,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0098_00",
+    "utterance": "The little black box all by itself.",
+    "target_index": 36,
+    "target_id": "36",
+    "anchor_ids": [
+      "17"
+    ],
+    "relation_type": "relative",
+    "subsets": "same_class_clutter,single_anchor,relative_position,relational,baseline_wrong,sparse_any_missed_at_5,sparse_all_incomplete_at_5",
+    "base_pred": 1,
+    "sparse_no_cal_pred": 1,
+    "dense_no_cal_pred": 36,
+    "dense_gate_pred": 36,
+    "gate_lambda": 0.176678,
+    "relation_margin": 0.886872,
+    "pred_class_count": 3,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0098_00",
+    "utterance": "The box is black and is on the wall with the whiteboard.",
+    "target_index": 36,
+    "target_id": "36",
+    "anchor_ids": [
+      "17"
+    ],
+    "relation_type": "attribute",
+    "subsets": "same_class_clutter,single_anchor,baseline_wrong,sparse_any_missed_at_5,sparse_all_incomplete_at_5",
+    "base_pred": 1,
+    "sparse_no_cal_pred": 1,
+    "dense_no_cal_pred": 36,
+    "dense_gate_pred": 36,
+    "gate_lambda": 0.176678,
+    "relation_margin": 0.886872,
+    "pred_class_count": 3,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0501_00",
+    "utterance": "The towel next to the door.",
+    "target_index": 32,
+    "target_id": "32",
+    "anchor_ids": [
+      "6"
+    ],
+    "relation_type": "relative",
+    "subsets": "single_anchor,relative_position,relational,baseline_wrong",
+    "base_pred": 20,
+    "sparse_no_cal_pred": 32,
+    "dense_no_cal_pred": 32,
+    "dense_gate_pred": 20,
+    "gate_lambda": 0.130663,
+    "relation_margin": 0.174458,
+    "pred_class_count": 2,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0501_00",
+    "utterance": "The towel closest to door",
+    "target_index": 32,
+    "target_id": "32",
+    "anchor_ids": [
+      "6"
+    ],
+    "relation_type": "directional",
+    "subsets": "single_anchor,directional,relational,baseline_wrong",
+    "base_pred": 20,
+    "sparse_no_cal_pred": 32,
+    "dense_no_cal_pred": 32,
+    "dense_gate_pred": 20,
+    "gate_lambda": 0.130663,
+    "relation_margin": 0.174458,
+    "pred_class_count": 2,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0501_00",
+    "utterance": "The towel is colorful and near the door",
+    "target_index": 32,
+    "target_id": "32",
+    "anchor_ids": [
+      "6"
+    ],
+    "relation_type": "relative",
+    "subsets": "single_anchor,relative_position,relational,baseline_wrong",
+    "base_pred": 20,
+    "sparse_no_cal_pred": 32,
+    "dense_no_cal_pred": 32,
+    "dense_gate_pred": 20,
+    "gate_lambda": 0.130663,
+    "relation_margin": 0.174458,
+    "pred_class_count": 2,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0501_00",
+    "utterance": "The towel closest to the door.",
+    "target_index": 32,
+    "target_id": "32",
+    "anchor_ids": [
+      "6"
+    ],
+    "relation_type": "directional",
+    "subsets": "single_anchor,directional,relational,baseline_wrong",
+    "base_pred": 20,
+    "sparse_no_cal_pred": 32,
+    "dense_no_cal_pred": 32,
+    "dense_gate_pred": 20,
+    "gate_lambda": 0.130663,
+    "relation_margin": 0.174458,
+    "pred_class_count": 2,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0501_00",
+    "utterance": "select the towel nearest the door",
+    "target_index": 32,
+    "target_id": "32",
+    "anchor_ids": [
+      "6"
+    ],
+    "relation_type": "directional",
+    "subsets": "single_anchor,directional,relational,baseline_wrong",
+    "base_pred": 20,
+    "sparse_no_cal_pred": 32,
+    "dense_no_cal_pred": 32,
+    "dense_gate_pred": 20,
+    "gate_lambda": 0.130663,
+    "relation_margin": 0.174458,
+    "pred_class_count": 2,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0501_00",
+    "utterance": "It's the towel next to the door.",
+    "target_index": 32,
+    "target_id": "32",
+    "anchor_ids": [
+      "6"
+    ],
+    "relation_type": "relative",
+    "subsets": "single_anchor,relative_position,relational,baseline_wrong",
+    "base_pred": 20,
+    "sparse_no_cal_pred": 32,
+    "dense_no_cal_pred": 32,
+    "dense_gate_pred": 20,
+    "gate_lambda": 0.130663,
+    "relation_margin": 0.174458,
+    "pred_class_count": 2,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0501_00",
+    "utterance": "The towel next to the door.",
+    "target_index": 32,
+    "target_id": "32",
+    "anchor_ids": [
+      "6"
+    ],
+    "relation_type": "relative",
+    "subsets": "single_anchor,relative_position,relational,baseline_wrong",
+    "base_pred": 20,
+    "sparse_no_cal_pred": 32,
+    "dense_no_cal_pred": 32,
+    "dense_gate_pred": 20,
+    "gate_lambda": 0.130663,
+    "relation_margin": 0.174458,
+    "pred_class_count": 2,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0670_00",
+    "utterance": "The trash can is small and white. It is near brown cabinets and there is a poster that says \"kitchen\" above it.",
+    "target_index": 25,
+    "target_id": "25",
+    "anchor_ids": [
+      "27",
+      "33"
+    ],
+    "relation_type": "relative",
+    "subsets": "same_class_clutter,multi_anchor,relative_position,relational,baseline_wrong,sparse_any_missed_at_5,sparse_all_incomplete_at_5",
+    "base_pred": 3,
+    "sparse_no_cal_pred": 3,
+    "dense_no_cal_pred": 25,
+    "dense_gate_pred": 3,
+    "gate_lambda": 0.114327,
+    "relation_margin": 0.01566,
+    "pred_class_count": 3,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0670_00",
+    "utterance": "Choose the garbage can  next to the  counter and under the poster that says KITCHEN",
+    "target_index": 25,
+    "target_id": "25",
+    "anchor_ids": [
+      "27",
+      "33"
+    ],
+    "relation_type": "relative",
+    "subsets": "same_class_clutter,multi_anchor,relative_position,relational,baseline_wrong,sparse_any_missed_at_5,sparse_all_incomplete_at_5",
+    "base_pred": 3,
+    "sparse_no_cal_pred": 3,
+    "dense_no_cal_pred": 25,
+    "dense_gate_pred": 3,
+    "gate_lambda": 0.114327,
+    "relation_margin": 0.01566,
+    "pred_class_count": 3,
+    "event": "recovered"
+  },
+  {
+    "scene_id": "scene0058_00",
+    "utterance": "the desk closest to the chairs that are lined up against the wall",
+    "target_index": 10,
+    "target_id": "10",
+    "anchor_ids": [
+      "18"
+    ],
+    "relation_type": "directional",
+    "subsets": "single_anchor,directional,relational,baseline_correct,sparse_any_missed_at_5,sparse_all_incomplete_at_5",
+    "base_pred": 10,
+    "sparse_no_cal_pred": 10,
+    "dense_no_cal_pred": 28,
+    "dense_gate_pred": 10,
+    "gate_lambda": 0.133464,
+    "relation_margin": 0.250514,
+    "pred_class_count": 2,
+    "event": "harmed"
+  },
+  {
+    "scene_id": "scene0058_00",
+    "utterance": "While facing the window, the desk that is further away from the whiteboard",
+    "target_index": 10,
+    "target_id": "10",
+    "anchor_ids": [
+      "18"
+    ],
+    "relation_type": "relative",
+    "subsets": "single_anchor,relative_position,relational,baseline_correct,sparse_any_missed_at_5,sparse_all_incomplete_at_5",
+    "base_pred": 10,
+    "sparse_no_cal_pred": 10,
+    "dense_no_cal_pred": 28,
+    "dense_gate_pred": 10,
+    "gate_lambda": 0.133464,
+    "relation_margin": 0.250514,
+    "pred_class_count": 2,
+    "event": "harmed"
+  },
+  {
+    "scene_id": "scene0058_00",
+    "utterance": "Choose the desk closest to the two blue chairs.",
+    "target_index": 10,
+    "target_id": "10",
+    "anchor_ids": [
+      "18"
+    ],
+    "relation_type": "directional",
+    "subsets": "single_anchor,directional,relational,baseline_correct,sparse_any_missed_at_5,sparse_all_incomplete_at_5",
+    "base_pred": 10,
+    "sparse_no_cal_pred": 10,
+    "dense_no_cal_pred": 28,
+    "dense_gate_pred": 10,
+    "gate_lambda": 0.133464,
+    "relation_margin": 0.250514,
+    "pred_class_count": 2,
+    "event": "harmed"
+  },
+  {
+    "scene_id": "scene0058_00",
+    "utterance": "From the two desks, pick the one that is bigger.",
+    "target_index": 10,
+    "target_id": "10",
+    "anchor_ids": [
+      "18"
+    ],
+    "relation_type": "attribute",
+    "subsets": "single_anchor,baseline_correct,sparse_any_missed_at_5,sparse_all_incomplete_at_5",
+    "base_pred": 10,
+    "sparse_no_cal_pred": 10,
+    "dense_no_cal_pred": 28,
+    "dense_gate_pred": 10,
+    "gate_lambda": 0.133464,
+    "relation_margin": 0.250514,
+    "pred_class_count": 2,
+    "event": "harmed"
+  },
+  {
+    "scene_id": "scene0058_00",
+    "utterance": "It's the desk that has two blue chairs pulled out from it.",
+    "target_index": 10,
+    "target_id": "10",
+    "anchor_ids": [
+      "18"
+    ],
+    "relation_type": "attribute",
+    "subsets": "single_anchor,baseline_correct,sparse_any_missed_at_5,sparse_all_incomplete_at_5",
+    "base_pred": 10,
+    "sparse_no_cal_pred": 10,
+    "dense_no_cal_pred": 28,
+    "dense_gate_pred": 10,
+    "gate_lambda": 0.133464,
+    "relation_margin": 0.250514,
+    "pred_class_count": 2,
+    "event": "harmed"
+  },
+  {
+    "scene_id": "scene0098_00",
+    "utterance": "Next to the door by the door handle side, you will choose the top box on the table",
+    "target_index": 1,
+    "target_id": "1",
+    "anchor_ids": [
+      "19"
+    ],
+    "relation_type": "relative",
+    "subsets": "same_class_clutter,single_anchor,relative_position,relational,baseline_correct,sparse_any_missed_at_5,sparse_all_incomplete_at_5",
+    "base_pred": 1,
+    "sparse_no_cal_pred": 1,
+    "dense_no_cal_pred": 26,
+    "dense_gate_pred": 1,
+    "gate_lambda": 0.15336,
+    "relation_margin": 0.285009,
+    "pred_class_count": 3,
+    "event": "harmed"
+  },
+  {
+    "scene_id": "scene0688_00",
+    "utterance": "Facing the bed the leftmost lamp.",
+    "target_index": 13,
+    "target_id": "13",
+    "anchor_ids": [
+      "5"
+    ],
+    "relation_type": "directional",
+    "subsets": "single_anchor,directional,relational,baseline_correct,sparse_any_missed_at_5,sparse_all_incomplete_at_5",
+    "base_pred": 13,
+    "sparse_no_cal_pred": 13,
+    "dense_no_cal_pred": 31,
+    "dense_gate_pred": 13,
+    "gate_lambda": 0.151669,
+    "relation_margin": 0.774381,
+    "pred_class_count": 2,
+    "event": "harmed"
+  },
+  {
+    "scene_id": "scene0511_00",
+    "utterance": "This trash can is the one that is further from the brown cabinet. It is a larger trash can that sits on the floor",
+    "target_index": 8,
+    "target_id": "8",
+    "anchor_ids": [
+      "1"
+    ],
+    "relation_type": "support",
+    "subsets": "single_anchor,relational,baseline_correct,sparse_any_missed_at_5,sparse_all_incomplete_at_5",
+    "base_pred": 8,
+    "sparse_no_cal_pred": 8,
+    "dense_no_cal_pred": 7,
+    "dense_gate_pred": 8,
+    "gate_lambda": 0.127313,
+    "relation_margin": 0.084152,
+    "pred_class_count": 2,
+    "event": "harmed"
+  },
+  {
+    "scene_id": "scene0213_00",
+    "utterance": "box on the floor, farthest from the sofa",
+    "target_index": 26,
+    "target_id": "26",
+    "anchor_ids": [
+      "3",
+      "11"
+    ],
+    "relation_type": "directional",
+    "subsets": "multi_anchor,directional,relational,baseline_correct,sparse_any_missed_at_5,sparse_all_incomplete_at_5",
+    "base_pred": 26,
+    "sparse_no_cal_pred": 26,
+    "dense_no_cal_pred": 0,
+    "dense_gate_pred": 26,
+    "gate_lambda": 0.129704,
+    "relation_margin": 1.087424,
+    "pred_class_count": 2,
+    "event": "harmed"
+  }
+]

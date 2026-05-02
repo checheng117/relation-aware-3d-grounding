@@ -1,0 +1,42 @@
+{
+  "E1_rand": {
+    "mean_acc_at_1": 30.606666666666666,
+    "std_acc_at_1": 0.09814954576223531,
+    "params_trainable": 312385,
+    "params_frozen": 310533,
+    "seeds": [30.72, 30.55, 30.55],
+    "seed_ids": [42, 123, 2026],
+    "control_type": "frozen_viewpoint_predictor"
+  },
+  "E1_shuf": {
+    "mean_acc_at_1": 30.533333333333335,
+    "std_acc_at_1": 0.040414518843271914,
+    "params": 622918,
+    "seeds": [30.58, 30.51, 30.51],
+    "seed_ids": [42, 123, 2026],
+    "control_type": "shuffled_viewpoint_labels"
+  },
+  "comparison": {
+    "E1_rand_minus_E1": 0.11,
+    "E1_shuf_minus_E1": 0.03,
+    "E1_rand_minus_E0": 2.0,
+    "E1_shuf_minus_E0": 1.92,
+    "interpretation": "Negative controls are close to E1; conditioning gain may not require learned viewpoint signal"
+  },
+  "R001_reference": {
+    "E1_mean": 30.50,
+    "E0_mean": 28.61,
+    "E3_mean": 30.45
+  },
+  "claim_impact": {
+    "C001": "NEEDS REVISION — gain may come from architecture, not learned conditioning",
+    "C002": "NEEDS REVISION — VP signal contribution limited"
+  },
+  "unexpected_findings": [
+    "E1-rand (frozen VP) > E1 (+0.11 pp)",
+    "E1-shuf (shuffled labels) ≈ E1 (+0.03 pp)",
+    "Both controls > E0 baseline by about 2 pp"
+  ],
+  "run_date": "2026-04-30",
+  "run_id": "R002"
+}

@@ -1,0 +1,53 @@
+{
+  "k": 5,
+  "definition": {
+    "sparse_any_missed": "baseline-wrong, anchor-evaluable samples where sparse top-k contains no annotated anchor",
+    "sparse_all_incomplete": "baseline-wrong, anchor-evaluable samples where sparse top-k does not contain every annotated anchor",
+    "dense_recovered": "annotated anchors are reachable by dense all-pair candidate-anchor scoring"
+  },
+  "baseline_wrong_anchor_count": 334,
+  "baseline_wrong_anchor_evaluable_count": 324,
+  "baseline_wrong_anchor_non_evaluable_count": 10,
+  "sparse_any_missed_count": 110,
+  "sparse_any_missed_pct_of_evaluable": 33.95,
+  "dense_recovered_any_count": 110,
+  "dense_recovered_any_pct": 100.0,
+  "sparse_all_incomplete_count": 156,
+  "sparse_all_incomplete_pct_of_evaluable": 48.15,
+  "dense_recovered_all_count": 156,
+  "dense_recovered_all_pct": 100.0,
+  "sparse_any_missed_subset_distribution": {
+    "same_class_clutter": 70,
+    "same_class_high_clutter": 36,
+    "multi_anchor": 22,
+    "single_anchor": 88,
+    "relative_position": 27,
+    "directional": 36,
+    "between": 6,
+    "relational": 74,
+    "dense_scene": 16,
+    "annotation_exact": 26,
+    "annotation_fallback": 84
+  },
+  "sparse_all_incomplete_subset_distribution": {
+    "same_class_clutter": 114,
+    "same_class_high_clutter": 62,
+    "multi_anchor": 68,
+    "single_anchor": 88,
+    "relative_position": 37,
+    "directional": 55,
+    "between": 7,
+    "relational": 106,
+    "dense_scene": 28,
+    "annotation_exact": 42,
+    "annotation_fallback": 114
+  },
+  "sparse_any_missed_rank_stats": {
+    "mean_min_anchor_rank": 10.8,
+    "median_min_anchor_rank": 10
+  },
+  "sparse_all_incomplete_rank_stats": {
+    "mean_min_anchor_rank": 8.29,
+    "median_min_anchor_rank": 8
+  }
+}

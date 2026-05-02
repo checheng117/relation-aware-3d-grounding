@@ -1,0 +1,73 @@
+{
+  "status": "PASS",
+  "inputs": {
+    "manifest": "data/processed/scene_disjoint/official_scene_disjoint/test_manifest.jsonl",
+    "coverage": "reports/pre_method_clean_coverage_diagnostics/per_sample_coverage.jsonl",
+    "predictions": "outputs/20260420_clean_sorted_vocab_baseline/formal_logits/eval_test_predictions.json",
+    "geometry_dir": "data/geometry"
+  },
+  "limitations": [
+    "Uses real base logits from a clean export.",
+    "Uses oracle-anchor geometry proxy relation scores; not a learned dense scorer.",
+    "Intended only to prove the comparison entry point is runnable."
+  ],
+  "dense_lambda": 0.5,
+  "total_samples": 4255,
+  "skipped_rows": 0,
+  "overall": {
+    "base": {
+      "count": 4255,
+      "acc_at_1": 30.83,
+      "acc_at_5": 91.87
+    },
+    "sparse_no_cal": {
+      "count": 4255,
+      "acc_at_1": 33.44,
+      "acc_at_5": 92.2
+    },
+    "dense_no_cal": {
+      "count": 4255,
+      "acc_at_1": 34.29,
+      "acc_at_5": 92.22
+    },
+    "dense_calibrated": {
+      "count": 4255,
+      "acc_at_1": 34.24,
+      "acc_at_5": 92.17
+    }
+  },
+  "transitions": {
+    "sparse_no_cal": {
+      "base_wrong_count": 2943,
+      "base_correct_count": 1312,
+      "recovered_from_base_wrong": 121,
+      "recovered_pct_of_base_wrong": 4.11,
+      "harmed_from_base_correct": 10,
+      "harmed_pct_of_base_correct": 0.76,
+      "net_correct_delta": 111
+    },
+    "dense_no_cal": {
+      "base_wrong_count": 2943,
+      "base_correct_count": 1312,
+      "recovered_from_base_wrong": 169,
+      "recovered_pct_of_base_wrong": 5.74,
+      "harmed_from_base_correct": 22,
+      "harmed_pct_of_base_correct": 1.68,
+      "net_correct_delta": 147
+    },
+    "dense_calibrated": {
+      "base_wrong_count": 2943,
+      "base_correct_count": 1312,
+      "recovered_from_base_wrong": 167,
+      "recovered_pct_of_base_wrong": 5.67,
+      "harmed_from_base_correct": 22,
+      "harmed_pct_of_base_correct": 1.68,
+      "net_correct_delta": 145
+    }
+  },
+  "gate_behavior": {
+    "mean_calibrated_lambda": 0.004894,
+    "median_calibrated_lambda": 0.0,
+    "max_calibrated_lambda": 0.135635
+  }
+}
